@@ -1,0 +1,13 @@
+# Target labels
+ pioasmBuild
+# Source files and their labels
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/CMakeFiles/pioasmBuild
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/CMakeFiles/pioasmBuild.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/CMakeFiles/pioasmBuild-complete.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-build.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-configure.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-download.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-install.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-mkdir.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-patch.rule
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/pico-sdk/src/rp2_common/pico_status_led/pioasm/src/pioasmBuild-stamp/pioasmBuild-update.rule
