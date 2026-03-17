@@ -34,6 +34,7 @@
 #define configTIMER_QUEUE_LENGTH                    10
 #define configTIMER_TASK_STACK_DEPTH                configMINIMAL_STACK_SIZE
 #define INCLUDE_vTaskDelay                          1
+#define INCLUDE_vTaskDelete                         1  /* startup_task deletes itself after 1.5s */
 #define INCLUDE_xTimerPendFunctionCall              1  /* required by RP2040 port for xEventGroupSetBitsFromISR */
 
 #define configUSE_EVENT_GROUPS                      1

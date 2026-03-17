@@ -32,6 +32,8 @@ static void midi_task_fn(void *pvParameters) {
             *sh->button_state = 0;
             sh->usb_mounted = true;
             snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE ON C4");
+            snprintf(sh->line4, LINE_LEN, "MIDI READY");
+            snprintf(sh->line5, LINE_LEN, "NOTE ON C4");
             xSemaphoreGive(sh->mutex);
           }
         } else {
@@ -43,6 +45,8 @@ static void midi_task_fn(void *pvParameters) {
             *sh->button_state = 1;
             sh->usb_mounted = true;
             snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE OFF C4");
+            snprintf(sh->line4, LINE_LEN, "MIDI READY");
+            snprintf(sh->line5, LINE_LEN, "NOTE OFF C4");
             xSemaphoreGive(sh->mutex);
           }
         }
@@ -50,6 +54,8 @@ static void midi_task_fn(void *pvParameters) {
         if (xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
           *sh->button_state = state;
           sh->usb_mounted = false;
+          snprintf(sh->line4, LINE_LEN, "NOT MOUNTED");
+          snprintf(sh->line5, LINE_LEN, "CHECK USB STACK");
           xSemaphoreGive(sh->mutex);
         }
       }

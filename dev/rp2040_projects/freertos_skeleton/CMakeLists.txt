@@ -28,14 +28,20 @@ add_executable(freertos_skeleton
     src/midi_task.c
     src/ui_task.c
     src/display_task.c
+    src/usb_descriptors.c
+    src/usb_task.c
+    src/pcd8544.c
 )
 
 target_include_directories(freertos_skeleton PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 target_link_libraries(freertos_skeleton
     pico_stdlib
+    pico_unique_id
+    tinyusb_device
     FreeRTOS-Kernel-Static
     FreeRTOS-Kernel
     FreeRTOS-Kernel-Heap4
@@ -43,5 +49,5 @@ target_link_libraries(freertos_skeleton
 
 pico_add_extra_outputs(freertos_skeleton)
 
-pico_enable_stdio_usb(freertos_skeleton 1)
-pico_enable_stdio_uart(freertos_skeleton 0)
+pico_enable_stdio_usb(freertos_skeleton 0)
+pico_enable_stdio_uart(freertos_skeleton 1)

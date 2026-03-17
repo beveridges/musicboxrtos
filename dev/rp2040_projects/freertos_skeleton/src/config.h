@@ -43,12 +43,15 @@
 #define DISPLAY_TASK_STACK_SIZE 256
 
 #define LAST_EVENT_LEN 24
+#define LINE_LEN       20
 
 /* Shared state: MIDI task writes; UI and display tasks read under mutex. */
 typedef struct {
   int *button_state;
   bool usb_mounted;
   char last_event[LAST_EVENT_LEN];
+  char line4[LINE_LEN];
+  char line5[LINE_LEN];
   SemaphoreHandle_t mutex;
 } shared_state_t;
 

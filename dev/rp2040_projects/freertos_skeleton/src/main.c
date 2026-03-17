@@ -1,10 +1,7 @@
 /*
- * RP2040 MIDI Button + NeoPixel — FreeRTOS (converted from Arduino RP2040_MIDI_5110_RTOS).
- *
- * Button (GPIO 12) -> ISR notifies MIDI task -> USB MIDI note on/off + shared state.
- * UI task -> NeoPixel (GPIO 16): idle=off, pressed=white.
- * Display task -> printf USB status and last event (serial).
- *
+ * test_sketch_usb_midi_button.ino port — FreeRTOS on RP2040.
+ * Button (GPIO 12) -> MIDI task -> USB MIDI note on/off + shared state.
+ * UI task -> NeoPixel (GPIO 16). Display task -> Nokia 5110.
  * Build: ./build_uf2.sh
  */
 #include "pico/stdlib.h"
@@ -13,15 +10,35 @@
 #include "midi_task.h"
 #include "ui_task.h"
 #include "display_task.h"
+#include "usb_task.h"
+#include "tusb.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
 #include <stdio.h>
 #include <string.h>
 
-static int s_button_state = 1; /* HIGH = not pressed */
+static int s_button_state = 1;
 static SemaphoreHandle_t s_mutex = NULL;
 static shared_state_t s_shared;
+
+static void startup_task_fn(void *pvParameters) {
+  shared_state_t *sh = (shared_state_t *)pvParameters;
+  vTaskDelay(pdMS_TO_TICKS(1500));
+  if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+    if (tud_mounted()) {
+      snprintf(sh->line4, LINE_LEN, "MIDI READY");
+      snprintf(sh->line5, LINE_LEN, "BUTTON TEST");
+      sh->usb_mounted = true;
+    } else {
+      snprintf(sh->line4, LINE_LEN, "NOT MOUNTED");
+      snprintf(sh->line5, LINE_LEN, "CHECK USB STACK");
+      sh->usb_mounted = false;
+    }
+    xSemaphoreGive(sh->mutex);
+  }
+  vTaskDelete(NULL);
+}
 
 int main(void) {
   stdio_init_all();
@@ -35,7 +52,10 @@ int main(void) {
   s_shared.usb_mounted = false;
   strncpy(s_shared.last_event, "---", LAST_EVENT_LEN - 1);
   s_shared.last_event[LAST_EVENT_LEN - 1] = '\0';
+  snprintf(s_shared.line4, LINE_LEN, "USB MIDI INIT");
+  snprintf(s_shared.line5, LINE_LEN, "WAIT PC ENUM");
 
+  usb_task_create();
   ui_task_create(&s_shared);
   display_task_create(&s_shared);
 
@@ -44,7 +64,7 @@ int main(void) {
     for (;;) tight_loop_contents();
   }
 
-  sleep_ms(1500);
+  xTaskCreate(startup_task_fn, "startup", 128, &s_shared, 1, NULL);
 
   button_isr_attach(midi_handle);
 
