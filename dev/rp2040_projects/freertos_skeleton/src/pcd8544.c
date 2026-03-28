@@ -4,6 +4,7 @@
 #include "pcd8544.h"
 #include "hardware/gpio.h"
 #include "pico/time.h"
+#include <stddef.h>
 #include <string.h>
 
 static uint8_t _sclk, _din, _dc, _cs, _rst;
@@ -172,5 +173,17 @@ void pcd8544_print(const char *str) {
       _draw_char(*str);
     }
     str++;
+  }
+}
+
+void pcd8544_invert_row(uint8_t y) {
+  if (y >= PCD8544_ROWS) {
+    return;
+  }
+  for (uint8_t x = 0; x < PCD8544_WIDTH; x++) {
+    size_t idx = (size_t)y * PCD8544_WIDTH + (size_t)x;
+    if (idx < sizeof(_fb)) {
+      _fb[idx] ^= 0xFFu;
+    }
   }
 }

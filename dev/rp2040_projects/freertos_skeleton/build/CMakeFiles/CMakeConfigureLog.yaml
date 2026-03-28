@@ -37,12 +37,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -85,12 +86,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -133,9 +135,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc"
@@ -151,6 +150,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc"
@@ -184,12 +189,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -234,12 +240,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -282,12 +289,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -330,9 +338,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-g++.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-g++.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-g++"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-g++.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-g++.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-g++"
       - "C:/Program Files/Calibre2/arm-none-eabi-g++.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-g++.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-g++"
@@ -348,6 +353,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-g++.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-g++.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-g++"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-g++.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-g++.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-g++"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-g++.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-g++.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-g++"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-g++.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-g++.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-g++"
@@ -381,12 +392,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -431,12 +443,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -479,12 +492,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -527,9 +541,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-objcopy.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-objcopy.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-objcopy"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-objcopy.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-objcopy.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-objcopy"
       - "C:/Program Files/Calibre2/arm-none-eabi-objcopy.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-objcopy.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-objcopy"
@@ -545,6 +556,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-objcopy.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-objcopy.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-objcopy"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-objcopy.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-objcopy.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-objcopy"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-objcopy.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-objcopy.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-objcopy"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-objcopy.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-objcopy.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-objcopy"
@@ -578,12 +595,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -628,12 +646,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -676,12 +695,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -724,9 +744,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-objdump.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-objdump.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-objdump"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-objdump.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-objdump.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-objdump"
       - "C:/Program Files/Calibre2/arm-none-eabi-objdump.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-objdump.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-objdump"
@@ -742,6 +759,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-objdump.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-objdump.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-objdump"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-objdump.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-objdump.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-objdump"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-objdump.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-objdump.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-objdump"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-objdump.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-objdump.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-objdump"
@@ -775,12 +798,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -829,12 +853,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -943,15 +968,6 @@ events:
       - "C:/Program Files/Git/cmd/samu.com"
       - "C:/Program Files/Git/cmd/samu.exe"
       - "C:/Program Files/Git/cmd/samu"
-      - "C:/Program Files/PowerShell/7/ninja-build.com"
-      - "C:/Program Files/PowerShell/7/ninja-build.exe"
-      - "C:/Program Files/PowerShell/7/ninja-build"
-      - "C:/Program Files/PowerShell/7/ninja.com"
-      - "C:/Program Files/PowerShell/7/ninja.exe"
-      - "C:/Program Files/PowerShell/7/ninja"
-      - "C:/Program Files/PowerShell/7/samu.com"
-      - "C:/Program Files/PowerShell/7/samu.exe"
-      - "C:/Program Files/PowerShell/7/samu"
       - "C:/Program Files/Calibre2/ninja-build.com"
       - "C:/Program Files/Calibre2/ninja-build.exe"
       - "C:/Program Files/Calibre2/ninja-build"
@@ -997,6 +1013,24 @@ events:
       - "C:/Program Files/CMake/bin/samu.com"
       - "C:/Program Files/CMake/bin/samu.exe"
       - "C:/Program Files/CMake/bin/samu"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/ninja-build.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/ninja-build.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/ninja-build"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/ninja.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/ninja.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/ninja"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/samu.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/samu.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/samu"
+      - "C:/Program Files/PowerShell/7/ninja-build.com"
+      - "C:/Program Files/PowerShell/7/ninja-build.exe"
+      - "C:/Program Files/PowerShell/7/ninja-build"
+      - "C:/Program Files/PowerShell/7/ninja.com"
+      - "C:/Program Files/PowerShell/7/ninja.exe"
+      - "C:/Program Files/PowerShell/7/ninja"
+      - "C:/Program Files/PowerShell/7/samu.com"
+      - "C:/Program Files/PowerShell/7/samu.exe"
+      - "C:/Program Files/PowerShell/7/samu"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/ninja-build.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/ninja-build.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/ninja-build"
@@ -1078,12 +1112,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1132,12 +1167,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1228,12 +1264,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1298,12 +1335,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1327,12 +1365,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1375,12 +1414,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1404,12 +1444,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1452,12 +1493,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1481,12 +1523,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1529,12 +1572,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1558,12 +1602,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1606,12 +1651,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1635,12 +1681,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1683,12 +1730,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1712,12 +1760,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1760,12 +1809,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -1810,9 +1860,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-dlltool.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-dlltool.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-dlltool"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-dlltool.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-dlltool.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-dlltool"
       - "C:/Program Files/Calibre2/arm-none-eabi-dlltool.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-dlltool.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-dlltool"
@@ -1828,6 +1875,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-dlltool.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-dlltool.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-dlltool"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-dlltool.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-dlltool"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-dlltool.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-dlltool"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-dlltool.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-dlltool.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-dlltool"
@@ -1885,9 +1938,6 @@ events:
       - "C:/Program Files/Git/cmd/dlltool.com"
       - "C:/Program Files/Git/cmd/dlltool.exe"
       - "C:/Program Files/Git/cmd/dlltool"
-      - "C:/Program Files/PowerShell/7/dlltool.com"
-      - "C:/Program Files/PowerShell/7/dlltool.exe"
-      - "C:/Program Files/PowerShell/7/dlltool"
       - "C:/Program Files/Calibre2/dlltool.com"
       - "C:/Program Files/Calibre2/dlltool.exe"
       - "C:/Program Files/Calibre2/dlltool"
@@ -1903,6 +1953,12 @@ events:
       - "C:/Program Files/CMake/bin/dlltool.com"
       - "C:/Program Files/CMake/bin/dlltool.exe"
       - "C:/Program Files/CMake/bin/dlltool"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/dlltool.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/dlltool.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/dlltool"
+      - "C:/Program Files/PowerShell/7/dlltool.com"
+      - "C:/Program Files/PowerShell/7/dlltool.exe"
+      - "C:/Program Files/PowerShell/7/dlltool"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/dlltool.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/dlltool.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/dlltool"
@@ -1938,12 +1994,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -1986,12 +2043,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -2015,12 +2073,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -2063,12 +2122,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -2113,9 +2173,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-tapi.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-tapi.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-tapi"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-tapi.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-tapi.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-tapi"
       - "C:/Program Files/Calibre2/arm-none-eabi-tapi.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-tapi.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-tapi"
@@ -2131,6 +2188,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-tapi.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-tapi.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-tapi"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-tapi.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-tapi.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-tapi"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-tapi.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-tapi.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-tapi"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-tapi.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-tapi.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-tapi"
@@ -2188,9 +2251,6 @@ events:
       - "C:/Program Files/Git/cmd/tapi.com"
       - "C:/Program Files/Git/cmd/tapi.exe"
       - "C:/Program Files/Git/cmd/tapi"
-      - "C:/Program Files/PowerShell/7/tapi.com"
-      - "C:/Program Files/PowerShell/7/tapi.exe"
-      - "C:/Program Files/PowerShell/7/tapi"
       - "C:/Program Files/Calibre2/tapi.com"
       - "C:/Program Files/Calibre2/tapi.exe"
       - "C:/Program Files/Calibre2/tapi"
@@ -2206,6 +2266,12 @@ events:
       - "C:/Program Files/CMake/bin/tapi.com"
       - "C:/Program Files/CMake/bin/tapi.exe"
       - "C:/Program Files/CMake/bin/tapi"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/tapi.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/tapi.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/tapi"
+      - "C:/Program Files/PowerShell/7/tapi.com"
+      - "C:/Program Files/PowerShell/7/tapi.exe"
+      - "C:/Program Files/PowerShell/7/tapi"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/tapi.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/tapi.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/tapi"
@@ -2241,12 +2307,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -2291,12 +2358,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -2341,9 +2409,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.2"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.2"
@@ -2359,6 +2424,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.2"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.2.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.2.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.2"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.2"
@@ -2416,9 +2487,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15"
@@ -2434,6 +2502,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15"
@@ -2491,9 +2565,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar15"
@@ -2509,6 +2580,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar15"
@@ -2545,12 +2622,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -2595,12 +2673,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -2645,9 +2724,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.2"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.2"
@@ -2663,6 +2739,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.2"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.2.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.2.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.2"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.2"
@@ -2720,9 +2802,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15"
@@ -2738,6 +2817,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15"
@@ -2795,9 +2880,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib15"
@@ -2813,6 +2895,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib15"
@@ -2849,12 +2937,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -2903,12 +2992,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -2999,12 +3089,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -3071,12 +3162,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -3121,9 +3213,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.2"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.2"
@@ -3139,6 +3228,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.2"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.2.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.2.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.2"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.2"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.2.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.2.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.2"
@@ -3196,9 +3291,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-15"
@@ -3214,6 +3306,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-15"
@@ -3271,9 +3369,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar15"
@@ -3289,6 +3384,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar15"
@@ -3325,12 +3426,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -3375,12 +3477,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -3425,9 +3528,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.2"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.2"
@@ -3443,6 +3543,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.2"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.2.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.2.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.2"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.2"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.2.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.2.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.2"
@@ -3500,9 +3606,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-15"
@@ -3518,6 +3621,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-15"
@@ -3575,9 +3684,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib15"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib15"
@@ -3593,6 +3699,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib15"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib15.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib15.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib15"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib15"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib15.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib15.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib15"
@@ -3629,12 +3741,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -3692,12 +3805,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -3742,9 +3856,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-"
@@ -3760,6 +3871,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-"
@@ -3817,9 +3934,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ar-"
@@ -3835,6 +3949,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ar-"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ar-"
@@ -3871,12 +3991,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -3921,12 +4042,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -3971,9 +4093,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-"
@@ -3989,6 +4108,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-"
@@ -4046,9 +4171,6 @@ events:
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.com"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.exe"
-      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Program Files/Calibre2/arm-none-eabi-gcc-ranlib-"
@@ -4064,6 +4186,12 @@ events:
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/PowerShell/7/arm-none-eabi-gcc-ranlib-"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/arm-none-eabi-gcc-ranlib-"
@@ -4100,12 +4228,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -4124,8 +4253,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-31nj4g"
-      binary: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-31nj4g"
+      source: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-cg7hw4"
+      binary: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-cg7hw4"
     cmakeVariables:
       CMAKE_CXX_STDLIB_MODULES_JSON: ""
       CMAKE_C_FLAGS: "-mcpu=cortex-m0plus -mthumb"
@@ -4137,10 +4266,10 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-31nj4g'
+        Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-cg7hw4'
         
-        Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_4d496
-        [1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
+        Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_75625
+        [1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
         Using built-in specs.
         COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE
         Target: arm-none-eabi
@@ -4148,8 +4277,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib
         gcc version 15.2.1 20251203 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_4d496.dir/'
-         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4d496.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\cc87SHfh.s
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_75625.dir/'
+         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_75625.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\ccAmXTyD.s
         GNU C23 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) version 15.2.1 20251203 (arm-none-eabi)
         	compiled by GNU C version 13-win32, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
         
@@ -4166,13 +4295,13 @@ events:
          C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/include
         End of search list.
         Compiler executable checksum: 06ab445c59ba8f89bbf09b9a069e4cf7
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_4d496.dir/'
-         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\cc87SHfh.s
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_75625.dir/'
+         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\ccAmXTyD.s
         GNU assembler version 2.45.1 (arm-none-eabi) using BFD version (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 2.45.1.20251203
         COMPILER_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/
         LIBRARY_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.'
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE -mcpu=cortex-m0plus -mthumb -Wl,--build-id=none -nostdlib  -v CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj -o cmTC_4d496.elf   && cd ."
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.'
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE -mcpu=cortex-m0plus -mthumb -Wl,--build-id=none -nostdlib  -v CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj -o cmTC_75625.elf   && cd ."
         Using built-in specs.
         COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE
         COLLECT_LTO_WRAPPER=C:/Program\\ Files\\ (x86)/Arm/GNU\\ Toolchain\\ mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe
@@ -4183,10 +4312,10 @@ events:
         gcc version 15.2.1 20251203 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 
         COMPILER_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/
         LIBRARY_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_4d496.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_4d496.elf.'
-         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\cc1vurta.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_4d496.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_75625.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_75625.elf.'
+         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\cckisUlJ.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_75625.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj
         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00008000
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_4d496.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_4d496.elf.'
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_75625.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_75625.elf.'
         
       exitCode: 0
   -
@@ -4219,10 +4348,10 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-31nj4g']
+        ignore line: [Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-cg7hw4']
         ignore line: []
-        ignore line: [Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_4d496]
-        ignore line: [[1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"]
+        ignore line: [Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_75625]
+        ignore line: [[1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE]
         ignore line: [Target: arm-none-eabi]
@@ -4230,8 +4359,8 @@ events:
         ignore line: [Thread model: single]
         ignore line: [Supported LTO compression algorithms: zlib]
         ignore line: [gcc version 15.2.1 20251203 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_4d496.dir/']
-        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4d496.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\cc87SHfh.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_75625.dir/']
+        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_75625.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\ccAmXTyD.s]
         ignore line: [GNU C23 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) version 15.2.1 20251203 (arm-none-eabi)]
         ignore line: [	compiled by GNU C version 13-win32  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
         ignore line: []
@@ -4248,8 +4377,8 @@ events:
         ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 06ab445c59ba8f89bbf09b9a069e4cf7]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_4d496.dir/']
-        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\cc87SHfh.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_75625.dir/']
+        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\ccAmXTyD.s]
         ignore line: [GNU assembler version 2.45.1 (arm-none-eabi) using BFD version (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 2.45.1.20251203]
         ignore line: [COMPILER_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/]
@@ -4261,8 +4390,8 @@ events:
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.']
-        ignore line: [[2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE -mcpu=cortex-m0plus -mthumb -Wl --build-id=none -nostdlib  -v CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj -o cmTC_4d496.elf   && cd ."]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.']
+        ignore line: [[2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE -mcpu=cortex-m0plus -mthumb -Wl --build-id=none -nostdlib  -v CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj -o cmTC_75625.elf   && cd ."]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR19DD~1.EXE]
         ignore line: [COLLECT_LTO_WRAPPER=C:/Program\\ Files\\ (x86)/Arm/GNU\\ Toolchain\\ mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe]
@@ -4281,11 +4410,11 @@ events:
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_4d496.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_4d496.elf.']
-        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\cc1vurta.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_4d496.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_4d496.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_75625.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_75625.elf.']
+        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\cckisUlJ.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_75625.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_75625.dir/CMakeCCompilerABI.c.obj]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: warning: cannot find entry symbol _start]
         ignore line: [ defaulting to 00008000]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_4d496.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_4d496.elf.']
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_75625.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_75625.elf.']
         ignore line: []
         ignore line: []
         implicit libs: []
@@ -4303,8 +4432,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-lw0aol"
-      binary: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-lw0aol"
+      source: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-ogfpn4"
+      binary: "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-ogfpn4"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "-mcpu=cortex-m0plus -mthumb"
       CMAKE_CXX_FLAGS_DEBUG: "-Og -g"
@@ -4317,10 +4446,10 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-lw0aol'
+        Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-ogfpn4'
         
-        Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_94311
-        [1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"
+        Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_e5c7e
+        [1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"
         Using built-in specs.
         COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE
         Target: arm-none-eabi
@@ -4328,8 +4457,8 @@ events:
         Thread model: single
         Supported LTO compression algorithms: zlib
         gcc version 15.2.1 20251203 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_94311.dir/'
-         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1plus.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_94311.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\ccV4luqr.s
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_e5c7e.dir/'
+         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1plus.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_e5c7e.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\ccEgcvcd.s
         GNU C++17 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) version 15.2.1 20251203 (arm-none-eabi)
         	compiled by GNU C version 13-win32, GMP version 6.2.1, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
         
@@ -4352,13 +4481,13 @@ events:
          C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/include
         End of search list.
         Compiler executable checksum: aac432cb28554e085afe9b46d5a4b17f
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_94311.dir/'
-         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\ccV4luqr.s
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_e5c7e.dir/'
+         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\ccEgcvcd.s
         GNU assembler version 2.45.1 (arm-none-eabi) using BFD version (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 2.45.1.20251203
         COMPILER_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/
         LIBRARY_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.'
-        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE -mcpu=cortex-m0plus -mthumb -Wl,--build-id=none -nostdlib  -v CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_94311.elf   && cd ."
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.'
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE -mcpu=cortex-m0plus -mthumb -Wl,--build-id=none -nostdlib  -v CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_e5c7e.elf   && cd ."
         Using built-in specs.
         COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE
         COLLECT_LTO_WRAPPER=C:/Program\\ Files\\ (x86)/Arm/GNU\\ Toolchain\\ mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe
@@ -4369,10 +4498,10 @@ events:
         gcc version 15.2.1 20251203 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 
         COMPILER_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/
         LIBRARY_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/;C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_94311.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_94311.elf.'
-         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\ccJqZdLw.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_94311.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_e5c7e.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_e5c7e.elf.'
+         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\ccV8R3Ub.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_e5c7e.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj
         C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: warning: cannot find entry symbol _start; defaulting to 00008000
-        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_94311.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_94311.elf.'
+        COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_e5c7e.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_e5c7e.elf.'
         
       exitCode: 0
   -
@@ -4411,10 +4540,10 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-lw0aol']
+        ignore line: [Change Dir: 'C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/rp2040_projects/freertos_skeleton/build/CMakeFiles/CMakeScratch/TryCompile-ogfpn4']
         ignore line: []
-        ignore line: [Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_94311]
-        ignore line: [[1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"]
+        ignore line: [Run Build Command(s): C:/Users/Scott/AppData/Local/Microsoft/WinGet/Links/ninja.exe -v cmTC_e5c7e]
+        ignore line: [[1/2] C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE   -mcpu=cortex-m0plus -mthumb    -v -o CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp"]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE]
         ignore line: [Target: arm-none-eabi]
@@ -4422,8 +4551,8 @@ events:
         ignore line: [Thread model: single]
         ignore line: [Supported LTO compression algorithms: zlib]
         ignore line: [gcc version 15.2.1 20251203 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_94311.dir/']
-        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1plus.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_94311.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\ccV4luqr.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_e5c7e.dir/']
+        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/cc1plus.exe -quiet -v -imultilib thumb/v6-m/nofp -iprefix C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/ -isysroot C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_e5c7e.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcpu=cortex-m0plus -mthumb -mfloat-abi=soft -mlibarch=armv6s-m -march=armv6s-m -version -o C:\\Users\\Scott\\AppData\\Local\\Temp\\ccEgcvcd.s]
         ignore line: [GNU C++17 (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) version 15.2.1 20251203 (arm-none-eabi)]
         ignore line: [	compiled by GNU C version 13-win32  GMP version 6.2.1  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
         ignore line: []
@@ -4446,8 +4575,8 @@ events:
         ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: aac432cb28554e085afe9b46d5a4b17f]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_94311.dir/']
-        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\ccV4luqr.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_e5c7e.dir/']
+        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/as.exe -v -march=armv6s-m -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj C:\\Users\\Scott\\AppData\\Local\\Temp\\ccEgcvcd.s]
         ignore line: [GNU assembler version 2.45.1 (arm-none-eabi) using BFD version (Arm GNU Toolchain 15.2.Rel1 (Build arm-15.86)) 2.45.1.20251203]
         ignore line: [COMPILER_PATH=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/]
@@ -4459,8 +4588,8 @@ events:
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [[2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE -mcpu=cortex-m0plus -mthumb -Wl --build-id=none -nostdlib  -v CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_94311.elf   && cd ."]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-v' '-o' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [[2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE -mcpu=cortex-m0plus -mthumb -Wl --build-id=none -nostdlib  -v CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_e5c7e.elf   && cd ."]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=C:\\PROGRA~2\\Arm\\GNUTOO~1\\bin\\AR10B2~1.EXE]
         ignore line: [COLLECT_LTO_WRAPPER=C:/Program\\ Files\\ (x86)/Arm/GNU\\ Toolchain\\ mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe]
@@ -4479,11 +4608,11 @@ events:
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_94311.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_94311.elf.']
-        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\ccJqZdLw.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_94311.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_94311.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_e5c7e.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_e5c7e.elf.']
+        ignore line: [ C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/collect2.exe -plugin C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/liblto_plugin.dll -plugin-opt=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/15.2.1/lto-wrapper.exe -plugin-opt=-fresolution=C:\\Users\\Scott\\AppData\\Local\\Temp\\ccV8R3Ub.res --sysroot=C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi -X -o cmTC_e5c7e.elf -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib/thumb/v6-m/nofp -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1 -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib -LC:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../arm-none-eabi/lib --build-id=none CMakeFiles/cmTC_e5c7e.dir/CMakeCXXCompilerABI.cpp.obj]
         ignore line: [C:/Program Files (x86)/Arm/GNU Toolchain mingw-w64-i686-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: warning: cannot find entry symbol _start]
         ignore line: [ defaulting to 00008000]
-        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_94311.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_94311.elf.']
+        ignore line: [COLLECT_GCC_OPTIONS='-mcpu=cortex-m0plus' '-mthumb' '-nostdlib' '-v' '-o' 'cmTC_e5c7e.elf' '-mfloat-abi=soft' '-mlibarch=armv6s-m' '-march=armv6s-m' '-dumpdir' 'cmTC_e5c7e.elf.']
         ignore line: []
         ignore line: []
         implicit libs: []
@@ -7001,12 +7130,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -7257,22 +7387,6 @@ events:
         mode: "cps"
         reason: "no_exist"
       -
-        path: "C:/Program Files/PowerShell/7/pioasmConfig.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "C:/Program Files/PowerShell/7/pioasm-config.cmake"
-        mode: "config"
-        reason: "no_exist"
-      -
-        path: "C:/Program Files/PowerShell/7/lib/cps/pioasm.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
-        path: "C:/Program Files/PowerShell/7/share/cps/pioasm.cps"
-        mode: "cps"
-        reason: "no_exist"
-      -
         path: "C:/Program Files/Calibre2/pioasmConfig.cmake"
         mode: "config"
         reason: "no_exist"
@@ -7350,6 +7464,38 @@ events:
         reason: "no_exist"
       -
         path: "C:/Program Files/CMake/share/cps/pioasm.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/pioasmConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/pioasm-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lib/cps/pioasm.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/share/cps/pioasm.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/PowerShell/7/pioasmConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/PowerShell/7/pioasm-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/PowerShell/7/lib/cps/pioasm.cps"
+        mode: "cps"
+        reason: "no_exist"
+      -
+        path: "C:/Program Files/PowerShell/7/share/cps/pioasm.cps"
         mode: "cps"
         reason: "no_exist"
       -
@@ -7534,12 +7680,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -7586,12 +7733,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -7651,9 +7799,6 @@ events:
       - "C:/Program Files/Git/cmd/doxygen.com"
       - "C:/Program Files/Git/cmd/doxygen.exe"
       - "C:/Program Files/Git/cmd/doxygen"
-      - "C:/Program Files/PowerShell/7/doxygen.com"
-      - "C:/Program Files/PowerShell/7/doxygen.exe"
-      - "C:/Program Files/PowerShell/7/doxygen"
       - "C:/Program Files/Calibre2/doxygen.com"
       - "C:/Program Files/Calibre2/doxygen.exe"
       - "C:/Program Files/Calibre2/doxygen"
@@ -7669,6 +7814,12 @@ events:
       - "C:/Program Files/CMake/bin/doxygen.com"
       - "C:/Program Files/CMake/bin/doxygen.exe"
       - "C:/Program Files/CMake/bin/doxygen"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/doxygen.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/doxygen.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/doxygen"
+      - "C:/Program Files/PowerShell/7/doxygen.com"
+      - "C:/Program Files/PowerShell/7/doxygen.exe"
+      - "C:/Program Files/PowerShell/7/doxygen"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/doxygen.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/doxygen.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/doxygen"
@@ -7758,12 +7909,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
@@ -7810,12 +7962,13 @@ events:
       - "C:/Windows/System32/OpenSSH/"
       - "C:/Program Files/cursor/resources/app/bin/"
       - "C:/Program Files/Git/cmd/"
-      - "C:/Program Files/PowerShell/7/"
       - "C:/Program Files/Calibre2/"
       - "C:/Program Files/PuTTY/"
       - "C:/Program Files/Polyspace/R2021a/bin/"
       - "C:/Program Files (x86)/WiX Toolset v3.14/bin/"
       - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/PowerShell/7/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/Scripts/"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Launcher/"
@@ -7878,9 +8031,6 @@ events:
       - "C:/Program Files/Git/cmd/dot.com"
       - "C:/Program Files/Git/cmd/dot.exe"
       - "C:/Program Files/Git/cmd/dot"
-      - "C:/Program Files/PowerShell/7/dot.com"
-      - "C:/Program Files/PowerShell/7/dot.exe"
-      - "C:/Program Files/PowerShell/7/dot"
       - "C:/Program Files/Calibre2/dot.com"
       - "C:/Program Files/Calibre2/dot.exe"
       - "C:/Program Files/Calibre2/dot"
@@ -7896,6 +8046,12 @@ events:
       - "C:/Program Files/CMake/bin/dot.com"
       - "C:/Program Files/CMake/bin/dot.exe"
       - "C:/Program Files/CMake/bin/dot"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/dot.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/dot.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/dot"
+      - "C:/Program Files/PowerShell/7/dot.com"
+      - "C:/Program Files/PowerShell/7/dot.exe"
+      - "C:/Program Files/PowerShell/7/dot"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/dot.com"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/dot.exe"
       - "C:/Users/Scott/AppData/Local/Programs/Python/Python314/dot"
@@ -7994,12 +8150,13 @@ events:
         - "C:\\WINDOWS\\System32\\OpenSSH"
         - "C:\\Program Files\\cursor\\resources\\app\\bin"
         - "C:\\Program Files\\Git\\cmd"
-        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Program Files\\Calibre2"
         - "C:\\Program Files\\PuTTY"
         - "C:\\Program Files\\Polyspace\\R2021a\\bin"
         - "C:\\Program Files (x86)\\WiX Toolset v3.14\\bin"
         - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit"
+        - "C:\\Program Files\\PowerShell\\7"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Python314\\Scripts"
         - "C:\\Users\\Scott\\AppData\\Local\\Programs\\Python\\Launcher"
