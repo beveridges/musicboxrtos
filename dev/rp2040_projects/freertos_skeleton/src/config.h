@@ -16,14 +16,14 @@
 #define PIN_CS    13
 #define PIN_RST   15
 
-/* Discrete blue LEDs — GPIO -> resistor -> LED; active-high = ON.
+/* Discrete blue LEDs — GPIO -> resistor -> LED; active-high = ON (not WS2812).
+ * All four are always initialized and driven (BL in ui_task; BR/TL/TR in midi_task).
  *
- * Note: RP2040-Zero onboard RGB is WS2812 DIN on GPIO16; GPIO17-25 are not brought out
- * on the header/castellated pins. Use GPIO6/7/8/9 for external discrete LEDs. */
-#define LED_BLUE_SELECT_GPIO  6
-#define LED_BLUE_MIDI_A_GPIO  7
-#define LED_BLUE_MIDI_B_GPIO  8
-#define LED_BLUE_MIDI_C_GPIO  9
+ * RP2040-Zero: onboard RGB is WS2812 DIN on GPIO16. BR uses GPIO12 (not on PCD8544 SPI here). */
+#define LED_BLUE_SELECT_GPIO  7   /* BL — follows select button (GPIO2) */
+#define LED_BLUE_MIDI_A_GPIO  12  /* BR — MIDI A button (GPIO3) */
+#define LED_BLUE_MIDI_B_GPIO  8   /* TL — MIDI B button (GPIO4) */
+#define LED_BLUE_MIDI_C_GPIO  9   /* TR — MIDI C button (GPIO5) */
 #define LED_ACTIVE_LEVEL      1
 #define LED_INACTIVE_LEVEL    (1 - (LED_ACTIVE_LEVEL))
 

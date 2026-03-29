@@ -2021,7 +2021,7 @@ Disassembly of section .text:
 1000113e:	2204      	movs	r2, #4
 10001140:	061b      	lsls	r3, r3, #24
 10001142:	685b      	ldr	r3, [r3, #4]
-10001144:	2006      	movs	r0, #6
+10001144:	2007      	movs	r0, #7
 10001146:	401a      	ands	r2, r3
 10001148:	2301      	movs	r3, #1
 1000114a:	4690      	mov	r8, r2
@@ -2291,7 +2291,7 @@ Disassembly of section .text:
 10001386:	464b      	mov	r3, r9
 10001388:	2604      	movs	r6, #4
 1000138a:	685b      	ldr	r3, [r3, #4]
-1000138c:	2006      	movs	r0, #6
+1000138c:	2007      	movs	r0, #7
 1000138e:	401e      	ands	r6, r3
 10001390:	2301      	movs	r3, #1
 10001392:	0771      	lsls	r1, r6, #29

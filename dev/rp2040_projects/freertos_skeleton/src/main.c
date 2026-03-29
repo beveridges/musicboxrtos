@@ -1,7 +1,7 @@
 /*
  * test_sketch_usb_midi_button.ino port — FreeRTOS on RP2040.
  * Buttons: GPIO2–5 — BL select (UI), BR/TL/TR MIDI test notes.
- * UI task -> discrete blue LEDs (GPIO6/7/8/9). Display task -> Nokia 5110.
+ * UI task -> discrete blue LEDs (BL=7, BR=12, TL=8, TR=9). Display -> Nokia 5110.
  * Build: ./build_uf2.sh
  */
 #include "pico/stdlib.h"
