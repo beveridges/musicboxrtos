@@ -1,0 +1,28 @@
+Command: ninja all
+[1/10] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\esp-idf\esptool_py && C:\Users\Scott\.espressif\python_env\idf5.5_py3.14_env\Scripts\python.exe C:/esp/v5.5.4/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/build/bootloader/bootloader.bin"
+Bootloader binary size 0x51e0 bytes. 0x2e20 bytes (36%) free.
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c: In function 'gatt_svr_chr_access':
+C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:90:5: warning: 'esp_log_buffer_hex' is deprecated: Use 'ESP_LOG_BUFFER_HEX' instead [-Wdeprecated-declarations]
+   90 |     esp_log_buffer_hex(TAG, buf, len);
+      |     ^~~~~~~~~~~~~~~~~~
+In file included from C:/esp/v5.5.4/esp-idf/components/log/include/esp_log.h:17,
+                 from C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:11:
+C:/esp/v5.5.4/esp-idf/components/log/include/esp_log_buffer.h:157:20: note: declared here
+  157 | static inline void esp_log_buffer_hex(const char *tag, const void *buffer, uint16_t buff_len)
+      |                    ^~~~~~~~~~~~~~~~~~
+[5/10] Linking C static library esp-idf\main\libmain.a
+[6/10] Generating esp-idf/esp_system/ld/sections.ld
+[7/10] Building C object CMakeFiles/esp32c3_musicbox_nimble.elf.dir/project_elf_src_esp32c3.c.obj
+[8/10] Linking CXX executable esp32c3_musicbox_nimble.elf
+[9/10] Generating binary image from built executable
+esptool.py v4.12.dev1
+Creating esp32c3 image...
+Merged 1 ELF section
+Successfully created esp32c3 image.
+Generated C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/build/esp32c3_musicbox_nimble.bin
+[10/10] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\esp-idf\esptool_py && C:\Users\Scott\.espressif\python_env\idf5.5_py3.14_env\Scripts\python.exe C:/esp/v5.5.4/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/build/partition_table/partition-table.bin C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/build/esp32c3_musicbox_nimble.bin"
+esp32c3_musicbox_nimble.bin binary size 0x7cf00 bytes. Smallest app partition is 0x100000 bytes. 0x83100 bytes (51%) free.

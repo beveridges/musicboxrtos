@@ -1,9 +1,11 @@
 /*
  * UI input + event queue + menu FSM processing.
+ * Long-hold on Select (3s = 1s/phase): TL @ 1s, +TR @ 2s, +BR @ 3s, 50ms hold, off, 1s all-4 flash, sb1_enter_setup_mode().
  */
 #include "config.h"
 #include "menu.h"
 #include "ui_task.h"
+#include "sb1_setup.h"
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
@@ -11,6 +13,42 @@
 #include "hardware/gpio.h"
 #include "pico/time.h"
 #include <stdio.h>
+
+typedef enum {
+  SETUP_ST_NONE = 0,
+  SETUP_ST_HOLDING,
+  SETUP_ST_P3_SHOW,
+  SETUP_ST_FLASH,
+} setup_st_t;
+
+static void setup_apply_progress_leds(uint32_t elapsed_ms) {
+  if (elapsed_ms < SETUP_HOLD_PHASE1_MS) {
+    gpio_led_set(LED_BLUE_MIDI_B_GPIO, false);
+    gpio_led_set(LED_BLUE_MIDI_C_GPIO, false);
+    gpio_led_set(LED_BLUE_MIDI_A_GPIO, false);
+  } else if (elapsed_ms < SETUP_HOLD_PHASE2_MS) {
+    gpio_led_set(LED_BLUE_MIDI_B_GPIO, true);
+    gpio_led_set(LED_BLUE_MIDI_C_GPIO, false);
+    gpio_led_set(LED_BLUE_MIDI_A_GPIO, false);
+  } else if (elapsed_ms < SETUP_HOLD_TOTAL_MS) {
+    gpio_led_set(LED_BLUE_MIDI_B_GPIO, true);
+    gpio_led_set(LED_BLUE_MIDI_C_GPIO, true);
+    gpio_led_set(LED_BLUE_MIDI_A_GPIO, false);
+  }
+}
+
+static void setup_clear_progress_leds(void) {
+  gpio_led_set(LED_BLUE_MIDI_B_GPIO, false);
+  gpio_led_set(LED_BLUE_MIDI_C_GPIO, false);
+  gpio_led_set(LED_BLUE_MIDI_A_GPIO, false);
+}
+
+static void setup_set_ui_hold_active(shared_state_t *sh, bool on) {
+  if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+    sh->ui_setup_hold_active = on;
+    xSemaphoreGive(sh->mutex);
+  }
+}
 
 static void ui_task_fn(void *pvParameters) {
   shared_state_t *sh = (shared_state_t *)pvParameters;
@@ -23,26 +61,112 @@ static void ui_task_fn(void *pvParameters) {
   TickType_t events_window_tick = telemetry_tick;
   uint16_t events_window = 0;
 
+  setup_st_t s_setup = SETUP_ST_NONE;
+  uint32_t s_aux_t0 = 0;
+  bool s_suppress_next_release = false;
+
   menu_init(sh);
   if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+    sh->ui_setup_hold_active = false;
     menu_render(sh);
     xSemaphoreGive(sh->mutex);
   }
 
   for (;;) {
     uint32_t now = to_ms_since_boot(get_absolute_time());
-    bool down = (gpio_get(BTN_SELECT_GPIO) == 0);
-    gpio_led_set(LED_BLUE_SELECT_GPIO, down);
-    if (down && !was_down) {
-      down_ms = now;
-      was_down = true;
-    } else if (!down && was_down) {
-      uint32_t dur = now - down_ms;
-      ui_event_t ev = {.type = (dur >= MENU_LONG_PRESS_MS) ? EV_BUTTON_LONG : EV_BUTTON_SHORT, .delta = 0};
-      if (dur >= DEBOUNCE_MS) {
-        xQueueSend(q, &ev, 0);
+
+    /* Timers for P3 show + flash run even if button released mid-sequence */
+    if (s_setup == SETUP_ST_P3_SHOW) {
+      setup_set_ui_hold_active(sh, true);
+      if ((uint32_t)(now - s_aux_t0) >= SETUP_PHASE3_SHOW_MS) {
+        setup_clear_progress_leds();
+        gpio_led_set(LED_BLUE_SELECT_GPIO, true);
+        gpio_led_set(LED_BLUE_MIDI_B_GPIO, true);
+        gpio_led_set(LED_BLUE_MIDI_C_GPIO, true);
+        gpio_led_set(LED_BLUE_MIDI_A_GPIO, true);
+        s_setup = SETUP_ST_FLASH;
+        s_aux_t0 = now;
       }
-      was_down = false;
+    }
+    if (s_setup == SETUP_ST_FLASH) {
+      setup_set_ui_hold_active(sh, true);
+      if ((uint32_t)(now - s_aux_t0) >= SETUP_SUCCESS_FLASH_MS) {
+        gpio_led_set(LED_BLUE_SELECT_GPIO, false);
+        gpio_led_set(LED_BLUE_MIDI_B_GPIO, false);
+        gpio_led_set(LED_BLUE_MIDI_C_GPIO, false);
+        gpio_led_set(LED_BLUE_MIDI_A_GPIO, false);
+        sb1_enter_setup_mode();
+        s_setup = SETUP_ST_NONE;
+        s_suppress_next_release = true;
+        setup_set_ui_hold_active(sh, false);
+      }
+    }
+
+    bool down = (gpio_get(BTN_SELECT_GPIO) == 0);
+
+    if (s_setup == SETUP_ST_NONE || s_setup == SETUP_ST_HOLDING) {
+      if (down && !was_down) {
+        down_ms = now;
+        was_down = true;
+        s_setup = SETUP_ST_HOLDING;
+      } else if (!down && was_down) {
+        uint32_t dur = now - down_ms;
+        was_down = false;
+        if (s_suppress_next_release) {
+          s_suppress_next_release = false;
+        } else if (s_setup == SETUP_ST_HOLDING) {
+          setup_clear_progress_leds();
+          setup_set_ui_hold_active(sh, false);
+          s_setup = SETUP_ST_NONE;
+          if (dur >= DEBOUNCE_MS) {
+            ui_event_t ev = {.type = (dur >= MENU_LONG_PRESS_MS) ? EV_BUTTON_LONG : EV_BUTTON_SHORT, .delta = 0};
+            xQueueSend(q, &ev, 0);
+          }
+        }
+      }
+
+      if (down && was_down && s_setup == SETUP_ST_HOLDING) {
+        uint32_t el = now - down_ms;
+        setup_set_ui_hold_active(sh, true);
+        gpio_led_set(LED_BLUE_SELECT_GPIO, false);
+        if (el >= SETUP_HOLD_TOTAL_MS) {
+          gpio_led_set(LED_BLUE_MIDI_B_GPIO, true);
+          gpio_led_set(LED_BLUE_MIDI_C_GPIO, true);
+          gpio_led_set(LED_BLUE_MIDI_A_GPIO, true);
+          s_setup = SETUP_ST_P3_SHOW;
+          s_aux_t0 = now;
+        } else {
+          setup_apply_progress_leds(el);
+        }
+      }
+    } else {
+      /* P3_SHOW or FLASH: still track was_down for edge bookkeeping */
+      if (down && !was_down) {
+        down_ms = now;
+        was_down = true;
+      } else if (!down && was_down) {
+        was_down = false;
+        if (s_setup == SETUP_ST_P3_SHOW) {
+          setup_clear_progress_leds();
+          gpio_led_set(LED_BLUE_SELECT_GPIO, false);
+          s_setup = SETUP_ST_NONE;
+          setup_set_ui_hold_active(sh, false);
+          uint32_t dur = now - down_ms;
+          if (dur >= DEBOUNCE_MS) {
+            ui_event_t ev = {.type = (dur >= MENU_LONG_PRESS_MS) ? EV_BUTTON_LONG : EV_BUTTON_SHORT, .delta = 0};
+            xQueueSend(q, &ev, 0);
+          }
+        } else if (s_setup == SETUP_ST_FLASH) {
+          if (s_suppress_next_release) {
+            s_suppress_next_release = false;
+          }
+        }
+      }
+    }
+
+    /* BL mirrors Select only when not in setup ramp (BL stays off during hold). */
+    if (s_setup == SETUP_ST_NONE) {
+      gpio_led_set(LED_BLUE_SELECT_GPIO, down);
     }
 
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {

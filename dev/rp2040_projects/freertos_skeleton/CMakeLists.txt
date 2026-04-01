@@ -25,6 +25,7 @@ include(${FREERTOS_KERNEL_PATH}/portable/ThirdParty/GCC/RP2040/library.cmake)
 add_executable(freertos_skeleton
     src/main.c
     src/gpio_led.c
+    src/sb1_setup.c
     src/midi_task.c
     src/menu.c
     src/ui_task.c

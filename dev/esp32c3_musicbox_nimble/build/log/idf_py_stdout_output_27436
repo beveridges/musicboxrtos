@@ -1,0 +1,69 @@
+Command: C:\Espressif\tools\python\v5.5.4\venv\Scripts\python.exe C:\esp\v5.5.4\esp-idf\tools/idf_monitor.py -p COM19 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\esp32c3_musicbox_nimble.elf C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v5.5.4\venv\Scripts\python.exe' 'C:\esp\v5.5.4\esp-idf\tools\idf.py' '-p' 'COM19'
+[0;32mI (152) esp_image: segment 4: paddr=000838a4 vaddr=4038b480 sizeESP-ROM:esp32c3-api1-20210207[0m
+Build:Feb  7 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403888d4
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=5387ch (342140) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=000838a4 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cec8 vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:19:28[0m
+[0;32mI (206) app_init: ELF file SHA256:  b439e78bd...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+[1;31mE (375) musicbox: adv_set_fields failed rc=4[0m
+[0;32mI (375) main_task: Returned from app_main()[0m

@@ -1,10 +1,29 @@
 #!/usr/bin/env bash
 set -e
 
-# Arg 1: base name for .uf2 output (script adds extension). Default: freertos_skeleton
-# Arg 2: optional — copy UF2 here after build (e.g. /e/ for Pico RPI-RP2 drive in Git Bash, or E:)
-NAME="${1:-freertos_skeleton}"
-DEST="$2"
+# Args:
+#   (none)     — build freertos_skeleton.uf2, no copy
+#   /f/        — build default UF2 and copy to that drive (Git Bash)
+#   E:         — same, Windows-style drive
+#   myname     — build myname.uf2, no copy
+#   myname /f/ — build myname.uf2 and copy to drive
+NAME="freertos_skeleton"
+DEST=""
+if [ $# -eq 0 ]; then
+  :
+elif [ $# -eq 1 ]; then
+  case "$1" in
+    /[a-zA-Z] | /[a-zA-Z]/ | [a-zA-Z]: | [a-zA-Z]:/ | [a-zA-Z]:\\)
+      DEST="$1"
+      ;;
+    *)
+      NAME="$1"
+      ;;
+  esac
+else
+  NAME="$1"
+  DEST="$2"
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"

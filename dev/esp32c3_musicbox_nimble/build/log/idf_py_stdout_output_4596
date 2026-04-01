@@ -1,0 +1,2112 @@
+Command: C:\Espressif\tools\python\v5.5.4\venv\Scripts\python.exe C:\esp\v5.5.4\esp-idf\tools/idf_monitor.py -p COM19 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c3 --revision 3 --decode-panic backtrace C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\esp32c3_musicbox_nimble.elf C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\tools\python\v5.5.4\venv\Scripts\python.exe' 'C:\esp\v5.5.4\esp-idf\tools\idf.py' '-p' 'COM19'
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size     : 0x3c06dfa1 ESP-ROM:esp32c3-api1-20210207[0m
+Build:Feb  7 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x420527e0
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadce0  GP      : 0x3fc95400  
+TP      : 0x3fcadda0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcacda2  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00110b4a  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000078  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabee0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadce0  GP      : 0x3fc95400  
+TP      : 0x3fcadda0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcacda2  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00110776  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000077  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabee0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadce0  GP      : 0x3fc95400  
+TP      : 0x3fcadda0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcacda2  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011041e  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000077  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabee0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadce0  GP      : 0x3fc95400  
+TP      : 0x3fcadda0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcacda2  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x001103d2  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000077  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabee0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadce0  GP      : 0x3fc95400  
+TP      : 0x3fcadda0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcacda2  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00110652  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000077  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabee0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (385) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadd70  GP      : 0x3fc95400  
+TP      : 0x3fcade30  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcace2a  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00113781  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabf88) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (375) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadd60  GP      : 0x3fc95400  
+TP      : 0x3fcade20  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcace26  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00113535  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabf64) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (31) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (64) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (211) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (259) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (385) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceae  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011375d  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcac00c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceaa  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x001109fc  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000078  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabfe8) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceaa  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00110a28  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000078  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabfe8) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (375) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadd70  GP      : 0x3fc95400  
+TP      : 0x3fcade30  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcace2e  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00113545  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabf7c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (385) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceae  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00113782  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcac00c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (37) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (375) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadd70  GP      : 0x3fc95400  
+TP      : 0x3fcade30  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcace2e  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00113556  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabf7c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (31) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (259) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (475) musicbox: registered RX handle=16[0m
+[0;32mI (475) musicbox: registered TX handle=18[0m
+[0;32mI (485) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceae  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0012b39d  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x000000e2  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcac00c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (375) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadd70  GP      : 0x3fc95400  
+TP      : 0x3fcade30  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcace2e  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011354f  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabf7c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (425) musicbox: registered RX handle=16[0m
+[0;32mI (425) musicbox: registered TX handle=18[0m
+[0;32mI (435) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceae  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011f005  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x000000b2  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcac00c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (37) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (375) musicbox: registered RX handle=16[0m
+[0;32mI (385) musicbox: registered TX handle=18[0m
+[0;32mI (385) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcadd70  GP      : 0x3fc95400  
+TP      : 0x3fcade30  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcace2e  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011354f  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000083  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabf7c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (425) musicbox: registered RX handle=16[0m
+[0;32mI (425) musicbox: registered TX handle=18[0m
+[0;32mI (435) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceae  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011ef98  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x000000b1  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcac00c) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (37) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (375) musicbox: registered RX handle=16[0m
+[0;32mI (375) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceaa  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x001114c3  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x0000007b  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabfe8) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (30) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (37) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (187) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceaa  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x00110d63  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000079  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+add symbol table from file "C:\Users\Scott\Dropbox\__PROJECTS__\MusicBoxRTOS\dev\esp32c3_musicbox_nimble\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+441	            *out_addr_type = addr_type;
+#0  ble_hs_id_infer_auto (privacy=privacy@entry=0, out_addr_type=out_addr_type@entry=0x0) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs_id.c:441
+#1  0x4200c88e in ble_on_sync () at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:227
+#2  0x4200db40 in ble_hs_sync () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:495
+#3  0x4200dd68 in ble_hs_start () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:814
+#4  0x4200ddb2 in ble_hs_event_start_stage2 (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/nimble/host/src/ble_hs.c:707
+#5  0x420198ec in npl_freertos_event_run (ev=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/src/npl_os_freertos.c:536
+#6  0x40381882 in ble_npl_event_run (ev=0x3fcabfe8) at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/npl/freertos/include/nimble/nimble_npl_os.h:185
+#7  nimble_port_run () at C:/esp/v5.5.4/esp-idf/components/bt/host/nimble/nimble/porting/nimble/src/nimble_port.c:422
+#8  0x4200c582 in ble_host_task (param=<error reading variable: value has been optimized out>) at C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c:265
+#9  0x4038c3ae in vPortTaskWrapper (pxCode=<optimized out>, pvParameters=<optimized out>) at C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c:255
+
+
+
+ELF file SHA256: d2285f1d4
+
+Rebooting...
+ESP-ROM:esp32c3-api1-20210207
+Build:Feb  7 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4038b26a
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x155c
+load:0x403cbf10,len:0xc84
+load:0x403ce710,len:0x2fa4
+entry 0x403cbf1a
+[0;32mI (15) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (15) boot: compile time Apr  1 2026 02:09:19[0m
+[0;32mI (16) boot: chip revision: v0.4[0m
+[0;32mI (16) boot: efuse block revision: v1.3[0m
+[0;32mI (19) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (23) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (27) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (31) boot: Enabling RNG early entropy source...[0m
+[0;32mI (35) boot: Partition Table:[0m
+[0;32mI (38) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (44) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (50) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (57) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (63) boot: End of partition table[0m
+[0;32mI (67) esp_image: segment 0: paddr=00010020 vaddr=3c060020 size=125ech ( 75244) map[0m
+[0;32mI (86) esp_image: segment 1: paddr=00022614 vaddr=3fc94c00 size=0257ch (  9596) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00024b98 vaddr=40380000 size=0b480h ( 46208) load[0m
+[0;32mI (98) esp_image: segment 3: paddr=00030020 vaddr=42000020 size=53870h (342128) map[0m
+[0;32mI (152) esp_image: segment 4: paddr=00083898 vaddr=4038b480 size=0961ch ( 38428) load[0m
+[0;32mI (159) esp_image: segment 5: paddr=0008cebc vaddr=50000000 size=00020h (    32) load[0m
+[0;32mI (165) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (165) boot: Disabling RNG early entropy source...[0m
+[0;32mI (177) cpu_start: Unicore app[0m
+[0;32mI (185) cpu_start: GPIO 20 and 21 are used as console UART I/O pins[0m
+[0;32mI (186) cpu_start: Pro cpu start user code[0m
+[0;32mI (186) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (188) app_init: Application information:[0m
+[0;32mI (191) app_init: Project name:     esp32c3_musicbox_nimble[0m
+[0;32mI (197) app_init: App version:      5213534-dirty[0m
+[0;32mI (201) app_init: Compile time:     Apr  1 2026 02:16:13[0m
+[0;32mI (206) app_init: ELF file SHA256:  d2285f1d4...[0m
+[0;32mI (210) app_init: ESP-IDF:          v5.5.4[0m
+[0;32mI (214) efuse_init: Min chip rev:     v0.3[0m
+[0;32mI (218) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (222) efuse_init: Chip rev:         v0.4[0m
+[0;32mI (226) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (232) heap_init: At 3FC98500 len 00027B00 (158 KiB): RAM[0m
+[0;32mI (237) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (243) heap_init: At 3FCDC710 len 00002950 (10 KiB): Retention RAM[0m
+[0;32mI (249) heap_init: At 50000020 len 00001FC8 (7 KiB): RTCRAM[0m
+[0;32mI (256) spi_flash: detected chip: generic[0m
+[0;32mI (258) spi_flash: flash io: dio[0m
+[0;33mW (261) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (274) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (280) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (295) main_task: Started on CPU0[0m
+[0;32mI (295) main_task: Calling app_main()[0m
+[0;32mI (305) BLE_INIT: BT controller compile version [b7de11e][0m
+[0;32mI (305) BLE_INIT: Using main XTAL as clock source[0m
+[0;32mI (305) BLE_INIT: Feature Config, ADV:1, BLE_50:1, DTM:1, SCAN:1, CCA:0, SMP:1, CONNECT:1[0m
+[0;32mI (315) BLE_INIT: Bluetooth MAC: 34:b7:da:f9:36:62[0m
+[0;32mI (315) phy_init: phy_version 1232,d493f299,Aug 25 2025,19:01:20[0m
+[0;32mI (365) musicbox: registered RX handle=16[0m
+[0;32mI (365) musicbox: registered TX handle=18[0m
+[0;32mI (375) NimBLE: GAP procedure initiated: stop advertising.[0m
+
+Guru Meditation Error: Core  0 panic'ed (Store access fault). Exception was unhandled.
+
+Core  0 register dump:
+MEPC    : 0x4200d6d8  RA      : 0x4200d6c0  SP      : 0x3fcaddf0  GP      : 0x3fc95400  
+TP      : 0x3fcadeb0  T0      : 0x00000000  T1      : 0x00000000  T2      : 0x27202701  
+S0/FP   : 0x00000000  S1      : 0x3c06df98  A0      : 0x00000000  A1      : 0x3c06dfa1  
+A2      : 0x3fcaceaa  A3      : 0x00000003  A4      : 0x00000000  A5      : 0x00000062  
+A6      : 0x00000001  A7      : 0x0011094c  S2      : 0x00000001  S3      : 0x00000000  
+S4      : 0x00000000  S5      : 0x00000000  S6      : 0x00000000  S7      : 0x00000000  
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000078  T5      : 0x00000000  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x40380001  MCAUSE  : 0x00000007  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+

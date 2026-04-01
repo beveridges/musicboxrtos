@@ -90,6 +90,7 @@ int main(void) {
   s_shared.arp_rate = 8;
   s_shared.program_change_pending = false;
   s_shared.midi_btn_live = 0;
+  s_shared.ui_setup_hold_active = false;
   memset(s_shared.menu_line, 0, sizeof(s_shared.menu_line));
   strncpy(s_shared.last_event, "---", LAST_EVENT_LEN - 1);
   s_shared.last_event[LAST_EVENT_LEN - 1] = '\0';

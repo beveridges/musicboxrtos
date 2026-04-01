@@ -54,12 +54,19 @@ static void midi_task_fn(void *pvParameters) {
     bool mounted = tud_mounted();
 
     uint8_t live_bits = 0;
+    bool ui_owns_corners = false;
+    if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(5)) == pdTRUE) {
+      ui_owns_corners = sh->ui_setup_hold_active;
+      xSemaphoreGive(sh->mutex);
+    }
     for (unsigned i = 0; i < 3u; i++) {
       bool pressed = (gpio_get(pins[i]) == 0);
       if (pressed) {
         live_bits |= (uint8_t)(1u << i);
       }
-      gpio_led_set(led_pins[i], pressed);
+      if (!ui_owns_corners) {
+        gpio_led_set(led_pins[i], pressed);
+      }
     }
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(5)) == pdTRUE) {
       sh->midi_btn_live = live_bits;

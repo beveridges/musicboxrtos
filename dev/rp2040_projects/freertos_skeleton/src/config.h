@@ -62,7 +62,7 @@
 #define POT_TASK_PRIORITY       1
 
 #define MIDI_TASK_STACK_SIZE    256
-#define UI_TASK_STACK_SIZE      384
+#define UI_TASK_STACK_SIZE      512
 #define DISPLAY_TASK_STACK_SIZE 256
 #define POT_TASK_STACK_SIZE     256
 
@@ -73,6 +73,12 @@
 #define MENU_ROWS      6
 
 #define MENU_LONG_PRESS_MS 600
+/* Long-hold setup (Select): 1s per third (3s total), TL / +TR / +BR; then 1s all-LED flash. */
+#define SETUP_HOLD_TOTAL_MS    3000u
+#define SETUP_HOLD_PHASE1_MS   (SETUP_HOLD_TOTAL_MS / 3u)
+#define SETUP_HOLD_PHASE2_MS   ((SETUP_HOLD_TOTAL_MS * 2u) / 3u)
+#define SETUP_PHASE3_SHOW_MS   50u
+#define SETUP_SUCCESS_FLASH_MS 1000u
 #define UI_EVENT_QUEUE_LEN 8
 #define POT_STEP_MAX 127
 #define POT_FILTER_SHIFT 2
@@ -111,6 +117,8 @@ typedef struct {
   bool program_change_pending;
   /* Live mode: raw pressed=low, bits 0,1,2 = MIDI A,B,C on GPIO3,4,5 (see midi_task). */
   uint8_t midi_btn_live;
+  /* When true, ui_task drives TL/TR/BR for setup gesture; midi_task must not override. */
+  bool ui_setup_hold_active;
   SemaphoreHandle_t mutex;
 } shared_state_t;
 
