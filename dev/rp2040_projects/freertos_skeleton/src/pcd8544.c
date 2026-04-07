@@ -187,3 +187,20 @@ void pcd8544_invert_row(uint8_t y) {
     }
   }
 }
+
+void pcd8544_set_pixel(uint8_t x, uint8_t y, bool black) {
+  if (x >= PCD8544_WIDTH || y >= PCD8544_HEIGHT) {
+    return;
+  }
+  uint8_t bank = (uint8_t)(y / 8u);
+  uint8_t bit = (uint8_t)(y % 8u);
+  size_t idx = (size_t)bank * PCD8544_WIDTH + (size_t)x;
+  if (idx >= sizeof(_fb)) {
+    return;
+  }
+  if (black) {
+    _fb[idx] |= (uint8_t)(1u << bit);
+  } else {
+    _fb[idx] = (uint8_t)(_fb[idx] & (uint8_t)~(1u << bit));
+  }
+}

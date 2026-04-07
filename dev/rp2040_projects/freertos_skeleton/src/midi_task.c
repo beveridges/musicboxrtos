@@ -5,6 +5,7 @@
 #include "gpio_led.h"
 #include "midi_task.h"
 #include "hardware/gpio.h"
+#include "pico/bootrom.h"
 #include "tusb.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -19,6 +20,9 @@ static void midi_task_fn(void *pvParameters) {
   /* Debounced stable state: 1 = released, 0 = pressed */
   static int s_stable[3] = {1, 1, 1};
   static uint16_t s_ctr[3] = {0};
+  /* TR (MIDI C): hold >= TR_USB_BOOT_HOLD_MS -> UF2 USB boot (no BOOTSEL pad). */
+  static bool s_tr_boot_timing;
+  static TickType_t s_tr_boot_t0;
   const uint8_t notes[3] = {BTN_MIDI_NOTE_A, BTN_MIDI_NOTE_B, BTN_MIDI_NOTE_C};
   const uint pins[3] = {BTN_MIDI_A_GPIO, BTN_MIDI_B_GPIO, BTN_MIDI_C_GPIO};
   const uint led_pins[3] = {LED_BLUE_MIDI_A_GPIO, LED_BLUE_MIDI_B_GPIO, LED_BLUE_MIDI_C_GPIO};
@@ -46,8 +50,10 @@ static void midi_task_fn(void *pvParameters) {
 #endif
 
     bool menu_active = false;
+    bool bt_pairing = false;
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
       menu_active = sh->menu_active;
+      bt_pairing = sh->bt_pairing_active;
       xSemaphoreGive(sh->mutex);
     }
 
@@ -86,7 +92,7 @@ static void midi_task_fn(void *pvParameters) {
           int was = s_stable[i];
           s_stable[i] = r;
           s_ctr[i] = 0;
-          if (mounted && !menu_active) {
+          if (mounted && !menu_active && !bt_pairing) {
             if (was == 1 && r == 0) {
               uint8_t note_on[3] = {(uint8_t)(0x90u | (uint8_t)(MIDI_CH - 1u)), notes[i], MIDI_VEL};
               tud_midi_stream_write(0, note_on, 3);
@@ -109,6 +115,22 @@ static void midi_task_fn(void *pvParameters) {
           }
         }
       }
+    }
+
+    /* TR held past TR_USB_BOOT_HOLD_MS: reboot into ROM USB boot (RPI-RP2). */
+    if (s_stable[2] == 0) {
+      if (!s_tr_boot_timing) {
+        s_tr_boot_timing = true;
+        s_tr_boot_t0 = xTaskGetTickCount();
+      } else if ((xTaskGetTickCount() - s_tr_boot_t0) >= pdMS_TO_TICKS(TR_USB_BOOT_HOLD_MS)) {
+        if (tud_mounted()) {
+          uint8_t note_off[3] = {(uint8_t)(0x80u | (uint8_t)(MIDI_CH - 1u)), notes[2], 0};
+          tud_midi_stream_write(0, note_off, 3);
+        }
+        reset_usb_boot(0, 0);
+      }
+    } else {
+      s_tr_boot_timing = false;
     }
 #endif
 

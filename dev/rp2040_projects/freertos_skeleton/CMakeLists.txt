@@ -26,6 +26,7 @@ add_executable(freertos_skeleton
     src/main.c
     src/gpio_led.c
     src/sb1_setup.c
+    src/sb1_link_task.c
     src/midi_task.c
     src/menu.c
     src/ui_task.c
@@ -34,6 +35,7 @@ add_executable(freertos_skeleton
     src/usb_descriptors.c
     src/usb_task.c
     src/pcd8544.c
+    src/qrcodegen.c
 )
 
 target_include_directories(freertos_skeleton PRIVATE

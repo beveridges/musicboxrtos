@@ -19,5 +19,7 @@ void pcd8544_set_cursor(uint8_t x, uint8_t y);
 void pcd8544_print(const char *str);
 /* Invert one 8-pixel-tall row band (y=0..5) for inverse video (e.g. menu highlight). */
 void pcd8544_invert_row(uint8_t y);
+/* Set one pixel (0..83, 0..47). Black = foreground (set bits). */
+void pcd8544_set_pixel(uint8_t x, uint8_t y, bool black);
 
 #endif

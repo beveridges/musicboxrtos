@@ -7,6 +7,8 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "config.h"
+#include "sb1_setup.h"
+#include "sb1_link_task.h"
 #include "gpio_led.h"
 #include "midi_task.h"
 #include "ui_task.h"
@@ -17,12 +19,78 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
+#include "pico/time.h"
 #include <stdio.h>
 #include <string.h>
 
 static int s_button_state = 1;
 static SemaphoreHandle_t s_mutex = NULL;
 static shared_state_t s_shared;
+
+/* RP2040 `pico_enable_stdio_uart()` uses board defaults for UART0:
+ * - TX: GPIO0 (idle high)
+ * - RX: GPIO1
+ *
+ * If ESP32-C3 is unpowered, driving TX can backfeed through clamp diodes.
+ * We keep TX in high-Z until we believe ESP32 is powered (see uart_stdio_bringup_task). */
+#define RP2040_UART_TX_GPIO 0
+#define RP2040_UART_RX_GPIO 1
+
+/* Poll for ESP32 TX idle-high before stdio_init_all(); ESP32 may boot slower than RP2040. */
+#define UART_PARTNER_PRE_DELAY_MS   500u
+#define UART_PARTNER_POLL_MS        200u
+#define UART_PARTNER_TIMEOUT_MS     30000u
+#define UART_BRINGUP_TASK_PRIORITY  6
+#define UART_BRINGUP_STACK_WORDS    256u
+
+/* One probe burst: call only from a FreeRTOS task (uses vTaskDelay). */
+static bool esp32_looks_powered(void) {
+  /* ESP32 UART TX -> RP2040 RX. Idle high when partner drives the line.
+   * Internal pull-down: when ESP32 is off/unwired, avoid reading floating-high as "powered". */
+  gpio_init(RP2040_UART_RX_GPIO);
+  gpio_set_dir(RP2040_UART_RX_GPIO, GPIO_IN);
+  gpio_pull_down(RP2040_UART_RX_GPIO);
+
+  gpio_init(RP2040_UART_TX_GPIO);
+  gpio_set_dir(RP2040_UART_TX_GPIO, GPIO_IN);
+  gpio_disable_pulls(RP2040_UART_TX_GPIO);
+
+  uint32_t consecutive_high = 0;
+  const uint32_t samples = 120;
+  const uint32_t need_high = 8;
+  const uint32_t sample_delay_ms = 2;
+  for (uint32_t i = 0; i < samples; i++) {
+    if (gpio_get(RP2040_UART_RX_GPIO)) {
+      consecutive_high++;
+      if (consecutive_high >= need_high) {
+        return true;
+      }
+    } else {
+      consecutive_high = 0;
+    }
+    vTaskDelay(pdMS_TO_TICKS(sample_delay_ms));
+  }
+  return false;
+}
+
+static void uart_stdio_bringup_task(void *pvParameters) {
+  shared_state_t *sh = (shared_state_t *)pvParameters;
+  vTaskDelay(pdMS_TO_TICKS(UART_PARTNER_PRE_DELAY_MS));
+  const TickType_t deadline = xTaskGetTickCount() + pdMS_TO_TICKS(UART_PARTNER_TIMEOUT_MS);
+  while (xTaskGetTickCount() < deadline) {
+    if (esp32_looks_powered()) {
+      stdio_init_all();
+      sb1_set_stdio_ready(true);
+      if (sh) {
+        sb1_link_task_create(sh);
+      }
+      vTaskDelete(NULL);
+      return;
+    }
+    vTaskDelay(pdMS_TO_TICKS(UART_PARTNER_POLL_MS));
+  }
+  vTaskDelete(NULL);
+}
 
 static void buttons_hw_init(void) {
   const uint pins[BTN_PANEL_COUNT] = {
@@ -59,7 +127,7 @@ static void startup_task_fn(void *pvParameters) {
 }
 
 int main(void) {
-  stdio_init_all();
+  sb1_set_stdio_ready(false);
 
   gpio_led_init();
   buttons_hw_init();
@@ -91,6 +159,11 @@ int main(void) {
   s_shared.program_change_pending = false;
   s_shared.midi_btn_live = 0;
   s_shared.ui_setup_hold_active = false;
+  s_shared.bt_pairing_active = false;
+  s_shared.bt_pairing_page = 0;
+  s_shared.bt_pairing_dirty = false;
+  s_shared.bt_peer_connected = false;
+  s_shared.bt_peer_name[0] = '\0';
   memset(s_shared.menu_line, 0, sizeof(s_shared.menu_line));
   strncpy(s_shared.last_event, "---", LAST_EVENT_LEN - 1);
   s_shared.last_event[LAST_EVENT_LEN - 1] = '\0';
@@ -98,6 +171,8 @@ int main(void) {
   snprintf(s_shared.line5, LINE_LEN, "WAIT PC ENUM");
 
   usb_task_create();
+  xTaskCreate(uart_stdio_bringup_task, "uart_bringup", UART_BRINGUP_STACK_WORDS, &s_shared,
+              UART_BRINGUP_TASK_PRIORITY, NULL);
   ui_task_create(&s_shared);
   pot_task_create(&s_shared);
   display_task_create(&s_shared);

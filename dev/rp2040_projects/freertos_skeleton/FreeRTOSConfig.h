@@ -43,7 +43,7 @@
 #define configSUPPORT_STATIC_ALLOCATION             1
 #define configSUPPORT_DYNAMIC_ALLOCATION            1
 #define configKERNEL_PROVIDED_STATIC_MEMORY        1  /* use kernel-provided idle/timer task memory */
-#define configTOTAL_HEAP_SIZE                       (32 * 1024)
+#define configTOTAL_HEAP_SIZE                       (48 * 1024)
 #define configAPPLICATION_ALLOCATED_HEAP            0
 #define configENABLE_HEAP_PROTECTOR                 0
 

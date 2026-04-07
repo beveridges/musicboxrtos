@@ -79,6 +79,7 @@ static void pot_task_fn(void *pvParameters) {
     }
     step = quant_step;
     bool menu_active = false;
+    bool bt_pairing = false;
 
     if (sh && sh->mutex) {
       if (xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
@@ -88,6 +89,7 @@ static void pot_task_fn(void *pvParameters) {
         sh->pot_step = step;
         sh->pot_quant_step = quant_step;
         menu_active = sh->menu_active;
+        bt_pairing = sh->bt_pairing_active;
         xSemaphoreGive(sh->mutex);
       }
     }
@@ -100,7 +102,7 @@ static void pot_task_fn(void *pvParameters) {
 
     if (!tud_mounted()) {
       s_last_cc_sent = 0xFFu;
-    } else if (!menu_active && cc_quant != s_last_cc_sent) {
+    } else if (!menu_active && !bt_pairing && cc_quant != s_last_cc_sent) {
       uint8_t msg[3] = {
           (uint8_t)(0xB0u | (uint8_t)(MIDI_CH - 1u)),
           (uint8_t)POT_MIDI_CC,

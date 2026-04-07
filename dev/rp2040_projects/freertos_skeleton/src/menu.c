@@ -120,6 +120,11 @@ void menu_init(shared_state_t *sh) {
 void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
   if (!sh || !ev) return;
 
+  /* Bluetooth pairing: exit only via LED sequence on Select (see ui_task); no menu events here. */
+  if (sh->bt_pairing_active) {
+    return;
+  }
+
   /* Dashboard / live: only BL long-press re-opens menu (MIDI buttons work when inactive). */
   if (!sh->menu_active) {
     if (ev->type == EV_BUTTON_LONG) {

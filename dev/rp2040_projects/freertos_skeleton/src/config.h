@@ -63,7 +63,9 @@
 
 #define MIDI_TASK_STACK_SIZE    256
 #define UI_TASK_STACK_SIZE      512
-#define DISPLAY_TASK_STACK_SIZE 256
+/* QR encode uses some stack; 4 KiB is enough for Nayuki qrcodegen here. Keep modest so xTaskCreate
+ * succeeds within configTOTAL_HEAP_SIZE (large stacks can silently fail task creation → blank LCD). */
+#define DISPLAY_TASK_STACK_SIZE 4096
 #define POT_TASK_STACK_SIZE     256
 
 #define LAST_EVENT_LEN 24
@@ -73,12 +75,15 @@
 #define MENU_ROWS      6
 
 #define MENU_LONG_PRESS_MS 600
-/* Long-hold setup (Select): 1s per third (3s total), TL / +TR / +BR; then 1s all-LED flash. */
-#define SETUP_HOLD_TOTAL_MS    3000u
-#define SETUP_HOLD_PHASE1_MS   (SETUP_HOLD_TOTAL_MS / 3u)
-#define SETUP_HOLD_PHASE2_MS   ((SETUP_HOLD_TOTAL_MS * 2u) / 3u)
-#define SETUP_PHASE3_SHOW_MS   50u
-#define SETUP_SUCCESS_FLASH_MS 1000u
+/* TR (MIDI C) hold -> reset_usb_boot (UF2); separate from menu long-press. */
+#define TR_USB_BOOT_HOLD_MS 1500u
+/* Bluetooth pairing LED choreography (see manual/SB1-Bluetooth-LED-Gestures-Plan.md). */
+#define PAIR_LED_FIRST_MS       1000u /* First dwell (longer than MENU_LONG_PRESS_MS). */
+#define PAIR_LED_STEP_MS        500u
+/* Entry: dark 1s, then TL→+TR→+BR→+BL each 0.5s, then all off at 3.0s → pairing UI. */
+#define PAIR_ENTRY_ALL_OFF_MS   (PAIR_LED_FIRST_MS + 5u * PAIR_LED_STEP_MS) /* 3000 */
+/* Exit: all on 1s, then peel BL→BR→TR→TL each 0.5s, all off at 2.5s → leave pairing. */
+#define PAIR_EXIT_ALL_OFF_MS    (PAIR_LED_FIRST_MS + 3u * PAIR_LED_STEP_MS) /* 2500 */
 #define UI_EVENT_QUEUE_LEN 8
 #define POT_STEP_MAX 127
 #define POT_FILTER_SHIFT 2
@@ -88,6 +93,16 @@
 #define POT_HYST_RAW 36             /* ADC hysteresis for Schmitt edges */
 #define UI_ROTATE_MIN_EVENT_MS 60   /* rate limit for rotate events */
 #define UI_TELEMETRY_PRINT_MS 500
+
+/* BLE / pairing UI — must match default ESP32 `device_name` when unset (see esp32 main.c). */
+#define SB1_BT_DEVICE_NAME "SB1 MIDI INTERFACE"
+/* QR payload (UTF-8 ASCII); keep reasonably short for small modules on 84x48 LCD. */
+#define SB1_BT_QR_PAYLOAD SB1_BT_DEVICE_NAME
+/* Pot quant step 0..15: hysteresis to switch pairing text vs QR screen. */
+#define BT_PAIR_INFO_MAX_STEP 5u
+#define BT_PAIR_QR_MIN_STEP   10u
+/* ESP32 → RP2040 UART lines: SB1BT,0 / SB1BT,1,<name> — four LCD rows × 14 cols max. */
+#define BT_PEER_NAME_MAX ((DISPLAY_COLS * 4u) + 1u)
 
 /* Shared state: MIDI task writes; UI and display tasks read under mutex. */
 typedef struct {
@@ -119,6 +134,14 @@ typedef struct {
   uint8_t midi_btn_live;
   /* When true, ui_task drives TL/TR/BR for setup gesture; midi_task must not override. */
   bool ui_setup_hold_active;
+  /* After BL long-hold setup gesture completes: Bluetooth pairing UI on the LCD. */
+  bool bt_pairing_active;
+  /* 0 = text instructions, 1 = QR code (scroll pot toward QR_MIN_STEP). */
+  uint8_t bt_pairing_page;
+  bool bt_pairing_dirty;
+  /* From ESP32 UART (SB1BT,...); used in pairing text screen when bt_pairing_active. */
+  bool bt_peer_connected;
+  char bt_peer_name[BT_PEER_NAME_MAX];
   SemaphoreHandle_t mutex;
 } shared_state_t;
 

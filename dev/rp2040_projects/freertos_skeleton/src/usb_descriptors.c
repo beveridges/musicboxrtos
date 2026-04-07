@@ -93,7 +93,7 @@ uint16_t const *tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
       break;
     }
     case STRID_PRODUCT: {
-      const char *str = "RP2040 MIDI Button";
+      const char *str = "SB1 MIDI";
       chr_count = strlen(str);
       for (size_t i = 0; i < chr_count; i++) _desc_str[1 + i] = (uint16_t)str[i];
       break;
