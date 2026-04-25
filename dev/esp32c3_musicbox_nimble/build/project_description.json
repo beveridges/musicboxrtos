@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "esp32c3_musicbox_nimble",
-    "project_version":    "5213534-dirty",
+    "project_version":    "0c19130-dirty",
     "project_path":       "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble",
     "idf_path":           "C:/esp/v5.5.4/esp-idf",
     "build_dir":          "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/build",
@@ -1236,11 +1236,11 @@
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "nvs_flash", "bt", "esp_driver_uart" ],
+            "priv_reqs": [ "nvs_flash", "bt", "esp_driver_gpio", "esp_driver_uart", "esp_wifi", "esp_netif", "esp_event", "esp_http_server", "json" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/build/esp-idf/main/libmain.a",
-            "sources": [ "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c" ],
+            "sources": [ "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/main.c", "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/ble_midi.c", "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/config_store.c", "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/wifi_sb1.c", "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main/http_sb1.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {
@@ -2920,7 +2920,7 @@
             "dir": "C:/Users/Scott/Dropbox/__PROJECTS__/MusicBoxRTOS/dev/esp32c3_musicbox_nimble/main",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "nvs_flash", "bt", "esp_driver_uart" ],
+            "priv_reqs": [ "nvs_flash", "bt", "esp_driver_gpio", "esp_driver_uart", "esp_wifi", "esp_netif", "esp_event", "esp_http_server", "json" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "include_dirs": [ "." ]

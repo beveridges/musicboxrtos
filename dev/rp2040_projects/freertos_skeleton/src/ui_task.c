@@ -1,6 +1,6 @@
 /*
  * UI input + event queue + menu FSM processing.
- * Bluetooth pairing: LED entry sequence (hold Select) and reverse LED exit sequence while in pairing.
+ * Connectivity UI (hold Select to enter): pot + short Select; long-hold Select to exit (LED sequence).
  */
 #include "config.h"
 #include "menu.h"
@@ -11,6 +11,7 @@
 #include "task.h"
 #include "gpio_led.h"
 #include "hardware/gpio.h"
+#include "pico/stdlib.h"
 #include "pico/time.h"
 #include <stdio.h>
 
@@ -19,7 +20,9 @@ typedef enum {
   /* Select down but < MENU_LONG_PRESS_MS: BL mirrors button; menu short/long on release. */
   PAIR_UI_PRE_ENTRY,
   PAIR_UI_ENTRY_HOLD, /* Pairing LED sequence — not in pairing yet */
-  PAIR_UI_EXIT_HOLD,  /* Leave Bluetooth pairing — must be in pairing */
+  PAIR_UI_EXIT_HOLD,  /* Leave connectivity UI — must be holding through LED sequence */
+  /* In connectivity UI: short tap = confirm; hold = exit gesture (same threshold as menu long). */
+  PAIR_UI_CONN_PRESS,
 } pair_ui_t;
 
 static void pair_ui_apply_entry_leds(uint32_t elapsed_ms) {
@@ -102,9 +105,15 @@ static void setup_set_ui_hold_active(shared_state_t *sh, bool on) {
 static void pair_ui_complete_entry(shared_state_t *sh) {
   sb1_enter_setup_mode();
   if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(20)) == pdTRUE) {
+    sh->menu_parent_preview = false;
     sh->menu_active = false;
     sh->bt_pairing_active = true;
-    sh->bt_pairing_page = 0;
+    sh->connectivity_screen = SB1_CONN_SCREEN_ROOT;
+    sh->connectivity_sel = 0;
+    sh->connectivity_qr_visible = false;
+    sh->connectivity_qr_wifi = false;
+    sh->connectivity_connecting_bt = false;
+    sh->connectivity_connecting_wifi = false;
     sh->bt_pairing_dirty = true;
     xSemaphoreGive(sh->mutex);
   }
@@ -113,11 +122,98 @@ static void pair_ui_complete_entry(shared_state_t *sh) {
 static void pair_ui_complete_exit(shared_state_t *sh) {
   if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(20)) == pdTRUE) {
     sh->bt_pairing_active = false;
-    sh->bt_pairing_page = 0;
+    sh->connectivity_screen = SB1_CONN_SCREEN_ROOT;
+    sh->connectivity_sel = 0;
+    sh->connectivity_qr_visible = false;
+    sh->connectivity_qr_wifi = false;
+    sh->connectivity_connecting_bt = false;
+    sh->connectivity_connecting_wifi = false;
     sh->bt_pairing_dirty = true;
     menu_init(sh);
     menu_render(sh);
     xSemaphoreGive(sh->mutex);
+  }
+}
+
+static void connectivity_ui_process_event(shared_state_t *sh, const ui_event_t *ev) {
+  if (!sh || !ev) {
+    return;
+  }
+  if (ev->type == EV_BUTTON_LONG) {
+    if (sh->connectivity_qr_visible) {
+      sh->connectivity_qr_visible = false;
+      sh->bt_pairing_dirty = true;
+      return;
+    }
+    if (sh->connectivity_screen == SB1_CONN_SCREEN_ROOT) {
+      return;
+    }
+    {
+      uint8_t was = sh->connectivity_screen;
+      sh->connectivity_screen = SB1_CONN_SCREEN_ROOT;
+      sh->connectivity_sel = (was == SB1_CONN_SCREEN_BT) ? 0u : 1u;
+      sh->connectivity_connecting_bt = false;
+      sh->connectivity_connecting_wifi = false;
+      sh->bt_pairing_dirty = true;
+    }
+    return;
+  }
+  if (ev->type == EV_ROTATE && ev->delta != 0) {
+    if (sh->connectivity_qr_visible) {
+      return;
+    }
+    int s = (int)sh->connectivity_sel + (int)ev->delta;
+    if (s < 0) {
+      s = 0;
+    }
+    if (s > 1) {
+      s = 1;
+    }
+    sh->connectivity_sel = (uint8_t)s;
+    sh->bt_pairing_dirty = true;
+    return;
+  }
+  if (ev->type != EV_BUTTON_SHORT) {
+    return;
+  }
+  if (sh->connectivity_qr_visible) {
+    sh->connectivity_qr_visible = false;
+    sh->bt_pairing_dirty = true;
+    return;
+  }
+  switch (sh->connectivity_screen) {
+    case SB1_CONN_SCREEN_ROOT:
+      sh->connectivity_screen = sh->connectivity_sel == 0 ? SB1_CONN_SCREEN_BT : SB1_CONN_SCREEN_WIFI;
+      sh->connectivity_sel = 0;
+      sh->bt_pairing_dirty = true;
+      return;
+    case SB1_CONN_SCREEN_BT:
+      if (sh->connectivity_sel == 0) {
+        if (!sh->bt_peer_connected) {
+          sh->connectivity_connecting_bt = true;
+        }
+      } else {
+        sh->connectivity_qr_visible = true;
+        sh->connectivity_qr_wifi = false;
+      }
+      sh->bt_pairing_dirty = true;
+      return;
+    case SB1_CONN_SCREEN_WIFI:
+      if (sh->connectivity_sel == 0) {
+        if (!sh->wifi_sta_connected) {
+          sh->connectivity_connecting_wifi = true;
+        }
+      } else {
+        sh->connectivity_qr_visible = true;
+        sh->connectivity_qr_wifi = true;
+      }
+      sh->bt_pairing_dirty = true;
+      return;
+    default:
+      sh->connectivity_screen = SB1_CONN_SCREEN_ROOT;
+      sh->connectivity_sel = 0;
+      sh->bt_pairing_dirty = true;
+      return;
   }
 }
 
@@ -149,8 +245,13 @@ static void ui_task_fn(void *pvParameters) {
   for (;;) {
     uint32_t now = to_ms_since_boot(get_absolute_time());
     bool bt_pairing = false;
+    /* CONNECTIONS root: hold >= MENU_LONG_PRESS_MS starts LED exit. Submenus / QR: same threshold on
+     * release -> EV_BUTTON_LONG (back), same idea as main menu LONG=BACK. */
+    bool conn_exit_hold_armed = false;
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
       bt_pairing = sh->bt_pairing_active;
+      conn_exit_hold_armed =
+          bt_pairing && sh->connectivity_screen == SB1_CONN_SCREEN_ROOT && !sh->connectivity_qr_visible;
       xSemaphoreGive(sh->mutex);
     }
 
@@ -182,6 +283,13 @@ static void ui_task_fn(void *pvParameters) {
       if (!down && was_down) {
         uint32_t dur = now - s_sel_press_ms;
         pair_ui = PAIR_UI_NONE;
+        if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+          if (sh->menu_parent_preview) {
+            sh->menu_parent_preview = false;
+            sh->menu_dirty = true;
+          }
+          xSemaphoreGive(sh->mutex);
+        }
         if (s_suppress_next_release) {
           s_suppress_next_release = false;
         } else if (dur >= DEBOUNCE_MS) {
@@ -193,10 +301,36 @@ static void ui_task_fn(void *pvParameters) {
         continue;
       }
       if (down && was_down && (uint32_t)(now - s_sel_press_ms) >= MENU_LONG_PRESS_MS) {
-        pair_ui = PAIR_UI_ENTRY_HOLD;
-        s_pair_led_t0 = now;
-        setup_set_ui_hold_active(sh, true);
-        pair_ui_apply_entry_leds(0);
+        bool go_entry_hold = true;
+        if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+          bool menu_on = sh->menu_active;
+          bool esc = sh->menu_esc_available;
+          if (menu_on && !bt_pairing && esc) {
+            go_entry_hold = false;
+            /* Long-back should trigger at threshold, not on release. */
+            if (sh->menu_parent_preview) {
+              sh->menu_parent_preview = false;
+              sh->menu_dirty = true;
+            }
+          } else {
+            if (sh->menu_parent_preview) {
+              sh->menu_parent_preview = false;
+              sh->menu_dirty = true;
+            }
+          }
+          xSemaphoreGive(sh->mutex);
+        }
+        if (go_entry_hold) {
+          pair_ui = PAIR_UI_ENTRY_HOLD;
+          s_pair_led_t0 = now;
+          setup_set_ui_hold_active(sh, true);
+          pair_ui_apply_entry_leds(0);
+        } else {
+          ui_event_t ev = {.type = EV_BUTTON_LONG, .delta = 0};
+          xQueueSend(q, &ev, 0);
+          pair_ui = PAIR_UI_NONE;
+          s_suppress_next_release = true;
+        }
       }
     } else if (pair_ui == PAIR_UI_ENTRY_HOLD) {
       setup_set_ui_hold_active(sh, true);
@@ -233,6 +367,34 @@ static void ui_task_fn(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(UI_POLL_MS));
         continue;
       }
+    } else if (pair_ui == PAIR_UI_CONN_PRESS) {
+      if (!down && was_down) {
+        pair_ui = PAIR_UI_NONE;
+        uint32_t dur = now - s_sel_press_ms;
+        if (s_suppress_next_release) {
+          s_suppress_next_release = false;
+        } else if (dur >= DEBOUNCE_MS) {
+          ui_event_t ev = {.type = (dur >= MENU_LONG_PRESS_MS) ? EV_BUTTON_LONG : EV_BUTTON_SHORT, .delta = 0};
+          xQueueSend(q, &ev, 0);
+        }
+        was_down = down;
+        vTaskDelay(pdMS_TO_TICKS(UI_POLL_MS));
+        continue;
+      }
+      if (down && was_down) {
+        if (conn_exit_hold_armed && (uint32_t)(now - s_sel_press_ms) >= MENU_LONG_PRESS_MS) {
+          pair_ui = PAIR_UI_EXIT_HOLD;
+          down_ms = now;
+          s_exit_gesture_done = false;
+          setup_set_ui_hold_active(sh, true);
+          pair_ui_apply_exit_leds(0);
+        } else if (!conn_exit_hold_armed && (uint32_t)(now - s_sel_press_ms) >= MENU_LONG_PRESS_MS) {
+          ui_event_t ev = {.type = EV_BUTTON_LONG, .delta = 0};
+          xQueueSend(q, &ev, 0);
+          pair_ui = PAIR_UI_NONE;
+          s_suppress_next_release = true;
+        }
+      }
     } else {
       /* PAIR_UI_NONE */
       if (down && !was_down) {
@@ -241,9 +403,8 @@ static void ui_task_fn(void *pvParameters) {
         s_entry_gesture_done = false;
         s_exit_gesture_done = false;
         if (bt_pairing) {
-          setup_set_ui_hold_active(sh, true);
-          pair_ui = PAIR_UI_EXIT_HOLD;
-          pair_ui_apply_exit_leds(0);
+          pair_ui = PAIR_UI_CONN_PRESS;
+          s_sel_press_ms = now;
         } else {
           pair_ui = PAIR_UI_PRE_ENTRY;
           s_sel_press_ms = now;
@@ -259,8 +420,7 @@ static void ui_task_fn(void *pvParameters) {
       }
     }
 
-    /* BL: mirror Select in NONE and PRE_ENTRY. Pairing screen (NONE + bt_pairing): keep BL off
-     * so a resting finger does not light it. After a completed gesture, suppress until release. */
+    /* BL: mirror Select when useful; connectivity mode uses CONN_PRESS for tap vs long-exit. */
     if (pair_ui == PAIR_UI_NONE) {
       if (bt_pairing || s_suppress_next_release) {
         gpio_led_set(LED_BLUE_SELECT_GPIO, false);
@@ -269,25 +429,18 @@ static void ui_task_fn(void *pvParameters) {
       }
     } else if (pair_ui == PAIR_UI_PRE_ENTRY) {
       gpio_led_set(LED_BLUE_SELECT_GPIO, down);
+    } else if (pair_ui == PAIR_UI_CONN_PRESS) {
+      gpio_led_set(LED_BLUE_SELECT_GPIO, down);
     }
 
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
       int step = sh->pot_step;
       bool menu_on = sh->menu_active;
-      if (sh->bt_pairing_active) {
-        uint8_t st = sh->pot_quant_step;
-        uint8_t pg = sh->bt_pairing_page;
-        if (pg == 0u && st >= BT_PAIR_QR_MIN_STEP) {
-          sh->bt_pairing_page = 1u;
-          sh->bt_pairing_dirty = true;
-        } else if (pg == 1u && st <= BT_PAIR_INFO_MAX_STEP) {
-          sh->bt_pairing_page = 0u;
-          sh->bt_pairing_dirty = true;
-        }
-      }
+      bool conn_ui = sh->bt_pairing_active;
+      menu_process_midi_buttons(sh, sh->midi_btn_live);
       if (last_step < 0) {
         last_step = step;
-      } else if (menu_on && step != last_step) {
+      } else if ((menu_on || conn_ui) && step != last_step) {
         TickType_t now_tick = xTaskGetTickCount();
         if ((now_tick - last_rotate_tick) >= pdMS_TO_TICKS(UI_ROTATE_MIN_EVENT_MS)) {
           int diff = step - last_step;
@@ -311,9 +464,13 @@ static void ui_task_fn(void *pvParameters) {
       ui_event_t ev;
       if (xQueueReceive(q, &ev, 0) != pdTRUE) break;
       if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(20)) == pdTRUE) {
-        menu_process_event(sh, &ev);
-        if (sh->menu_active) {
-          menu_render(sh);
+        if (sh->bt_pairing_active) {
+          connectivity_ui_process_event(sh, &ev);
+        } else {
+          menu_process_event(sh, &ev);
+          if (sh->menu_active) {
+            menu_render(sh);
+          }
         }
         if (ev.type == EV_ROTATE) {
           sh->ui_rotate_events++;
@@ -357,5 +514,10 @@ static void ui_task_fn(void *pvParameters) {
 }
 
 void ui_task_create(shared_state_t *shared) {
-  xTaskCreate(ui_task_fn, "ui", UI_TASK_STACK_SIZE, shared, UI_TASK_PRIORITY, NULL);
+  BaseType_t ok = xTaskCreate(ui_task_fn, "ui", UI_TASK_STACK_SIZE, shared, UI_TASK_PRIORITY, NULL);
+  if (ok != pdPASS) {
+    for (;;) {
+      tight_loop_contents();
+    }
+  }
 }

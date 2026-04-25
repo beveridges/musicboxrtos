@@ -17,6 +17,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
+# Host-generated LCD fonts live in repo-root tools/ (not searched at runtime; compiled in).
+set(MUSICBOX_TOOLS_DIR "${CMAKE_CURRENT_LIST_DIR}/../../../tools")
+
 # FreeRTOS kernel (RP2040 SMP port) — include library.cmake after pico_sdk_init (no second project)
 set(FREERTOS_KERNEL_PATH ${CMAKE_CURRENT_LIST_DIR}/../../FreeRTOS-Kernel)
 set(FREERTOS_CONFIG_FILE_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
@@ -26,25 +29,32 @@ add_executable(freertos_skeleton
     src/main.c
     src/gpio_led.c
     src/sb1_setup.c
+    src/sb1_uart_midi.c
+    src/sb1_bear_bitmap.c
     src/sb1_link_task.c
     src/midi_task.c
     src/menu.c
     src/ui_task.c
     src/display_task.c
+    src/sb1_verticalmenu.c
     src/pot_task.c
     src/usb_descriptors.c
     src/usb_task.c
     src/pcd8544.c
+    ${MUSICBOX_TOOLS_DIR}/ByteBounce_8.c
     src/qrcodegen.c
 )
 
 target_include_directories(freertos_skeleton PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${MUSICBOX_TOOLS_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/../../../ui
 )
 
 target_link_libraries(freertos_skeleton
     pico_stdlib
+    hardware_uart
     hardware_adc
     pico_unique_id
     tinyusb_device

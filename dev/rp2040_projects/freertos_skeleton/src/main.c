@@ -36,6 +36,8 @@ static shared_state_t s_shared;
 #define RP2040_UART_TX_GPIO 0
 #define RP2040_UART_RX_GPIO 1
 
+/* printf / UART telemetry only after stdio_init_all() runs here (no USB CDC stdio in this build). */
+
 /* Poll for ESP32 TX idle-high before stdio_init_all(); ESP32 may boot slower than RP2040. */
 #define UART_PARTNER_PRE_DELAY_MS   500u
 #define UART_PARTNER_POLL_MS        200u
@@ -137,16 +139,18 @@ int main(void) {
     for (;;) tight_loop_contents();
   }
   s_shared.button_state = &s_button_state;
-  s_shared.pot_raw = 0;
-  s_shared.pot_filtered_raw = 0;
-  s_shared.pot_cc_127 = 0;
-  s_shared.pot_step = 0;
-  s_shared.pot_quant_step = 0;
+  s_shared.pot_step = POT_STEP_MAX / 2u;
+  s_shared.pot_cc_127 = s_shared.pot_step;
+  s_shared.pot_raw = (uint16_t)(((uint32_t)s_shared.pot_step * 4095u) / POT_STEP_MAX);
+  s_shared.pot_filtered_raw = s_shared.pot_raw;
+  s_shared.pot_quant_step =
+      (uint8_t)((uint32_t)s_shared.pot_step * (POT_QUANT_LEVELS - 1u) / POT_STEP_MAX);
   s_shared.ui_rotate_events = 0;
   s_shared.ui_rotate_events_last_sec = 0;
   s_shared.mutex = s_mutex;
   s_shared.usb_mounted = false;
   s_shared.menu_active = true;
+  s_shared.live_mode_active = false;
   s_shared.menu_dirty = false;
   s_shared.menu_sel = 0;
   s_shared.menu_invert_row = 0xFFu;
@@ -160,10 +164,28 @@ int main(void) {
   s_shared.midi_btn_live = 0;
   s_shared.ui_setup_hold_active = false;
   s_shared.bt_pairing_active = false;
-  s_shared.bt_pairing_page = 0;
+  s_shared.connectivity_screen = SB1_CONN_SCREEN_ROOT;
+  s_shared.connectivity_sel = 0;
+  s_shared.connectivity_qr_visible = false;
+  s_shared.connectivity_qr_wifi = false;
+  s_shared.connectivity_connecting_bt = false;
+  s_shared.connectivity_connecting_wifi = false;
   s_shared.bt_pairing_dirty = false;
   s_shared.bt_peer_connected = false;
   s_shared.bt_peer_name[0] = '\0';
+  s_shared.wifi_sta_connected = false;
+  s_shared.ble_midi_sink = SB1_BLE_MIDI_SINK_MERGE;
+  s_shared.osc_enabled = false;
+  s_shared.menu_view = SB1_MENU_VIEW_LIST;
+  s_shared.fw_ota_step = 0;
+  s_shared.about_line_sel = 0;
+  s_shared.about_detail_open = false;
+  s_shared.about_detail_text[0] = '\0';
+  s_shared.menu_esc_available = false;
+  s_shared.menu_parent_preview = false;
+  s_shared.menu_verticalmenu_enable = false;
+  s_shared.menu_vm_count = 0;
+  s_shared.auto_shutdown_minutes = 0;
   memset(s_shared.menu_line, 0, sizeof(s_shared.menu_line));
   strncpy(s_shared.last_event, "---", LAST_EVENT_LEN - 1);
   s_shared.last_event[LAST_EVENT_LEN - 1] = '\0';

@@ -10,6 +10,12 @@ ESP-IDF firmware for **ESP32-C3** that advertises as **`SB1 MIDI INTERFACE`**, e
 | RX (write from central) | `6E400002-B5A3-F393-E0A9-E50E24DCCA9E` |
 | TX (notify to central) | `6E400003-B5A3-F393-E0A9-E50E24DCCA9E` |
 
+## Device name (NVS)
+
+The BLE advertised name comes from **`device_name`** in NVS (`config_store.c`), default **`SB1 MIDI INTERFACE`** (`DEFAULT_NAME`), used by advertising in `main.c`. If a phone or the Nano still shows an old label (e.g. “MusicBox”), the ESP32 may still have a previous name in NVS.
+
+**Fix:** use the SB1 HTTP config UI/API to set `device_name` to the desired string (must match the Nano sketch’s `SB1_BLE_FILTER_NAME` if you rely on name filtering), or **erase NVS** (full chip erase / `nvs_flash_erase` / IDF menuconfig erase) and reflash so defaults apply.
+
 ## Build (ESP-IDF 5.x)
 
 ```bash

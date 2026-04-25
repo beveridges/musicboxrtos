@@ -1,1 +1,48 @@
+# Build folders
+build/
+**/build/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Ninja
+.ninja_log
+.ninja_deps
+
+# Compiled / binaries
+*.bin
+*.elf
+*.map
+*.uf2
+*.a
+*.o
+*.obj
+*.d
+*.hex
+*.dis
+
+# ESP-IDF
+sdkconfig.old
+sdkconfig.backup
+
+# Generated metadata
+compile_commands.json
+.bin_timestamp
+project_description.json
+
+# OS junk
+.DS_Store
+Thumbs.db
+
 *.afdesign
+
+
+
+
+
+
+blender/
+manual/
+raw/

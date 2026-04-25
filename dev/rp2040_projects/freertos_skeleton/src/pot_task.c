@@ -4,6 +4,7 @@
  */
 #include "config.h"
 #include "pot_task.h"
+#include "sb1_uart_midi.h"
 #include "hardware/adc.h"
 #include "tusb.h"
 #include "FreeRTOS.h"
@@ -12,6 +13,7 @@
 static void pot_task_fn(void *pvParameters) {
   shared_state_t *sh = (shared_state_t *)pvParameters;
   static uint8_t s_last_cc_sent = 0xFFu;
+  static bool s_was_mounted;
   static uint32_t s_ema = 0;
   uint8_t quant_step = 0;
   bool quant_init = false;
@@ -100,7 +102,13 @@ static void pot_task_fn(void *pvParameters) {
       cc_quant = (uint8_t)((uint32_t)quant_step * 127u / (uint32_t)(POT_QUANT_LEVELS - 1u));
     }
 
-    if (!tud_mounted()) {
+    bool mounted_now = tud_mounted();
+    if (mounted_now && !s_was_mounted) {
+      s_last_cc_sent = 0xFFu;
+    }
+    s_was_mounted = mounted_now;
+
+    if (!mounted_now) {
       s_last_cc_sent = 0xFFu;
     } else if (!menu_active && !bt_pairing && cc_quant != s_last_cc_sent) {
       uint8_t msg[3] = {
@@ -109,6 +117,7 @@ static void pot_task_fn(void *pvParameters) {
           cc_quant,
       };
       if (tud_midi_stream_write(0, msg, 3) > 0) {
+        sb1_uart_mirror_midi(msg, 3, sh);
         s_last_cc_sent = cc_quant;
       }
     }

@@ -29,7 +29,8 @@ static LiquidCrystal_I2C lcd(0x27, 16, 2);
 static const int PIN_POT = A0;
 static const int PIN_BTN = 2;
 
-static const char MUSICBOX_NAME[] = "SB1 MIDI INTERFACE";
+/* Must match ESP32 default / NVS device_name (see config_store DEFAULT_NAME, main.c advertise). */
+static const char SB1_BLE_FILTER_NAME[] = "SB1 MIDI INTERFACE";
 static const char NUS_SVC_UUID[] = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
 static const char NUS_RX_UUID[] = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 static const char NUS_TX_UUID[] = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
@@ -38,12 +39,15 @@ static const uint32_t BLE_SCAN_MS = 9000;
 static const uint32_t BLE_RESCAN_MS = 12000;
 static const uint32_t BTN_DEBOUNCE_MS = 35;
 static const uint32_t LONG_PRESS_MS = 650;
+static const uint32_t HOLD_BT_RESET_MS = 3000;
+static const uint8_t WIFI_RESET_CONFIRM_HOLD_S = 10;
 static const uint8_t WIFI_CAP = 24;
 static const uint8_t BLE_CAP = 24;
 
 #define BTN_NONE 0
 #define BTN_SHORT 1
 #define BTN_LONG 2
+#define BTN_HOLD_BT_RESET 3
 
 #if HAVE_FLASHSTORAGE
 FlashStorage(flash_saved_ble_addr, char[18]);
@@ -99,6 +103,11 @@ static BLECharacteristic nusTx;
 static bool blePeerValid = false;
 static bool nusReady = false;
 static uint32_t lastNotifyLog = 0;
+static bool wifiResetConfirmActive = false;
+static uint32_t wifiResetHoldStartMs = 0;
+static int8_t wifiResetShownN = -1;
+
+static void resetWifiStack();
 
 static const char* encTypeStr(uint8_t t) {
   switch (t) {
@@ -271,9 +280,19 @@ static uint8_t pollButton() {
   static int lastStable = HIGH;
   static uint32_t lastEdgeMs = 0;
   static uint32_t downAt = 0;
+  static bool btResetSent = false;
+  static bool suppressRelease = false;
   int raw = digitalRead(PIN_BTN);
   uint32_t now = millis();
   if (raw == lastStable) {
+    if (raw == LOW) {
+      uint32_t dur = now - downAt;
+      if (!btResetSent && dur >= HOLD_BT_RESET_MS) {
+        btResetSent = true;
+        suppressRelease = true;
+        return BTN_HOLD_BT_RESET;
+      }
+    }
     return BTN_NONE;
   }
   if (now - lastEdgeMs < BTN_DEBOUNCE_MS) {
@@ -283,6 +302,13 @@ static uint8_t pollButton() {
   lastStable = raw;
   if (raw == LOW) {
     downAt = now;
+    btResetSent = false;
+    suppressRelease = false;
+    return BTN_NONE;
+  }
+  if (suppressRelease) {
+    suppressRelease = false;
+    btResetSent = false;
     return BTN_NONE;
   }
   uint32_t dur = now - downAt;
@@ -331,7 +357,7 @@ static void saveBleAddressToFlash(const char* addr) {
 
 static bool bleMatchesFilter(const BLEDevice& p) {
   String name = p.localName();
-  if (name.indexOf(MUSICBOX_NAME) >= 0) return true;
+  if (name.indexOf(SB1_BLE_FILTER_NAME) >= 0) return true;
   if (name.indexOf("SB1") >= 0) return true;
   int nu = p.advertisedServiceUuidCount();
   for (int k = 0; k < nu; k++) {
@@ -390,7 +416,9 @@ static void bleAdd(BLEDevice& p) {
 
 static void bleScanBegin() {
   bleCount = 0;
-  uiLine("BLE scanning...", MUSICBOX_NAME);
+  BLE.stopScan();
+  delay(40);
+  uiLine("BLE scanning...", SB1_BLE_FILTER_NAME);
   if (!BLE.scan()) {
     setError("BLE.scan failed");
     return;
@@ -416,6 +444,8 @@ static void bleScanPoll() {
 }
 
 static bool findBleDeviceByIndex(int idx, BLEDevice& out) {
+  BLE.stopScan();
+  delay(30);
   if (!BLE.scan()) return false;
   uint32_t t0 = millis();
   const char* want = bleAddr[idx];
@@ -492,6 +522,103 @@ static void bleDisconnect() {
     blePeer.disconnect();
     blePeerValid = false;
   }
+  BLE.stopScan();
+  delay(40);
+  bleCount = 0;
+}
+
+static void startWifiResetConfirm() {
+  wifiResetConfirmActive = true;
+  wifiResetHoldStartMs = 0;
+  wifiResetShownN = -1;
+  Serial.println("Reset Wifi?");
+  Serial.println("Hold for Ns");
+  Serial.println("to confirm");
+}
+
+static void renderWifiResetConfirmCountdown(int n) {
+  if (n < 0) n = 0;
+  if (n > 99) n = 99;
+  char l2[17];
+  snprintf(l2, sizeof(l2), "Hold for %2ds", n);
+  uiLine("Reset Wifi?", l2);
+}
+
+static void pollWifiResetConfirm() {
+  if (!wifiResetConfirmActive) return;
+
+  bool down = (digitalRead(PIN_BTN) == LOW);
+  if (!down) {
+    wifiResetConfirmActive = false;
+    wifiResetHoldStartMs = 0;
+    wifiResetShownN = -1;
+    state = ST_HOME;
+    uiLine("Home", "WiFi / BLE scan");
+    return;
+  }
+
+  uint32_t now = millis();
+  if (wifiResetHoldStartMs == 0) {
+    wifiResetHoldStartMs = now;
+  }
+  uint32_t heldMs = now - wifiResetHoldStartMs;
+  int remain = (int)WIFI_RESET_CONFIRM_HOLD_S - (int)(heldMs / 1000u);
+  if (remain < 0) remain = 0;
+
+  if (wifiResetShownN != remain) {
+    wifiResetShownN = (int8_t)remain;
+    renderWifiResetConfirmCountdown(remain);
+  }
+
+  if (remain == 0) {
+    wifiResetConfirmActive = false;
+    wifiResetHoldStartMs = 0;
+    wifiResetShownN = -1;
+    resetWifiStack();
+    uiLine("Home", "WiFi / BLE scan");
+  }
+}
+
+static void resetBluetoothStack() {
+  uiLine("MIDI RESET", "please wait...");
+  delay(2000);
+  bleDisconnect();
+  BLE.end();
+  delay(120);
+  if (!BLE.begin()) {
+    uiLine("MIDI FAIL", "BLE.begin failed");
+    setError("BLE reset failed");
+    return;
+  }
+  BLE.setLocalName("SB1ControllerUI");
+  BLE.central();
+  bleScanPhaseStarted = false;
+  blePeerValid = false;
+  nusReady = false;
+  state = ST_HOME;
+  uiLine("MIDI RESET DONE", "Release for Home");
+  delay(2000);
+  startWifiResetConfirm();
+  renderWifiResetConfirmCountdown(WIFI_RESET_CONFIRM_HOLD_S);
+}
+
+static void resetWifiStack() {
+  uiLine("WIFI RESETTING", "disconnecting...");
+  WiFi.disconnect();
+  delay(120);
+  uiLine("WIFI RESETTING", "scan module...");
+  int n = WiFi.scanNetworks();
+  if (n < 0) {
+    uiLine("WIFI RESET FAIL", "scan failed");
+  } else {
+    uiLine("WIFI RESET DONE", "module ready");
+  }
+  wifiTestDone = false;
+  wifiTestSuccess = false;
+  wifiTestPrinted = false;
+  wifiCount = 0;
+  state = ST_HOME;
+  delay(500);
 }
 
 void setup() {
@@ -531,9 +658,17 @@ void setup() {
 
 void loop() {
   BLE.poll();
+  pollWifiResetConfirm();
   uint8_t ev = pollButton();
 
-  if (ev == BTN_LONG) {
+  if (wifiResetConfirmActive) {
+    delay(5);
+    return;
+  }
+
+  if (ev == BTN_HOLD_BT_RESET) {
+    resetBluetoothStack();
+  } else if (ev == BTN_LONG) {
     switch (state) {
       case ST_WIFI_LIST:
         if (wifiCount > 0) {

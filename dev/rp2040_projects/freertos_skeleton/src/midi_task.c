@@ -4,6 +4,7 @@
 #include "config.h"
 #include "gpio_led.h"
 #include "midi_task.h"
+#include "sb1_uart_midi.h"
 #include "hardware/gpio.h"
 #include "pico/bootrom.h"
 #include "tusb.h"
@@ -23,6 +24,8 @@ static void midi_task_fn(void *pvParameters) {
   /* TR (MIDI C): hold >= TR_USB_BOOT_HOLD_MS -> UF2 USB boot (no BOOTSEL pad). */
   static bool s_tr_boot_timing;
   static TickType_t s_tr_boot_t0;
+  /* Arm UF2 hold only after seeing TR released at least once (prevents boot loops if pin reads low at startup). */
+  static bool s_tr_boot_armed;
   const uint8_t notes[3] = {BTN_MIDI_NOTE_A, BTN_MIDI_NOTE_B, BTN_MIDI_NOTE_C};
   const uint pins[3] = {BTN_MIDI_A_GPIO, BTN_MIDI_B_GPIO, BTN_MIDI_C_GPIO};
   const uint led_pins[3] = {LED_BLUE_MIDI_A_GPIO, LED_BLUE_MIDI_B_GPIO, LED_BLUE_MIDI_C_GPIO};
@@ -37,15 +40,20 @@ static void midi_task_fn(void *pvParameters) {
         pc_num = sh->program_number;
         pc_ch = sh->midi_channel;
         sh->program_change_pending = false;
-        snprintf(sh->line4, LINE_LEN, "PC %u CH %u", (unsigned)pc_num, (unsigned)pc_ch);
-        snprintf(sh->line5, LINE_LEN, "Program Sent");
+        if (!sh->live_mode_active) {
+          snprintf(sh->line4, LINE_LEN, "PC %u CH %u", (unsigned)pc_num, (unsigned)pc_ch);
+          snprintf(sh->line5, LINE_LEN, "Program Sent");
+        }
       }
       xSemaphoreGive(sh->mutex);
     }
 #if CFG_TUD_MIDI
-    if (send_pc && tud_mounted()) {
+    if (send_pc) {
       uint8_t msg[2] = {(uint8_t)(0xC0u | (uint8_t)(pc_ch - 1u)), pc_num};
-      tud_midi_stream_write(0, msg, 2);
+      if (tud_mounted()) {
+        tud_midi_stream_write(0, msg, 2);
+      }
+      sb1_uart_mirror_midi(msg, 2, sh);
     }
 #endif
 
@@ -92,23 +100,33 @@ static void midi_task_fn(void *pvParameters) {
           int was = s_stable[i];
           s_stable[i] = r;
           s_ctr[i] = 0;
-          if (mounted && !menu_active && !bt_pairing) {
+          if (!menu_active && !bt_pairing) {
             if (was == 1 && r == 0) {
               uint8_t note_on[3] = {(uint8_t)(0x90u | (uint8_t)(MIDI_CH - 1u)), notes[i], MIDI_VEL};
-              tud_midi_stream_write(0, note_on, 3);
+              if (mounted) {
+                tud_midi_stream_write(0, note_on, 3);
+              }
+              sb1_uart_mirror_midi(note_on, 3, sh);
               if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
                 snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE ON %u", (unsigned)notes[i]);
-                snprintf(sh->line4, LINE_LEN, "MIDI READY");
-                snprintf(sh->line5, LINE_LEN, "NOTE ON %u", (unsigned)notes[i]);
+                if (!sh->live_mode_active) {
+                  snprintf(sh->line4, LINE_LEN, "MIDI READY");
+                  snprintf(sh->line5, LINE_LEN, "NOTE ON %u", (unsigned)notes[i]);
+                }
                 xSemaphoreGive(sh->mutex);
               }
             } else if (was == 0 && r == 1) {
               uint8_t note_off[3] = {(uint8_t)(0x80u | (uint8_t)(MIDI_CH - 1u)), notes[i], 0};
-              tud_midi_stream_write(0, note_off, 3);
+              if (mounted) {
+                tud_midi_stream_write(0, note_off, 3);
+              }
+              sb1_uart_mirror_midi(note_off, 3, sh);
               if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
                 snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE OFF %u", (unsigned)notes[i]);
-                snprintf(sh->line4, LINE_LEN, "MIDI READY");
-                snprintf(sh->line5, LINE_LEN, "NOTE OFF %u", (unsigned)notes[i]);
+                if (!sh->live_mode_active) {
+                  snprintf(sh->line4, LINE_LEN, "MIDI READY");
+                  snprintf(sh->line5, LINE_LEN, "NOTE OFF %u", (unsigned)notes[i]);
+                }
                 xSemaphoreGive(sh->mutex);
               }
             }
@@ -117,20 +135,27 @@ static void midi_task_fn(void *pvParameters) {
       }
     }
 
-    /* TR held past TR_USB_BOOT_HOLD_MS: reboot into ROM USB boot (RPI-RP2). */
+    /* TR held past TR_USB_BOOT_HOLD_MS: reboot into ROM USB boot (RPI-RP2).
+     * Require a release first so a low-at-boot pin cannot continuously force reset. */
     if (s_stable[2] == 0) {
-      if (!s_tr_boot_timing) {
-        s_tr_boot_timing = true;
-        s_tr_boot_t0 = xTaskGetTickCount();
-      } else if ((xTaskGetTickCount() - s_tr_boot_t0) >= pdMS_TO_TICKS(TR_USB_BOOT_HOLD_MS)) {
-        if (tud_mounted()) {
+      if (s_tr_boot_armed) {
+        if (!s_tr_boot_timing) {
+          s_tr_boot_timing = true;
+          s_tr_boot_t0 = xTaskGetTickCount();
+        } else if ((xTaskGetTickCount() - s_tr_boot_t0) >= pdMS_TO_TICKS(TR_USB_BOOT_HOLD_MS)) {
           uint8_t note_off[3] = {(uint8_t)(0x80u | (uint8_t)(MIDI_CH - 1u)), notes[2], 0};
-          tud_midi_stream_write(0, note_off, 3);
+          if (tud_mounted()) {
+            tud_midi_stream_write(0, note_off, 3);
+          }
+          sb1_uart_mirror_midi(note_off, 3, sh);
+          /* Re-arm only after release after we return from ROM boot in next run. */
+          s_tr_boot_armed = false;
+          reset_usb_boot(0, 0);
         }
-        reset_usb_boot(0, 0);
       }
     } else {
       s_tr_boot_timing = false;
+      s_tr_boot_armed = true;
     }
 #endif
 
@@ -140,7 +165,7 @@ static void midi_task_fn(void *pvParameters) {
         *sh->button_state = sel;
       }
       sh->usb_mounted = mounted;
-      if (!mounted && !menu_active) {
+      if (!mounted && !menu_active && !sh->live_mode_active) {
         snprintf(sh->line4, LINE_LEN, "NOT MOUNTED");
         snprintf(sh->line5, LINE_LEN, "CHECK USB STACK");
       }
@@ -162,4 +187,32 @@ TaskHandle_t midi_task_create(shared_state_t *shared) {
   TaskHandle_t handle = NULL;
   xTaskCreate(midi_task_fn, "midi", MIDI_TASK_STACK_SIZE, shared, MIDI_TASK_PRIORITY, &handle);
   return handle;
+}
+
+void sb1_ble_midi_in(shared_state_t *sh, const uint8_t *data, size_t len) {
+  if (!sh || !data || len == 0) {
+    return;
+  }
+#if CFG_TUD_MIDI
+  uint8_t mode = SB1_BLE_MIDI_SINK_MERGE;
+  if (sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(5)) == pdTRUE) {
+    mode = sh->ble_midi_sink;
+    if (mode > SB1_BLE_MIDI_SINK_DEVICE) {
+      mode = SB1_BLE_MIDI_SINK_MERGE;
+    }
+    xSemaphoreGive(sh->mutex);
+  }
+
+  if (mode == SB1_BLE_MIDI_SINK_DEVICE) {
+    return;
+  }
+  /* USB and MERGE: echo to host when enumerated (MERGE also keeps local TX in midi_task). */
+  if (!tud_mounted()) {
+    return;
+  }
+  (void)tud_midi_stream_write(0, data, len);
+#else
+  (void)data;
+  (void)len;
+#endif
 }

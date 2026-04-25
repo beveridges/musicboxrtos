@@ -45,3 +45,11 @@ For a robust hardware fix, still add power-off isolation between the boards (pre
 ## Pins
 
 See [`src/config.h`](src/config.h): `LED_BLUE_*_GPIO`, `BTN_SELECT_GPIO`.
+
+## MIDI file storage (roadmap)
+
+Planned behavior: **USB storage mode** exposes a drive labeled **SB1STORAGE** for dragging `.mid` files; in normal mode, **UTILITY → MIDI FILES** lists them. Playback to the **USB host** is planned via the existing USB Device MIDI path. See [`docs/midi-files-storage.md`](docs/midi-files-storage.md).
+
+## Menu (ARP, Hub, OSC)
+
+See [`docs/menu-reference.md`](docs/menu-reference.md).

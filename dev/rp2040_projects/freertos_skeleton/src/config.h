@@ -70,8 +70,13 @@
 
 #define LAST_EVENT_LEN 24
 #define LINE_LEN       20
-/* Nokia 5110: 84px / 6px per char */
+/* Nokia 5110: monospace column budget for snprintf (8px prop font; ~14 cols safe). */
 #define DISPLAY_COLS   14
+/** List / ABOUT body text width when verticalmenu strip is shown (narrower than full DISPLAY_COLS). */
+#define DISPLAY_COLS_VM 12
+/** Pixel X of verticalmenu track (right edge of 84×48 display). */
+#define SB1_VERTMENU_TRACK_X 83u
+/* Text rows on PCD8544 list UI (title + items; max matches PCD8544_TEXT_LINES). */
 #define MENU_ROWS      6
 
 #define MENU_LONG_PRESS_MS 600
@@ -86,11 +91,12 @@
 #define PAIR_EXIT_ALL_OFF_MS    (PAIR_LED_FIRST_MS + 3u * PAIR_LED_STEP_MS) /* 2500 */
 #define UI_EVENT_QUEUE_LEN 8
 #define POT_STEP_MAX 127
+/* Legacy names retained for compatibility with menu/display shared-state fields. */
 #define POT_FILTER_SHIFT 2
 #define POT_CALIBRATION_MS 500
-#define POT_QUANT_BITS 4            /* 0..15 coarse bins for stronger stability */
+#define POT_QUANT_BITS 4
 #define POT_QUANT_LEVELS (1u << POT_QUANT_BITS)
-#define POT_HYST_RAW 36             /* ADC hysteresis for Schmitt edges */
+#define POT_HYST_RAW 36
 #define UI_ROTATE_MIN_EVENT_MS 60   /* rate limit for rotate events */
 #define UI_TELEMETRY_PRINT_MS 500
 
@@ -98,11 +104,44 @@
 #define SB1_BT_DEVICE_NAME "SB1 MIDI INTERFACE"
 /* QR payload (UTF-8 ASCII); keep reasonably short for small modules on 84x48 LCD. */
 #define SB1_BT_QR_PAYLOAD SB1_BT_DEVICE_NAME
-/* Pot quant step 0..15: hysteresis to switch pairing text vs QR screen. */
-#define BT_PAIR_INFO_MAX_STEP 5u
-#define BT_PAIR_QR_MIN_STEP   10u
-/* ESP32 → RP2040 UART lines: SB1BT,0 / SB1BT,1,<name> — four LCD rows × 14 cols max. */
-#define BT_PEER_NAME_MAX ((DISPLAY_COLS * 4u) + 1u)
+/* Wi‑Fi config AP QR (matches ESP32 SoftAP SSID in wifi_sb1.c, open network). */
+#define SB1_WIFI_QR_PAYLOAD "WIFI:S:SB1-Config;T:nopass;;"
+/* Connectivity setup UI: screen id (after hold-to-enter gesture). */
+#define SB1_CONN_SCREEN_ROOT 0u
+#define SB1_CONN_SCREEN_BT   1u
+#define SB1_CONN_SCREEN_WIFI 2u
+#define SB1_CONN_CONNECTING_FLASH_MS 400u
+/* Connected pairing: peer/device name on its own line, max glyphs shown (84px / prop font). */
+#define SB1_BT_PAIR_PEER_DISPLAY_LEN 11u
+/* ESP32 → RP2040 UART lines: SB1BT,0 / SB1BT,1,<name> — name also shown truncated on pairing LCD. */
+#define BT_PEER_NAME_MAX ((DISPLAY_COLS * 2u) + 1u)
+
+/* Build / version metadata (About screen). */
+#define SB1_BUILD_GITREVHEAD           "7deb2cf"
+#define SB1_BUILD_BUILDNUMBER          "26.02-alpha.01.09"
+#define SB1_BUILD_VERSIONNUMBER        "26.02-alpha.01"
+#define SB1_BUILD_FRIENDLYVERSIONNAME  "SB1.MIDI.DEVICE"
+#define SB1_BUILD_VERSIONNAME          "SB1.MIDI.DEVICE.26.02-alpha.01"
+#define SB1_BUILD_GITTAG                 "snapshot-2026-02-17"
+#define SB1_BUILD_CONDAENVIRONMENTNAME "na"
+#define SB1_BUILD_PYTHONVERSION        "3.11.13"
+#define SB1_BUILD_CONDAENVFILE         "na.yml"
+#define SB1_BUILD_RELEASENAME          "UNKNOWN_RELEASE"
+
+/* Must match `sb1_about_lines[]` count in display_task.c (build metadata rows). */
+#define SB1_ABOUT_INFO_LINE_COUNT 10u
+/* Full line text for About detail modal (long version strings). */
+#define SB1_ABOUT_DETAIL_BUF 48u
+
+/* Legacy short strings (not shown on About LCD; About lists SB1_BUILD_* only — see display_task). */
+#define SB1_ABOUT_DISP_0 "7deb2cf"
+#define SB1_ABOUT_DISP_1 "26.02.a.01.09"
+#define SB1_ABOUT_DISP_2 "SB1.DEVICE"
+#define SB1_ABOUT_DISP_3 "sshot-2026-02"
+#define SB1_ABOUT_DISP_4 "naenvironment"
+#define SB1_ABOUT_DISP_5 "3.11.13"
+#define SB1_ABOUT_DISP_6 "naenv.yml"
+#define SB1_ABOUT_DISP_7 "sesquialtera"
 
 /* Shared state: MIDI task writes; UI and display tasks read under mutex. */
 typedef struct {
@@ -119,9 +158,11 @@ typedef struct {
   char line4[LINE_LEN];
   char line5[LINE_LEN];
   bool menu_active;
+  /** Dashboard: three-line LIVE MODE layout (see display_task); cleared when menu opens. */
+  bool live_mode_active;
   bool menu_dirty;
   uint8_t menu_sel; /* selected row index on current screen (debug / UI) */
-  uint8_t menu_invert_row; /* 0..MENU_ROWS-1 row to draw inverted, or 0xFF for none */
+  uint8_t menu_invert_row; /* 0..MENU_ROWS-1 → pcd8544_invert_row (list UI keeps 0xFF; XOR + sparse font = bars) */
   char menu_line[MENU_ROWS][LINE_LEN];
   uint8_t midi_channel; /* 1..16 */
   uint8_t program_number; /* 0..127 */
@@ -134,15 +175,58 @@ typedef struct {
   uint8_t midi_btn_live;
   /* When true, ui_task drives TL/TR/BR for setup gesture; midi_task must not override. */
   bool ui_setup_hold_active;
-  /* After BL long-hold setup gesture completes: Bluetooth pairing UI on the LCD. */
+  /* After BL long-hold setup gesture completes: connectivity UI on the LCD. */
   bool bt_pairing_active;
-  /* 0 = text instructions, 1 = QR code (scroll pot toward QR_MIN_STEP). */
-  uint8_t bt_pairing_page;
+  uint8_t connectivity_screen; /* SB1_CONN_SCREEN_* */
+  uint8_t connectivity_sel;    /* 0..1 row on current screen */
+  bool connectivity_qr_visible;
+  bool connectivity_qr_wifi; /* QR payload: false = BLE name, true = Wi‑Fi join string */
+  bool connectivity_connecting_bt;
+  bool connectivity_connecting_wifi;
   bool bt_pairing_dirty;
   /* From ESP32 UART (SB1BT,...); used in pairing text screen when bt_pairing_active. */
   bool bt_peer_connected;
   char bt_peer_name[BT_PEER_NAME_MAX];
+  /* From ESP32 UART: SB1WF,0 / SB1WF,1 — STA associated with IP. */
+  bool wifi_sta_connected;
+  /** 0=USB only, 1=merge with local, 2=on-device (no USB echo). */
+  uint8_t ble_midi_sink;
+  bool osc_enabled; /* NI: future OSC bridge */
+  /** LIST = normal menu rows; SYSTEM_ABOUT / SYSTEM_FW = full-screen layouts (see display_task). */
+  uint8_t menu_view;
+  /** FIRMWARE flow: 0 = main FW screen; 1 = "ARE YOU SURE?" (OTA confirm stub). */
+  uint8_t fw_ota_step;
+  /** ABOUT: selected info row index 0..SB1_ABOUT_INFO_LINE_COUNT-1 (pot navigation). */
+  uint8_t about_line_sel;
+  /** ABOUT: framed full-string modal (short BL toggles). */
+  bool about_detail_open;
+  char about_detail_text[SB1_ABOUT_DETAIL_BUF];
+  /** 0=NEVER, 5, 15, 30, 60, 120 minutes — idle auto-off (UI only until power policy exists). */
+  uint8_t auto_shutdown_minutes;
+  /** True after menu_render: long-press BL would go to parent (not on root list). */
+  bool menu_esc_available;
+  /** True while BL held past long-press in submenu: LCD shows parent list only (FSM unchanged). */
+  bool menu_parent_preview;
+  /** Nokia-style scroll column (ABOUT list); see sb1_verticalmenu.c */
+  bool menu_verticalmenu_enable;
+  uint8_t menu_vm_count; /* items in scroll domain; thumb maps sel in [0, count-1] */
   SemaphoreHandle_t mutex;
 } shared_state_t;
+
+#define SB1_MENU_VIEW_LIST            0u
+#define SB1_MENU_VIEW_SYSTEM_ABOUT    1u
+#define SB1_MENU_VIEW_SYSTEM_FW       2u
+#define SB1_MENU_VIEW_SYSTEM_FW_OTA   3u
+#define SB1_MENU_VIEW_SYSTEM_FW_SURE  4u
+#define SB1_MENU_VIEW_SYSTEM_ABOUT_DETAIL 5u
+#define SB1_MENU_VIEW_TAP_TEMPO       6u
+
+/** Where inbound BLE MIDI (from ESP) is routed on RP2040. */
+#define SB1_BLE_MIDI_SINK_USB    0u
+#define SB1_BLE_MIDI_SINK_MERGE  1u
+#define SB1_BLE_MIDI_SINK_DEVICE 2u
+
+/** UART binary frame from ESP32 before raw MIDI payload (see sb1_link_task / esp32 main). */
+#define SB1_UART_FRAME_SOH 0x01u
 
 #endif /* CONFIG_H */

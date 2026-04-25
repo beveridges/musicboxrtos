@@ -11,6 +11,7 @@ typedef enum {
   UI_MENU,
   UI_EDIT,
   UI_CONFIRM,
+  UI_TAP_TEMPO,
 } ui_state_t;
 
 typedef enum {
@@ -27,6 +28,8 @@ typedef struct {
 
 void menu_init(shared_state_t *sh);
 void menu_process_event(shared_state_t *sh, const ui_event_t *ev);
+void menu_process_midi_buttons(shared_state_t *sh, uint8_t midi_btn_bits);
 void menu_render(shared_state_t *sh);
-
+/** Fills `lines` with parent menu list for hold-preview; sets *out_invert_row for list highlight. */
+bool menu_parent_preview_lines(const shared_state_t *sh, char lines[MENU_ROWS][LINE_LEN], uint8_t *out_invert_row);
 #endif /* MENU_H */

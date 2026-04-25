@@ -1,15 +1,20 @@
 /*
- * Minimal PCD8544 (Nokia 5110) driver — soft SPI, 84x48 framebuffer, 5x7 font.
+ * Minimal PCD8544 (Nokia 5110) driver — soft SPI, 84x48 framebuffer, ByteBounce 8px font.
  */
 #include "pcd8544.h"
+#include "ByteBounce_8.h"
 #include "hardware/gpio.h"
 #include "pico/time.h"
 #include <stddef.h>
 #include <string.h>
 
+#define BYTEBOUNCE_GLYPH_COUNT ((BYTEBOUNCE_LAST_CHAR - BYTEBOUNCE_FIRST_CHAR) + 1)
+#define BYTEBOUNCE_BANDS ((uint8_t)(BYTEBOUNCE_HEIGHT / 8u))
+
 static uint8_t _sclk, _din, _dc, _cs, _rst;
 static uint8_t _fb[PCD8544_WIDTH * PCD8544_ROWS];
-static uint8_t _cx, _cy;
+static uint8_t _cx;
+static uint8_t _line; /* 0 .. PCD8544_TEXT_LINES-1 */
 
 #define PCD8544_CMD_FUNC_SET    0x20
 #define PCD8544_CMD_EXTENDED    0x21
@@ -19,6 +24,19 @@ static uint8_t _cx, _cy;
 #define PCD8544_CMD_NORMAL      0x0C
 #define PCD8544_CMD_SET_X       0x80
 #define PCD8544_CMD_SET_Y       0x40
+
+static inline uint8_t _top_band(void) {
+  return (uint8_t)(_line * BYTEBOUNCE_BANDS);
+}
+
+static inline uint16_t _glyph_end_index(int idx) {
+  if (idx < BYTEBOUNCE_GLYPH_COUNT - 1) {
+    return ByteBounce8_Offsets[idx + 1];
+  }
+  const uint8_t *p = &ByteBounce8_Bitmaps[ByteBounce8_Offsets[idx]];
+  uint8_t w = p[0];
+  return (uint16_t)(ByteBounce8_Offsets[idx] + 1u + (uint16_t)w * (uint16_t)BYTEBOUNCE_BANDS);
+}
 
 static inline void _spi_byte(uint8_t byte) {
   for (int i = 7; i >= 0; i--) {
@@ -44,80 +62,65 @@ static void _write_data(uint8_t data) {
   gpio_put(_cs, 1);
 }
 
-/* 5x7 font (ASCII 0x20..0x7F), each char 5 cols + 1 space. One column = 1 byte (8 rows). */
-static const uint8_t _font5x7[][5] = {
-  { 0x00, 0x00, 0x00, 0x00, 0x00 }, /* space */
-  { 0x00, 0x00, 0x5F, 0x00, 0x00 }, /* ! */
-  { 0x00, 0x07, 0x00, 0x07, 0x00 }, /* " */
-  { 0x14, 0x7F, 0x14, 0x7F, 0x14 }, /* # */
-  { 0x24, 0x2A, 0x7F, 0x2A, 0x12 }, /* $ */
-  { 0x23, 0x13, 0x08, 0x64, 0x62 }, /* % */
-  { 0x36, 0x49, 0x56, 0x20, 0x50 }, /* & */
-  { 0x00, 0x08, 0x07, 0x03, 0x00 }, /* ' */
-  { 0x00, 0x1C, 0x22, 0x41, 0x00 }, /* ( */
-  { 0x00, 0x41, 0x22, 0x1C, 0x00 }, /* ) */
-  { 0x2A, 0x1C, 0x7F, 0x1C, 0x2A }, /* * */
-  { 0x08, 0x08, 0x3E, 0x08, 0x08 }, /* + */
-  { 0x00, 0x80, 0x70, 0x30, 0x00 }, /* , */
-  { 0x08, 0x08, 0x08, 0x08, 0x08 }, /* - */
-  { 0x00, 0x00, 0x60, 0x60, 0x00 }, /* . */
-  { 0x20, 0x10, 0x08, 0x04, 0x02 }, /* / */
-  { 0x3E, 0x51, 0x49, 0x45, 0x3E }, /* 0 */
-  { 0x00, 0x42, 0x7F, 0x40, 0x00 }, /* 1 */
-  { 0x72, 0x49, 0x49, 0x49, 0x46 }, /* 2 */
-  { 0x21, 0x41, 0x49, 0x4D, 0x33 }, /* 3 */
-  { 0x18, 0x14, 0x12, 0x7F, 0x10 }, /* 4 */
-  { 0x27, 0x45, 0x45, 0x45, 0x39 }, /* 5 */
-  { 0x3C, 0x4A, 0x49, 0x49, 0x31 }, /* 6 */
-  { 0x41, 0x21, 0x11, 0x09, 0x07 }, /* 7 */
-  { 0x36, 0x49, 0x49, 0x49, 0x36 }, /* 8 */
-  { 0x46, 0x49, 0x49, 0x29, 0x1E }, /* 9 */
-  { 0x00, 0x36, 0x36, 0x00, 0x00 }, /* : */
-  { 0x00, 0x56, 0x36, 0x00, 0x00 }, /* ; */
-  { 0x08, 0x14, 0x22, 0x41, 0x00 }, /* < */
-  { 0x14, 0x14, 0x14, 0x14, 0x14 }, /* = */
-  { 0x00, 0x41, 0x22, 0x14, 0x08 }, /* > */
-  { 0x02, 0x01, 0x59, 0x09, 0x06 }, /* ? */
-  { 0x3E, 0x41, 0x5D, 0x59, 0x4E }, /* @ */
-  { 0x7C, 0x12, 0x11, 0x12, 0x7C }, /* A */
-  { 0x7F, 0x49, 0x49, 0x49, 0x36 }, /* B */
-  { 0x3E, 0x41, 0x41, 0x41, 0x22 }, /* C */
-  { 0x7F, 0x41, 0x41, 0x41, 0x3E }, /* D */
-  { 0x7F, 0x49, 0x49, 0x49, 0x41 }, /* E */
-  { 0x7F, 0x09, 0x09, 0x09, 0x01 }, /* F */
-  { 0x3E, 0x41, 0x41, 0x51, 0x73 }, /* G */
-  { 0x7F, 0x08, 0x08, 0x08, 0x7F }, /* H */
-  { 0x00, 0x41, 0x7F, 0x41, 0x00 }, /* I */
-  { 0x20, 0x40, 0x41, 0x3F, 0x01 }, /* J */
-  { 0x7F, 0x08, 0x14, 0x22, 0x41 }, /* K */
-  { 0x7F, 0x40, 0x40, 0x40, 0x40 }, /* L */
-  { 0x7F, 0x02, 0x0C, 0x02, 0x7F }, /* M */
-  { 0x7F, 0x04, 0x08, 0x10, 0x7F }, /* N */
-  { 0x3E, 0x41, 0x41, 0x41, 0x3E }, /* O */
-  { 0x7F, 0x09, 0x09, 0x09, 0x06 }, /* P */
-  { 0x3E, 0x41, 0x51, 0x21, 0x5E }, /* Q */
-  { 0x7F, 0x09, 0x19, 0x29, 0x46 }, /* R */
-  { 0x26, 0x49, 0x49, 0x49, 0x32 }, /* S */
-  { 0x01, 0x01, 0x7F, 0x01, 0x01 }, /* T */
-  { 0x3F, 0x40, 0x40, 0x40, 0x3F }, /* U */
-  { 0x1F, 0x20, 0x40, 0x20, 0x1F }, /* V */
-  { 0x3F, 0x40, 0x38, 0x40, 0x3F }, /* W */
-  { 0x63, 0x14, 0x08, 0x14, 0x63 }, /* X */
-  { 0x07, 0x08, 0x70, 0x08, 0x07 }, /* Y */
-  { 0x61, 0x59, 0x49, 0x4D, 0x43 }, /* Z */
-};
+static uint8_t _char_advance_pixels(char c) {
+  unsigned char uc = (unsigned char)c;
+  if (uc < BYTEBOUNCE_FIRST_CHAR || uc > BYTEBOUNCE_LAST_CHAR) {
+    uc = ' ';
+  }
+  int idx = (int)uc - BYTEBOUNCE_FIRST_CHAR;
+  uint16_t start = ByteBounce8_Offsets[idx];
+  const uint8_t *p = &ByteBounce8_Bitmaps[start];
+  uint8_t gw = p[0];
+  return (uint8_t)(gw + 1u);
+}
+
+uint16_t pcd8544_text_width(const char *str) {
+  uint16_t sum = 0;
+  if (str == NULL) {
+    return 0;
+  }
+  while (*str != '\0' && *str != '\n') {
+    sum += (uint16_t)_char_advance_pixels(*str);
+    str++;
+  }
+  return sum;
+}
 
 static void _draw_char(char c) {
-  if (c < 0x20 || c > 0x5A) c = ' ';
-  int idx = (int)(c - 0x20);
-  if (idx < 0 || idx >= (int)(sizeof(_font5x7) / sizeof(_font5x7[0]))) idx = 0;
-  for (int col = 0; col < 5; col++) {
-    int byte_idx = _cy * PCD8544_WIDTH + _cx;
-    if (_cx < PCD8544_WIDTH && byte_idx < (int)sizeof(_fb))
-      _fb[byte_idx] = _font5x7[idx][col];
+  unsigned char uc = (unsigned char)c;
+  if (uc < BYTEBOUNCE_FIRST_CHAR || uc > BYTEBOUNCE_LAST_CHAR) {
+    uc = ' ';
+  }
+  int idx = (int)uc - BYTEBOUNCE_FIRST_CHAR;
+  uint16_t start = ByteBounce8_Offsets[idx];
+  uint16_t end = _glyph_end_index(idx);
+  const uint8_t *p = &ByteBounce8_Bitmaps[start];
+  size_t avail = (size_t)(end - start);
+  if (avail < 1u) {
+    return;
+  }
+  uint8_t w = p[0];
+  if ((size_t)(1u + (unsigned)w * (unsigned)BYTEBOUNCE_BANDS) > avail) {
+    return;
+  }
+  uint8_t b0 = _top_band();
+  if ((unsigned)b0 + (unsigned)BYTEBOUNCE_BANDS > (unsigned)PCD8544_ROWS) {
+    return;
+  }
+  for (unsigned col = 0; col < (unsigned)w; col++) {
+    for (uint8_t bi = 0; bi < BYTEBOUNCE_BANDS; bi++) {
+      uint8_t bits = p[1u + (size_t)col * (size_t)BYTEBOUNCE_BANDS + (size_t)bi];
+      uint8_t band = (uint8_t)(b0 + bi);
+      int ii = (int)band * PCD8544_WIDTH + _cx;
+      if (_cx < PCD8544_WIDTH && ii >= 0 && ii < (int)sizeof(_fb)) {
+        _fb[ii] = bits;
+      }
+    }
     _cx++;
   }
-  _cx++;
+  if (_cx < PCD8544_WIDTH) {
+    _cx++;
+  }
 }
 
 void pcd8544_init(uint8_t sclk, uint8_t din, uint8_t dc, uint8_t cs, uint8_t rst) {
@@ -136,7 +139,7 @@ void pcd8544_init(uint8_t sclk, uint8_t din, uint8_t dc, uint8_t cs, uint8_t rst
   _write_cmd(PCD8544_CMD_FUNC_SET);
   _write_cmd(PCD8544_CMD_DISP_CTL | PCD8544_CMD_NORMAL);
   memset(_fb, 0, sizeof(_fb));
-  _cx = 0; _cy = 0;
+  _cx = 0; _line = 0;
 }
 
 void pcd8544_set_contrast(uint8_t value) {
@@ -147,7 +150,7 @@ void pcd8544_set_contrast(uint8_t value) {
 
 void pcd8544_clear(void) {
   memset(_fb, 0, sizeof(_fb));
-  _cx = 0; _cy = 0;
+  _cx = 0; _line = 0;
 }
 
 void pcd8544_display(void) {
@@ -160,15 +163,21 @@ void pcd8544_display(void) {
 }
 
 void pcd8544_set_cursor(uint8_t x, uint8_t y) {
-  _cx = x; _cy = y;
+  _cx = x;
+  _line = y;
+  if (_line >= PCD8544_TEXT_LINES) {
+    _line = (uint8_t)(PCD8544_TEXT_LINES - 1u);
+  }
 }
 
 void pcd8544_print(const char *str) {
   while (*str) {
     if (*str == '\n') {
       _cx = 0;
-      _cy++;
-      if (_cy >= PCD8544_ROWS) _cy = 0;
+      _line++;
+      if (_line >= PCD8544_TEXT_LINES) {
+        _line = 0;
+      }
     } else {
       _draw_char(*str);
     }
@@ -177,13 +186,44 @@ void pcd8544_print(const char *str) {
 }
 
 void pcd8544_invert_row(uint8_t y) {
-  if (y >= PCD8544_ROWS) {
+  if (y >= PCD8544_TEXT_LINES) {
     return;
   }
-  for (uint8_t x = 0; x < PCD8544_WIDTH; x++) {
-    size_t idx = (size_t)y * PCD8544_WIDTH + (size_t)x;
-    if (idx < sizeof(_fb)) {
-      _fb[idx] ^= 0xFFu;
+  uint8_t b0 = (uint8_t)(y * BYTEBOUNCE_BANDS);
+  for (uint8_t bx = 0; bx < BYTEBOUNCE_BANDS; bx++) {
+    uint8_t band = (uint8_t)(b0 + bx);
+    if (band >= PCD8544_ROWS) {
+      break;
+    }
+    for (uint8_t x = 0; x < PCD8544_WIDTH; x++) {
+      size_t idx = (size_t)band * PCD8544_WIDTH + (size_t)x;
+      if (idx < sizeof(_fb)) {
+        _fb[idx] ^= 0xFFu;
+      }
+    }
+  }
+}
+
+void pcd8544_invert_rect(uint8_t x0, uint8_t y0, uint8_t w, uint8_t h) {
+  if (w == 0 || h == 0) {
+    return;
+  }
+  for (uint16_t dy = 0; dy < (uint16_t)h; dy++) {
+    uint16_t y = (uint16_t)y0 + dy;
+    if (y >= (uint16_t)PCD8544_HEIGHT) {
+      break;
+    }
+    for (uint16_t dx = 0; dx < (uint16_t)w; dx++) {
+      uint16_t x = (uint16_t)x0 + dx;
+      if (x >= (uint16_t)PCD8544_WIDTH) {
+        continue;
+      }
+      uint8_t bank = (uint8_t)(y / 8u);
+      uint8_t bit = (uint8_t)(y % 8u);
+      size_t idx = (size_t)bank * PCD8544_WIDTH + (size_t)x;
+      if (idx < sizeof(_fb)) {
+        _fb[idx] ^= (uint8_t)(1u << bit);
+      }
     }
   }
 }
@@ -202,5 +242,18 @@ void pcd8544_set_pixel(uint8_t x, uint8_t y, bool black) {
     _fb[idx] |= (uint8_t)(1u << bit);
   } else {
     _fb[idx] = (uint8_t)(_fb[idx] & (uint8_t)~(1u << bit));
+  }
+}
+
+void pcd8544_blit_bands(uint8_t start_band, uint8_t num_bands, const uint8_t *data) {
+  if (data == NULL || num_bands == 0) {
+    return;
+  }
+  for (uint8_t b = 0; b < num_bands; b++) {
+    uint8_t band = (uint8_t)(start_band + b);
+    if (band >= PCD8544_ROWS) {
+      break;
+    }
+    memcpy(&_fb[(size_t)band * PCD8544_WIDTH], data + (size_t)b * PCD8544_WIDTH, PCD8544_WIDTH);
   }
 }
