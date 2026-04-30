@@ -1,6 +1,6 @@
 /*
- * verticalmenu: 1px track at SB1_VERTMENU_TRACK_X (right edge), stylized 7-row thumb:
- * | | / | \ | | (left/right kinks around a center spine), no digits.
+ * verticalmenu: 1px track at SB1_VERTMENU_TRACK_X (right edge),
+ * with a simple pipe-style selected marker.
  */
 #include "config.h"
 #include "pcd8544.h"
@@ -14,8 +14,8 @@ static void vm_plot_px(uint8_t x, uint8_t y) {
   }
 }
 
-/** Stylized thumb: | | / | \ | | with center spine at tx-2. */
-static void vm_draw_bracket_thumb(uint8_t tx, uint16_t y_top) {
+/** Selected marker: straight pipe accent beside the track. */
+static void vm_draw_selected_tick(uint8_t tx, uint16_t y_top) {
   if (tx < 4u) {
     return;
   }
@@ -23,15 +23,10 @@ static void vm_draw_bracket_thumb(uint8_t tx, uint16_t y_top) {
   if (y_bot >= PCD8544_HEIGHT) {
     return;
   }
-  const uint8_t spine_x = (uint8_t)(tx - 2u);
-
-  vm_plot_px(spine_x, (uint8_t)(y_top + 0u)); /* | */
-  vm_plot_px(spine_x, (uint8_t)(y_top + 1u)); /* | */
-  vm_plot_px((uint8_t)(spine_x - 1u), (uint8_t)(y_top + 2u)); /* / */
-  vm_plot_px(spine_x, (uint8_t)(y_top + 3u)); /* | */
-  vm_plot_px((uint8_t)(spine_x + 1u), (uint8_t)(y_top + 4u)); /* \ */
-  vm_plot_px(spine_x, (uint8_t)(y_top + 5u)); /* | */
-  vm_plot_px(spine_x, (uint8_t)(y_top + 6u)); /* | */
+  const uint8_t tick_x = (uint8_t)(tx - 3u);
+  for (uint16_t y = y_top; y <= y_bot; y++) {
+    vm_plot_px(tick_x, (uint8_t)y);
+  }
 }
 
 void sb1_verticalmenu_draw(uint8_t sel_zero_based, uint8_t total_count, uint8_t item_first_text_row,
@@ -52,11 +47,6 @@ void sb1_verticalmenu_draw(uint8_t sel_zero_based, uint8_t total_count, uint8_t 
   }
   const uint16_t y_track_bot = y_track_top + track_px - 1u;
 
-  /* Full-height vertical track */
-  for (uint16_t y = y_track_top; y <= y_track_bot && y < PCD8544_HEIGHT; y++) {
-    pcd8544_set_pixel(tx, (uint8_t)y, true);
-  }
-
   uint16_t y_bump_top;
   if (total_count <= 1u) {
     y_bump_top = y_track_top + (track_px - VM_BUMP_H) / 2u;
@@ -68,5 +58,12 @@ void sb1_verticalmenu_draw(uint8_t sel_zero_based, uint8_t total_count, uint8_t 
     y_bump_top = y_track_bot + 1u - VM_BUMP_H;
   }
 
-  vm_draw_bracket_thumb(tx, y_bump_top);
+  const uint16_t y_bump_bot = y_bump_top + VM_BUMP_H - 1u;
+  /* Right-side track with a blank window at selected row span. */
+  for (uint16_t y = y_track_top; y <= y_track_bot && y < PCD8544_HEIGHT; y++) {
+    bool in_selected_span = (y >= y_bump_top && y <= y_bump_bot);
+    pcd8544_set_pixel(tx, (uint8_t)y, !in_selected_span);
+  }
+
+  vm_draw_selected_tick(tx, y_bump_top);
 }

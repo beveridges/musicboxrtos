@@ -3,6 +3,7 @@
  */
 #include "menu.h"
 #include "display_task.h"
+#include "sb1_msc.h"
 #include "pico/time.h"
 #include "task.h"
 #include <stdio.h>
@@ -18,6 +19,8 @@ typedef enum {
   PG_HUB_OSC,
   PG_UTILITY,
   PG_UTILITY_FILES,
+  PG_UTILITY_FILES_VOLINFO,
+  PG_UTILITY_FILES_MIDI,
   PG_UTILITY_DIAG,
   PG_SETTINGS,
   PG_SETTINGS_AUTO,
@@ -62,18 +65,18 @@ static const menu_page_t s_pages[PG__COUNT] = {
     [PG_HUB] =
         {
             .title = "HUB",
-            .items = {"MIDI", "OSC"},
+            .items = {"BLEMIDI", "BLEOSC"},
             .count = 2,
         },
     [PG_HUB_MIDI] =
         {
-            .title = "HUB MIDI",
-            .items = {"BLE MIDI IN", "BACK"},
-            .count = 2,
+            .title = "BLEMIDI",
+            .items = {NULL},
+            .count = 0,
         },
     [PG_HUB_OSC] =
         {
-            .title = "OSC",
+            .title = "BLEOSC",
             .items = {"BACK"},
             .count = 1,
         },
@@ -86,6 +89,18 @@ static const menu_page_t s_pages[PG__COUNT] = {
     [PG_UTILITY_FILES] =
         {
             .title = "MIDI FILES",
+            .items = {"MOUNT", "FILES", "VOLUMEINFO"},
+            .count = 3,
+        },
+    [PG_UTILITY_FILES_VOLINFO] =
+        {
+            .title = "VOLUMEINFO",
+            .items = {NULL},
+            .count = 0,
+        },
+    [PG_UTILITY_FILES_MIDI] =
+        {
+            .title = "FILES",
             .items = {NULL},
             .count = 0,
         },
@@ -143,7 +158,6 @@ static uint8_t s_prev_cc = 0;
 static uint8_t s_prev_chan = 1;
 static uint8_t s_prev_arp_rate = 8;
 static bool s_prev_arp_enabled = false;
-static uint8_t s_prev_hub_midi_sink = SB1_BLE_MIDI_SINK_MERGE;
 static uint32_t s_last_tap_ms = 0;
 static uint8_t s_prev_auto_shutdown_idx = 0;
 static bool s_tap_br_was_down = false;
@@ -165,6 +179,17 @@ static void fmt_line(char *dst, const char *prefix, const char *text) {
   dst[DISPLAY_COLS] = '\0';
 }
 
+static void trim_copy(char *dst, size_t dst_len, const char *src) {
+  if (!dst || dst_len == 0u) {
+    return;
+  }
+  if (!src || src[0] == '\0') {
+    dst[0] = '\0';
+    return;
+  }
+  snprintf(dst, dst_len, "%s", src);
+}
+
 static uint8_t menu_item_visible_rows(menu_page_id_t page_id) {
   switch (page_id) {
     case PG_ROOT:
@@ -174,7 +199,11 @@ static uint8_t menu_item_visible_rows(menu_page_id_t page_id) {
     case PG_SETTINGS:
       return 4u;
     case PG_UTILITY_FILES:
+      return 3u;
+    case PG_UTILITY_FILES_VOLINFO:
       return 0u;
+    case PG_UTILITY_FILES_MIDI:
+      return 4u;
     default:
       return 1u;
   }
@@ -219,6 +248,14 @@ static void menu_nav_back(shared_state_t *sh) {
       break;
     case PG_HUB:
       s_page = PG_ROOT;
+      s_sel = 1;
+      break;
+    case PG_UTILITY_FILES_VOLINFO:
+      s_page = PG_UTILITY_FILES;
+      s_sel = 2;
+      break;
+    case PG_UTILITY_FILES_MIDI:
+      s_page = PG_UTILITY_FILES;
       s_sel = 1;
       break;
     case PG_UTILITY_FILES:
@@ -293,6 +330,11 @@ static bool menu_nav_back_peek(menu_page_id_t cur, menu_page_id_t *parent, uint8
     case PG_HUB:
       *parent = PG_ROOT;
       *parent_sel = 1;
+      return true;
+    case PG_UTILITY_FILES_VOLINFO:
+    case PG_UTILITY_FILES_MIDI:
+      *parent = PG_UTILITY_FILES;
+      *parent_sel = (cur == PG_UTILITY_FILES_VOLINFO) ? 2 : 1;
       return true;
     case PG_UTILITY_FILES:
       *parent = PG_UTILITY;
@@ -375,11 +417,6 @@ static void menu_render_list_page_into(char lines[MENU_ROWS][LINE_LEN], const sh
     snprintf(lines[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "NOT IMPLEMENTED");
     snprintf(lines[3], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "PLANNED BRIDGE");
     *out_invert_row = 0xFFu;
-  } else if (page_id == PG_UTILITY_FILES) {
-    snprintf(lines[1], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "STORAGE: TODO");
-    snprintf(lines[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "VOL:SB1STORAGE");
-    snprintf(lines[3], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "DRAG .MID FILES");
-    *out_invert_row = 0xFFu;
   } else if (page_id == PG_UTILITY_DIAG) {
     snprintf(lines[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "COMING SOON");
     *out_invert_row = 0xFFu;
@@ -392,10 +429,6 @@ static void menu_render_list_page_into(char lines[MENU_ROWS][LINE_LEN], const sh
     snprintf(lines[2], LINE_LEN, "CC:%u CH:%u", (unsigned)sh->cc_number, (unsigned)sh->midi_channel);
   } else if (page_id == PG_ARP) {
     snprintf(lines[2], LINE_LEN, "ARP:%s R:%u", sh->arp_enabled ? "ON" : "OFF", (unsigned)sh->arp_rate);
-  } else if (page_id == PG_HUB_MIDI) {
-    snprintf(lines[2], LINE_LEN, "IN:%s", sh->ble_midi_sink == SB1_BLE_MIDI_SINK_USB
-                                                ? "USB"
-                                                : (sh->ble_midi_sink == SB1_BLE_MIDI_SINK_MERGE ? "MRG" : "DEV"));
   }
 
   if (page_id != PG_ROOT) {
@@ -445,15 +478,6 @@ static void enter_edit_from_arp(shared_state_t *sh) {
     s_prev_arp_rate = sh->arp_rate;
     s_edit_value = sh->arp_rate;
   }
-}
-
-static void enter_edit_from_hub_midi(shared_state_t *sh) {
-  s_state = UI_EDIT;
-  s_prev_hub_midi_sink = sh->ble_midi_sink;
-  if (s_prev_hub_midi_sink > SB1_BLE_MIDI_SINK_DEVICE) {
-    s_prev_hub_midi_sink = SB1_BLE_MIDI_SINK_MERGE;
-  }
-  s_edit_value = s_prev_hub_midi_sink;
 }
 
 static uint8_t auto_shutdown_minutes_to_idx(uint8_t minutes) {
@@ -557,8 +581,6 @@ void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
         s_edit_value = (uint8_t)clamp_i((int)s_edit_value + (int)ev->delta, 0, 1);
       } else if (s_page == PG_ARP && s_sel == 1) {
         s_edit_value = (uint8_t)clamp_i((int)s_edit_value + (int)ev->delta, 1, 16);
-      } else if (s_page == PG_HUB_MIDI && s_sel == 0) {
-        s_edit_value = (uint8_t)clamp_i((int)s_edit_value + (int)ev->delta, 0, 2);
       } else if (s_page == PG_SETTINGS_AUTO) {
         s_edit_value = (uint8_t)clamp_i((int)s_edit_value + (int)ev->delta, 0, 5);
       }
@@ -574,8 +596,6 @@ void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
         sh->arp_enabled = (s_edit_value != 0);
       } else if (s_page == PG_ARP && s_sel == 1) {
         sh->arp_rate = s_edit_value;
-      } else if (s_page == PG_HUB_MIDI && s_sel == 0) {
-        sh->ble_midi_sink = s_edit_value;
       } else if (s_page == PG_SETTINGS_AUTO) {
         sh->auto_shutdown_minutes = auto_shutdown_idx_to_minutes(s_edit_value);
         s_page = PG_SETTINGS;
@@ -593,8 +613,6 @@ void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
         sh->arp_enabled = s_prev_arp_enabled;
       } else if (s_page == PG_ARP && s_sel == 1) {
         sh->arp_rate = s_prev_arp_rate;
-      } else if (s_page == PG_HUB_MIDI && s_sel == 0) {
-        sh->ble_midi_sink = s_prev_hub_midi_sink;
       } else if (s_page == PG_SETTINGS_AUTO) {
         sh->auto_shutdown_minutes = auto_shutdown_idx_to_minutes(s_prev_auto_shutdown_idx);
         s_page = PG_SETTINGS;
@@ -621,6 +639,16 @@ void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
       if (sh->bt_peer_connected || sh->wifi_sta_connected) {
         s_sel = (uint8_t)clamp_i((int)s_sel + (int)ev->delta, 0, 1);
       }
+      sh->menu_dirty = true;
+      return;
+    }
+    if (s_page == PG_UTILITY_FILES_MIDI) {
+      int n = (int)sh->msc_file_list_count;
+      if (n < 1) {
+        n = 1;
+      }
+      s_sel = (uint8_t)clamp_i((int)s_sel + (int)ev->delta, 0, n - 1);
+      sync_visible_window();
       sh->menu_dirty = true;
       return;
     }
@@ -734,12 +762,8 @@ void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
   }
 
   if (s_page == PG_HUB_MIDI) {
-    if (s_sel == 1) {
-      s_page = PG_HUB;
-      s_sel = 0;
-    } else {
-      enter_edit_from_hub_midi(sh);
-    }
+    sh->ble_midi_sink = (sh->ble_midi_sink == SB1_BLE_MIDI_SINK_USB) ? SB1_BLE_MIDI_SINK_MERGE
+                                                                       : SB1_BLE_MIDI_SINK_USB;
     return;
   }
 
@@ -761,6 +785,21 @@ void menu_process_event(shared_state_t *sh, const ui_event_t *ev) {
       s_page = PG_ROOT;
       s_sel = 2;
     }
+    s_first_visible = 0;
+    return;
+  }
+
+  if (s_page == PG_UTILITY_FILES) {
+    if (s_sel == 0) {
+      /* MOUNT action intentionally disabled; keep menu item visible only. */
+      return;
+    } else if (s_sel == 1) {
+      s_page = PG_UTILITY_FILES_MIDI;
+      sb1_msc_refresh_file_list(sh);
+    } else {
+      s_page = PG_UTILITY_FILES_VOLINFO;
+    }
+    s_sel = 0;
     s_first_visible = 0;
     return;
   }
@@ -914,6 +953,33 @@ void menu_render(shared_state_t *sh) {
     return;
   }
 
+  if (s_state == UI_MENU && s_page == PG_UTILITY_FILES_MIDI) {
+    clear_menu_lines(sh);
+    snprintf(sh->menu_line[0], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "FILES");
+    int n = (int)sh->msc_file_list_count;
+    if (n < 1) {
+      fmt_line(sh->menu_line[1], ">", "(empty)");
+    } else {
+      const uint8_t item_rows = menu_item_visible_rows(PG_UTILITY_FILES_MIDI);
+      for (uint8_t row = 0; row < item_rows; row++) {
+        int idx = (int)s_first_visible + (int)row;
+        if (idx >= n) {
+          sh->menu_line[row + 1][0] = '\0';
+          continue;
+        }
+        fmt_line(sh->menu_line[row + 1], (uint8_t)idx == s_sel ? ">" : " ", sh->msc_file_list[idx]);
+      }
+    }
+    if (sh->menu_esc_available) {
+      snprintf(sh->menu_line[MENU_ROWS - 1], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, " LONG=BACK ");
+    }
+    sh->menu_view = SB1_MENU_VIEW_LIST;
+    sh->menu_invert_row = 0xFFu;
+    sh->menu_sel = s_sel;
+    sh->menu_dirty = true;
+    return;
+  }
+
   if (s_state == UI_MENU && s_page == PG_SETTINGS_ABOUT) {
     clear_menu_lines(sh);
     sh->menu_view =
@@ -962,6 +1028,35 @@ void menu_render(shared_state_t *sh) {
     return;
   }
 
+  if (s_state == UI_MENU && s_page == PG_HUB_MIDI) {
+    char in_summary[LINE_LEN];
+    char out_summary[LINE_LEN];
+    const bool src_usb = (sh->ble_midi_sink == SB1_BLE_MIDI_SINK_USB);
+    trim_copy(in_summary, sizeof in_summary, sh->ble_rx_last_summary);
+    trim_copy(out_summary, sizeof out_summary, sh->last_event);
+    if (in_summary[0] == '\0') {
+      snprintf(in_summary, sizeof in_summary, "none");
+    }
+    if (out_summary[0] == '\0') {
+      snprintf(out_summary, sizeof out_summary, "none");
+    }
+    clear_menu_lines(sh);
+    snprintf(sh->menu_line[0], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "BLEMIDI");
+    snprintf(sh->menu_line[1], LINE_LEN, "IN:%-*.*s", DISPLAY_COLS - 3, DISPLAY_COLS - 3, in_summary);
+    snprintf(sh->menu_line[2], LINE_LEN, "OUT:%-*.*s", DISPLAY_COLS - 4, DISPLAY_COLS - 4, out_summary);
+    snprintf(sh->menu_line[3], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "SOURCE");
+    snprintf(sh->menu_line[4], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS,
+             src_usb ? "<USB>  AIR " : " USB  <AIR>");
+    if (sh->menu_esc_available) {
+      snprintf(sh->menu_line[MENU_ROWS - 1], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, " LONG=BACK ");
+    }
+    sh->menu_view = SB1_MENU_VIEW_LIST;
+    sh->menu_invert_row = 0xFFu;
+    sh->menu_sel = 0;
+    sh->menu_dirty = true;
+    return;
+  }
+
   clear_menu_lines(sh);
 
   const menu_page_t *page = &s_pages[s_page];
@@ -995,12 +1090,6 @@ void menu_render(shared_state_t *sh) {
       snprintf(sh->menu_line[0], LINE_LEN, "ARP RATE");
       snprintf(sh->menu_line[1], LINE_LEN, "< %2u >", (unsigned)s_edit_value);
       snprintf(sh->menu_line[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "1=SLOW16=FAST");
-      snprintf(sh->menu_line[MENU_ROWS - 1], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, " LONG=BACK ");
-    } else if (s_page == PG_HUB_MIDI && s_sel == 0) {
-      static const char *const lab[] = {"USB", "MRG", "DEV"};
-      snprintf(sh->menu_line[0], LINE_LEN, "BLE MIDI IN");
-      snprintf(sh->menu_line[1], LINE_LEN, "< %3s >", lab[s_edit_value % 3u]);
-      snprintf(sh->menu_line[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "");
       snprintf(sh->menu_line[MENU_ROWS - 1], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, " LONG=BACK ");
     } else if (s_page == PG_SETTINGS_AUTO) {
       snprintf(sh->menu_line[0], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "AUTOOFF");
@@ -1036,11 +1125,6 @@ void menu_render(shared_state_t *sh) {
     snprintf(sh->menu_line[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "NOT IMPLEMENTED");
     snprintf(sh->menu_line[3], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "PLANNED BRIDGE");
     sh->menu_invert_row = 0xFFu;
-  } else if (s_page == PG_UTILITY_FILES) {
-    snprintf(sh->menu_line[1], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "STORAGE: TODO");
-    snprintf(sh->menu_line[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "VOL:SB1STORAGE");
-    snprintf(sh->menu_line[3], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "DRAG .MID FILES");
-    sh->menu_invert_row = 0xFFu;
   } else if (s_page == PG_UTILITY_DIAG) {
     snprintf(sh->menu_line[2], LINE_LEN, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "COMING SOON");
     sh->menu_invert_row = 0xFFu;
@@ -1053,10 +1137,6 @@ void menu_render(shared_state_t *sh) {
     snprintf(sh->menu_line[2], LINE_LEN, "CC:%u CH:%u", (unsigned)sh->cc_number, (unsigned)sh->midi_channel);
   } else if (s_page == PG_ARP) {
     snprintf(sh->menu_line[2], LINE_LEN, "ARP:%s R:%u", sh->arp_enabled ? "ON" : "OFF", (unsigned)sh->arp_rate);
-  } else if (s_page == PG_HUB_MIDI) {
-    snprintf(sh->menu_line[2], LINE_LEN, "IN:%s", sh->ble_midi_sink == SB1_BLE_MIDI_SINK_USB
-                                                    ? "USB"
-                                                    : (sh->ble_midi_sink == SB1_BLE_MIDI_SINK_MERGE ? "MRG" : "DEV"));
   }
 
   if (sh->menu_esc_available) {

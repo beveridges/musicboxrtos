@@ -53,3 +53,8 @@ Planned behavior: **USB storage mode** exposes a drive labeled **SB1STORAGE** fo
 ## Menu (ARP, Hub, OSC)
 
 See [`docs/menu-reference.md`](docs/menu-reference.md).
+
+## Full BLE system behavior
+
+See [`docs/ble-system-model.md`](docs/ble-system-model.md) for the complete BLE role model, BL long-press
+semantics, routing policy, and UART command/telemetry grammar.

@@ -30,6 +30,7 @@ add_executable(freertos_skeleton
     src/gpio_led.c
     src/sb1_setup.c
     src/sb1_uart_midi.c
+    src/sb1_midi_router.c
     src/sb1_bear_bitmap.c
     src/sb1_link_task.c
     src/midi_task.c
@@ -40,6 +41,7 @@ add_executable(freertos_skeleton
     src/pot_task.c
     src/usb_descriptors.c
     src/usb_task.c
+    src/sb1_msc.c
     src/pcd8544.c
     ${MUSICBOX_TOOLS_DIR}/ByteBounce_8.c
     src/qrcodegen.c

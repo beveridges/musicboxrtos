@@ -82,6 +82,8 @@
 #define MENU_LONG_PRESS_MS 600
 /* TR (MIDI C) hold -> reset_usb_boot (UF2); separate from menu long-press. */
 #define TR_USB_BOOT_HOLD_MS 1500u
+/* TL (MIDI B) hold -> USB MSC “SB1STORAGE” mode (same tier as TR UF2; not menu 600 ms). */
+#define TL_USB_MSC_HOLD_MS TR_USB_BOOT_HOLD_MS
 /* Bluetooth pairing LED choreography (see manual/SB1-Bluetooth-LED-Gestures-Plan.md). */
 #define PAIR_LED_FIRST_MS       1000u /* First dwell (longer than MENU_LONG_PRESS_MS). */
 #define PAIR_LED_STEP_MS        500u
@@ -101,7 +103,7 @@
 #define UI_TELEMETRY_PRINT_MS 500
 
 /* BLE / pairing UI — must match default ESP32 `device_name` when unset (see esp32 main.c). */
-#define SB1_BT_DEVICE_NAME "SB1 MIDI INTERFACE"
+#define SB1_BT_DEVICE_NAME "SB1"
 /* QR payload (UTF-8 ASCII); keep reasonably short for small modules on 84x48 LCD. */
 #define SB1_BT_QR_PAYLOAD SB1_BT_DEVICE_NAME
 /* Wi‑Fi config AP QR (matches ESP32 SoftAP SSID in wifi_sb1.c, open network). */
@@ -110,7 +112,13 @@
 #define SB1_CONN_SCREEN_ROOT 0u
 #define SB1_CONN_SCREEN_BT   1u
 #define SB1_CONN_SCREEN_WIFI 2u
+#define SB1_CONN_SCREEN_BT_DEV 3u
+#define SB1_CONN_SCREEN_WIFI_SCAN 4u
 #define SB1_CONN_CONNECTING_FLASH_MS 400u
+#define SB1_WIFI_SCAN_MAX_RESULTS 8u
+#define SB1_WIFI_SSID_MAX 32u
+/** Dashboard / live mode: show last BLE MIDI summary for this long (ms), then "RX IDLE". */
+#define SB1_BLE_RX_ACTIVITY_MS 1500u
 /* Connected pairing: peer/device name on its own line, max glyphs shown (84px / prop font). */
 #define SB1_BT_PAIR_PEER_DISPLAY_LEN 11u
 /* ESP32 → RP2040 UART lines: SB1BT,0 / SB1BT,1,<name> — name also shown truncated on pairing LCD. */
@@ -143,6 +151,9 @@
 #define SB1_ABOUT_DISP_6 "naenv.yml"
 #define SB1_ABOUT_DISP_7 "sesquialtera"
 
+/** Max 8.3 names listed under UTILITY → MIDI FILES → FILES (RAM disk root scan). */
+#define SB1_MSC_FILE_LIST_MAX 16u
+
 /* Shared state: MIDI task writes; UI and display tasks read under mutex. */
 typedef struct {
   int *button_state;
@@ -154,6 +165,18 @@ typedef struct {
   uint32_t ui_rotate_events;
   uint16_t ui_rotate_events_last_sec;
   bool usb_mounted;
+  /** TL long-hold: usb_task arms MSC medium + LCD “SB1STORAGE / ATTACHED” (0/1). */
+  volatile uint8_t usb_msc_tl_request;
+  /** True while menu-initiated mount is in progress (used for "MOUNTING" blink feedback). */
+  bool usb_msc_mounting;
+  /** True while host may access MSC LUN (after TL gesture until host eject). */
+  bool usb_msc_medium_ready;
+  /** Full-screen MSC attached message until this time (ms since boot); 0 = off. */
+  uint32_t usb_msc_attached_until_ms;
+  /** Host issued START/STOP eject; lun not ready until next TL gesture. */
+  bool usb_msc_host_ejected;
+  char msc_file_list[SB1_MSC_FILE_LIST_MAX][13];
+  uint8_t msc_file_list_count;
   char last_event[LAST_EVENT_LEN];
   char line4[LINE_LEN];
   char line5[LINE_LEN];
@@ -178,19 +201,54 @@ typedef struct {
   /* After BL long-hold setup gesture completes: connectivity UI on the LCD. */
   bool bt_pairing_active;
   uint8_t connectivity_screen; /* SB1_CONN_SCREEN_* */
-  uint8_t connectivity_sel;    /* 0..1 row on current screen */
+  uint8_t connectivity_sel;    /* selected row index on current screen */
   bool connectivity_qr_visible;
   bool connectivity_qr_wifi; /* QR payload: false = BLE name, true = Wi‑Fi join string */
   bool connectivity_connecting_bt;
   bool connectivity_connecting_wifi;
+  bool connectivity_wifi_scanning;
+  uint8_t connectivity_wifi_scan_count;
+  uint8_t connectivity_wifi_scan_sel;
+  char connectivity_wifi_ssids[SB1_WIFI_SCAN_MAX_RESULTS][SB1_WIFI_SSID_MAX + 1u];
+  char connectivity_wifi_status[LINE_LEN];
   bool bt_pairing_dirty;
   /* From ESP32 UART (SB1BT,...); used in pairing text screen when bt_pairing_active. */
   bool bt_peer_connected;
   char bt_peer_name[BT_PEER_NAME_MAX];
+  /** Monotonic count of BT connect sessions observed from SB1BT,1 events. */
+  uint32_t bt_session_count;
+  /** ms-since-boot timestamp of last SB1BT connect/disconnect state change. */
+  uint32_t bt_last_change_ms;
+  /** ESP32 BLE telemetry: advertise state (SB1BLE,ADV). */
+  bool ble_adv_active;
+  /** ESP32 BLE telemetry: BOOTING/ADVERTISING/CONNECTED/RECOVERING/FAULT. */
+  uint8_t ble_state;
+  /** ESP32 BLE telemetry: last GAP/advertise error code. */
+  int16_t ble_last_err;
+  /** ESP32 BLE telemetry: last disconnect reason code. */
+  int16_t ble_last_disc_reason;
+  /** ESP32 BLE telemetry: recovery loop counter. */
+  uint32_t ble_recovery_count;
+  /** ESP32 link protocol version reported by SB1BLE,PROTO,<n>. */
+  uint8_t ble_proto_version;
+  /** RP2040 one-shot guard: startup READV already issued to ESP32. */
+  bool ble_startup_readv_sent;
+  /** Until when (ms-since-boot) BT edge toast should be shown in pairing UI; 0=off. */
+  uint32_t bt_toast_until_ms;
+  /** 1 = connected toast, 2 = disconnected toast. */
+  uint8_t bt_toast_kind;
   /* From ESP32 UART: SB1WF,0 / SB1WF,1 — STA associated with IP. */
   bool wifi_sta_connected;
   /** 0=USB only, 1=merge with local, 2=on-device (no USB echo). */
   uint8_t ble_midi_sink;
+  /** Total BLE MIDI packets received from ESP32 framed UART path. */
+  uint32_t ble_rx_packets_total;
+  /** Last BLE MIDI receive time (ms-since-boot); 0 means none yet. */
+  uint32_t ble_rx_last_ms;
+  /** Last BLE MIDI packet summary (compact, display-safe). */
+  char ble_rx_last_summary[LINE_LEN];
+  /** Increments when a BLE packet cannot be summarized cleanly for UI. */
+  uint32_t ble_rx_overrun_count;
   bool osc_enabled; /* NI: future OSC bridge */
   /** LIST = normal menu rows; SYSTEM_ABOUT / SYSTEM_FW = full-screen layouts (see display_task). */
   uint8_t menu_view;
@@ -220,11 +278,21 @@ typedef struct {
 #define SB1_MENU_VIEW_SYSTEM_FW_SURE  4u
 #define SB1_MENU_VIEW_SYSTEM_ABOUT_DETAIL 5u
 #define SB1_MENU_VIEW_TAP_TEMPO       6u
+#define SB1_MENU_VIEW_USB_MSC_ATTACHED 7u
 
 /** Where inbound BLE MIDI (from ESP) is routed on RP2040. */
 #define SB1_BLE_MIDI_SINK_USB    0u
 #define SB1_BLE_MIDI_SINK_MERGE  1u
 #define SB1_BLE_MIDI_SINK_DEVICE 2u
+
+#define SB1_BLE_STATE_BOOTING 0u
+#define SB1_BLE_STATE_ADVERTISING 1u
+#define SB1_BLE_STATE_CONNECTED 2u
+#define SB1_BLE_STATE_RECOVERING 3u
+#define SB1_BLE_STATE_FAULT 4u
+
+/** ESP32<->RP2040 control/data link protocol version. */
+#define SB1_LINK_PROTO_VERSION 1u
 
 /** UART binary frame from ESP32 before raw MIDI payload (see sb1_link_task / esp32 main). */
 #define SB1_UART_FRAME_SOH 0x01u

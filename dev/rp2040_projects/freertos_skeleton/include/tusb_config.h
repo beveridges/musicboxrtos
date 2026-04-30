@@ -13,6 +13,10 @@
 
 #define CFG_TUD_CDC             (1)
 #define CFG_TUD_MIDI            (1)
+#define CFG_TUD_MSC             (1)
+#ifndef CFG_TUD_MSC_EP_BUFSIZE
+#define CFG_TUD_MSC_EP_BUFSIZE  (512)
+#endif
 
 #ifndef CFG_TUD_CDC_RX_BUFSIZE
 #define CFG_TUD_CDC_RX_BUFSIZE  (64)

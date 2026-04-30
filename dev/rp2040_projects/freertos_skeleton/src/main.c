@@ -6,6 +6,7 @@
  */
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include "hardware/uart.h"
 #include "config.h"
 #include "sb1_setup.h"
 #include "sb1_link_task.h"
@@ -83,6 +84,14 @@ static void uart_stdio_bringup_task(void *pvParameters) {
     if (esp32_looks_powered()) {
       stdio_init_all();
       sb1_set_stdio_ready(true);
+      /* Start BLE advertising immediately once UART control-plane is live. */
+      uart_puts(uart0, "SB1CMD,BLE,READV\n");
+      if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(20)) == pdTRUE) {
+        sh->ble_startup_readv_sent = true;
+        sh->connectivity_connecting_bt = false;
+        sh->bt_pairing_dirty = true;
+        xSemaphoreGive(sh->mutex);
+      }
       if (sh) {
         sb1_link_task_create(sh);
       }
@@ -170,11 +179,30 @@ int main(void) {
   s_shared.connectivity_qr_wifi = false;
   s_shared.connectivity_connecting_bt = false;
   s_shared.connectivity_connecting_wifi = false;
+  s_shared.connectivity_wifi_scanning = false;
+  s_shared.connectivity_wifi_scan_count = 0u;
+  s_shared.connectivity_wifi_scan_sel = 0u;
+  s_shared.connectivity_wifi_status[0] = '\0';
   s_shared.bt_pairing_dirty = false;
   s_shared.bt_peer_connected = false;
   s_shared.bt_peer_name[0] = '\0';
+  s_shared.bt_session_count = 0u;
+  s_shared.bt_last_change_ms = 0u;
+  s_shared.ble_adv_active = false;
+  s_shared.ble_state = SB1_BLE_STATE_BOOTING;
+  s_shared.ble_last_err = 0;
+  s_shared.ble_last_disc_reason = 0;
+  s_shared.ble_recovery_count = 0u;
+  s_shared.ble_proto_version = 0u;
+  s_shared.ble_startup_readv_sent = false;
+  s_shared.bt_toast_until_ms = 0u;
+  s_shared.bt_toast_kind = 0u;
   s_shared.wifi_sta_connected = false;
   s_shared.ble_midi_sink = SB1_BLE_MIDI_SINK_MERGE;
+  s_shared.ble_rx_packets_total = 0u;
+  s_shared.ble_rx_last_ms = 0u;
+  s_shared.ble_rx_last_summary[0] = '\0';
+  s_shared.ble_rx_overrun_count = 0u;
   s_shared.osc_enabled = false;
   s_shared.menu_view = SB1_MENU_VIEW_LIST;
   s_shared.fw_ota_step = 0;
@@ -192,7 +220,14 @@ int main(void) {
   snprintf(s_shared.line4, LINE_LEN, "USB MIDI INIT");
   snprintf(s_shared.line5, LINE_LEN, "WAIT PC ENUM");
 
-  usb_task_create();
+  s_shared.usb_msc_tl_request = 0u;
+  s_shared.usb_msc_mounting = false;
+  s_shared.usb_msc_medium_ready = false;
+  s_shared.usb_msc_attached_until_ms = 0u;
+  s_shared.usb_msc_host_ejected = false;
+  s_shared.msc_file_list_count = 0u;
+
+  usb_task_create(&s_shared);
   xTaskCreate(uart_stdio_bringup_task, "uart_bringup", UART_BRINGUP_STACK_WORDS, &s_shared,
               UART_BRINGUP_TASK_PRIORITY, NULL);
   ui_task_create(&s_shared);

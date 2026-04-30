@@ -20,6 +20,9 @@
 #include <string.h>
 
 #define SB1_QR_BUF_LEN 512
+/* Fixed on-screen QR edge (pixels). Longer payloads use more QR modules; without this, scaling
+ * differs (e.g. Wi‑Fi WIFI:… vs short BLE string) so the two pairing codes looked different sizes. */
+#define SB1_QR_EDGE_PX 42u
 
 static uint8_t s_qr_temp[SB1_QR_BUF_LEN];
 static uint8_t s_qr_data[SB1_QR_BUF_LEN];
@@ -46,10 +49,9 @@ static void sb1_meter_wifi_rune_draw(void) {
   }
 }
 
-/* After text / inverts; optional Wi‑Fi glyph when STA is up (no separate BT pixel icon). */
+/* After text / inverts; show full-reception rune when either wireless link is active. */
 static void sb1_meter_link_runes_if(bool bt_connected, bool wifi_connected) {
-  (void)bt_connected;
-  if (wifi_connected) {
+  if (wifi_connected || bt_connected) {
     sb1_meter_wifi_rune_draw();
   }
 }
@@ -79,6 +81,24 @@ static void sb1_about_put_row(uint8_t row, const char *text) {
   snprintf(buf, sizeof buf, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, text ? text : "");
   pcd8544_set_cursor(0, row);
   pcd8544_print(buf);
+}
+
+static void sb1_put_row_bt_disconnect_status(uint8_t row, const char *peer_name) {
+  if (!peer_name || peer_name[0] == '\0') {
+    sb1_about_put_row(row, "DISCONNECTED");
+    return;
+  }
+  char dn[SB1_BT_PAIR_PEER_DISPLAY_LEN + 1u];
+  size_t n = 0;
+  while (n < (size_t)SB1_BT_PAIR_PEER_DISPLAY_LEN && peer_name[n] != '\0') {
+    dn[n] = peer_name[n];
+    n++;
+  }
+  dn[n] = '\0';
+  unsigned name_w = (DISPLAY_COLS > 13u) ? (unsigned)(DISPLAY_COLS - 13u) : 1u;
+  char buf[LINE_LEN];
+  snprintf(buf, sizeof buf, "DISCONNECTED %.*s", (int)name_w, dn);
+  sb1_about_put_row(row, buf);
 }
 
 /* Filled disk on top of hollow circles in sb1_livemode_buttons (raw/livemodeButtons.png). */
@@ -139,7 +159,8 @@ static void sb1_live_mode_note_line(char *buf, size_t n, uint8_t bits) {
  * Order: BL=Select, BR=MIDI A, TL=MIDI B, TR=MIDI C (see midi_btn_live bits).
  */
 static void sb1_draw_live_mode_screen(bool usb_mounted, uint8_t midi_live_bits, bool bl_pressed,
-                                      uint8_t pot_cc) {
+                                      uint8_t pot_cc, const char *ble_rx_summary, uint32_t ble_rx_last_ms,
+                                      uint32_t now_ms) {
   char note_line[LINE_LEN];
   char row2[LINE_LEN];
   char tmp[LINE_LEN];
@@ -148,8 +169,15 @@ static void sb1_draw_live_mode_screen(bool usb_mounted, uint8_t midi_live_bits, 
   sb1_about_put_row(0, "LIVE MODE");
   sb1_about_put_row(1, usb_mounted ? "MIDI READY" : "NOT MOUNTED");
   sb1_live_mode_note_line(note_line, sizeof note_line, midi_live_bits);
-  snprintf(tmp, sizeof tmp, "%u:%u %s", (unsigned)POT_MIDI_CC, (unsigned)pot_cc, note_line);
-  snprintf(row2, sizeof row2, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, tmp);
+  if (ble_rx_summary && ble_rx_summary[0] != '\0' && ble_rx_last_ms != 0u && now_ms >= ble_rx_last_ms &&
+      (now_ms - ble_rx_last_ms) <= (uint32_t)SB1_BLE_RX_ACTIVITY_MS) {
+    snprintf(row2, sizeof row2, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, ble_rx_summary);
+  } else if (ble_rx_last_ms != 0u) {
+    snprintf(row2, sizeof row2, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, "RX IDLE");
+  } else {
+    snprintf(tmp, sizeof tmp, "%u:%u %s", (unsigned)POT_MIDI_CC, (unsigned)pot_cc, note_line);
+    snprintf(row2, sizeof row2, "%-*.*s", DISPLAY_COLS, DISPLAY_COLS, tmp);
+  }
   sb1_about_put_row(2, row2);
 
   /*
@@ -420,26 +448,69 @@ static void sb1_fmt_sel_line(char *dst, size_t dstsz, bool selected, const char 
   }
 }
 
+static void sb1_draw_bt_toast(uint8_t kind, const char *peer_name) {
+  sb1_draw_modal_frame();
+  if (kind == 1u) {
+    sb1_about_put_row(2, "BT CONNECTED");
+    if (peer_name && peer_name[0] != '\0') {
+      sb1_about_put_row(3, peer_name);
+    }
+  } else if (kind == 2u) {
+    sb1_about_put_row(2, "DISCONNECTED");
+    if (peer_name && peer_name[0] != '\0') {
+      sb1_about_put_row(3, peer_name);
+    }
+  }
+  pcd8544_display();
+}
+
+static const char *sb1_ble_state_tag(uint8_t st) {
+  switch (st) {
+    case SB1_BLE_STATE_ADVERTISING:
+      return "ADV";
+    case SB1_BLE_STATE_CONNECTED:
+      return "CONN";
+    case SB1_BLE_STATE_RECOVERING:
+      return "RCV";
+    case SB1_BLE_STATE_FAULT:
+      return "FLT";
+    default:
+      return "BOOT";
+  }
+}
+
 static void sb1_draw_connectivity_screen(uint8_t screen, uint8_t sel, bool connecting_bt, bool connecting_wifi,
-                                       bool bt_ok, bool wf_ok, bool flash_on, const char *peer_name) {
+                                       bool wifi_scanning, uint8_t wifi_scan_count, const char wifi_ssids[][SB1_WIFI_SSID_MAX + 1u],
+                                       const char *wifi_status, bool bt_ok, bool wf_ok, bool flash_on, const char *peer_name,
+                                       bool ble_adv_active, uint8_t ble_state, int ble_last_err, int ble_last_disc_reason,
+                                       uint32_t ble_recovery_count, uint8_t ble_proto_version) {
   bool show_bars = false;
   if (screen == SB1_CONN_SCREEN_ROOT) {
     show_bars = bt_ok || wf_ok;
-  } else if (screen == SB1_CONN_SCREEN_BT) {
+  } else if (screen == SB1_CONN_SCREEN_BT || screen == SB1_CONN_SCREEN_BT_DEV) {
     if (connecting_bt && !bt_ok) {
       show_bars = false;
     } else {
       show_bars = bt_ok;
     }
-  } else {
+  } else if (screen == SB1_CONN_SCREEN_WIFI || screen == SB1_CONN_SCREEN_WIFI_SCAN) {
     if (connecting_wifi && !wf_ok) {
       show_bars = false;
     } else {
       show_bars = wf_ok;
     }
+  } else {
+    show_bars = bt_ok || wf_ok;
   }
 
-  sb1_background(show_bars);
+  if (screen == SB1_CONN_SCREEN_BT) {
+    pcd8544_clear();
+    if (show_bars) {
+      pcd8544_blit_bands(0, PCD8544_ROWS, sb1_wireless_meter);
+    }
+  } else {
+    sb1_background(show_bars);
+  }
 
   char ln[LINE_LEN];
 
@@ -452,56 +523,146 @@ static void sb1_draw_connectivity_screen(uint8_t screen, uint8_t sel, bool conne
     sb1_about_put_row(5, "HOLD=EXIT");
   } else if (screen == SB1_CONN_SCREEN_BT) {
     if (connecting_bt && !bt_ok) {
+      /* 0 = ADVERTISING blink line, 1 = TURNOFF */
       sb1_about_put_row(0, "BLUETOOTH");
       sb1_about_put_row(1, "");
-      if (flash_on) {
-        sb1_about_put_row(2, "CONNECTING");
+      if (sel == 1u) {
+        sb1_fmt_sel_line(ln, sizeof ln, false, "ADVERTISING...");
+        sb1_about_put_row(2, ln);
+      } else if (flash_on) {
+        sb1_fmt_sel_line(ln, sizeof ln, true, "ADVERTISING...");
+        sb1_about_put_row(2, ln);
       } else {
         sb1_about_put_row(2, "");
       }
+      sb1_about_put_row(3, "");
+      sb1_fmt_sel_line(ln, sizeof ln, sel == 1u, "TURNOFF");
+      sb1_about_put_row(4, ln);
       sb1_about_put_row(5, "LONG=BACK");
     } else {
+      const bool bt_power_on = bt_ok || connecting_bt || ble_adv_active;
+      static const char *const bt_main_on[5] = {"ADVERTISE", "QRCODE", "DEV", "DISCONNECT", "TURNOFF"};
+      static const char *const bt_main_off[5] = {"ADVERTISE", "QRCODE", "DEV", "DISCONNECT", "TURNON"};
+      const char *const *bt_main = bt_power_on ? bt_main_on : bt_main_off;
+      const uint8_t bt_scroll_count = 5u;
+      const uint8_t bt_sel_count = 5u;
+      if (sel >= bt_sel_count) {
+        sel = (uint8_t)(bt_sel_count - 1u);
+      }
+      uint8_t pick = sel;
+      uint8_t first_visible = 0u;
+      if (pick > 1u) {
+        first_visible = (uint8_t)(pick - 1u);
+      }
+      if ((uint8_t)(first_visible + 3u) > bt_scroll_count) {
+        first_visible = (uint8_t)(bt_scroll_count - 3u);
+      }
+
       sb1_about_put_row(0, "BLUETOOTH");
-      const char *row1 = bt_ok ? "CONNECTED" : "CONNECT";
-      sb1_fmt_sel_line(ln, sizeof ln, sel == 0, row1);
-      sb1_about_put_row(1, ln);
-      sb1_fmt_sel_line(ln, sizeof ln, sel == 1, "QR CODE");
-      sb1_about_put_row(2, ln);
-      if (bt_ok && peer_name && peer_name[0] != '\0') {
+
+      /* Row 1: connection status (not part of scrollbar) */
+      if (bt_ok) {
         char shortname[SB1_BT_PAIR_PEER_DISPLAY_LEN + 1u];
         size_t n = 0;
-        while (n < (size_t)SB1_BT_PAIR_PEER_DISPLAY_LEN && peer_name[n] != '\0') {
+        while (peer_name && n < (size_t)SB1_BT_PAIR_PEER_DISPLAY_LEN && peer_name[n] != '\0') {
           shortname[n] = peer_name[n];
           n++;
         }
         shortname[n] = '\0';
-        sb1_about_put_row(3, shortname);
+        sb1_about_put_row(1, n > 0u ? shortname : "BT CONNECTED");
+      } else {
+        sb1_put_row_bt_disconnect_status(1u, peer_name);
+      }
+
+      sb1_fmt_sel_line(ln, sizeof ln, pick == first_visible, bt_main[first_visible]);
+      sb1_about_put_row(2, ln);
+      if ((uint8_t)(first_visible + 1u) < bt_scroll_count) {
+        sb1_fmt_sel_line(ln, sizeof ln, pick == (uint8_t)(first_visible + 1u), bt_main[first_visible + 1u]);
+        sb1_about_put_row(3, ln);
+      }
+      if ((uint8_t)(first_visible + 2u) < bt_scroll_count) {
+        sb1_fmt_sel_line(ln, sizeof ln, pick == (uint8_t)(first_visible + 2u), bt_main[first_visible + 2u]);
+        sb1_about_put_row(4, ln);
       }
       sb1_about_put_row(5, "LONG=BACK");
+      if (bt_scroll_count >= 3u) {
+        sb1_verticalmenu_draw(sel, bt_sel_count, 2u, 3u);
+      }
     }
-  } else {
-    /* SB1_CONN_SCREEN_WIFI */
+  } else if (screen == SB1_CONN_SCREEN_BT_DEV) {
+    sb1_about_put_row(0, "BT DEV");
+    sb1_put_row_bt_disconnect_status(1u, NULL);
+    snprintf(ln, sizeof ln, "ADV:%s ST:%s", ble_adv_active ? "ON" : "OFF", sb1_ble_state_tag(ble_state));
+    sb1_about_put_row(2, ln);
+    snprintf(ln, sizeof ln, "ERR:%d DISC:%d", ble_last_err, ble_last_disc_reason);
+    sb1_about_put_row(3, ln);
+    snprintf(ln, sizeof ln, "R:%u P:%u", (unsigned)ble_recovery_count, (unsigned)ble_proto_version);
+    sb1_about_put_row(4, ln);
+    sb1_about_put_row(5, "LONG=BACK");
+  } else if (screen == SB1_CONN_SCREEN_WIFI) {
     if (connecting_wifi && !wf_ok) {
       sb1_about_put_row(0, "WIFI");
       sb1_about_put_row(1, "");
       if (flash_on) {
-        sb1_about_put_row(2, "CONNECTING");
+        sb1_about_put_row(2, "CONNECTING...");
       } else {
         sb1_about_put_row(2, "");
       }
       sb1_about_put_row(5, "LONG=BACK");
     } else {
       sb1_about_put_row(0, "WIFI");
-      const char *row1 = wf_ok ? "CONNECTED" : "CONNECT";
+      const char *row1 = wf_ok ? "CONNECTED" : "SCAN";
       sb1_fmt_sel_line(ln, sizeof ln, sel == 0, row1);
       sb1_about_put_row(1, ln);
       sb1_fmt_sel_line(ln, sizeof ln, sel == 1, "QR CODE");
       sb1_about_put_row(2, ln);
       sb1_about_put_row(5, "LONG=BACK");
     }
+  } else if (screen == SB1_CONN_SCREEN_WIFI_SCAN) {
+    sb1_about_put_row(0, "WIFI SCAN");
+    if (wifi_scanning) {
+      if (flash_on) {
+        sb1_about_put_row(2, "SCANNING...");
+      } else {
+        sb1_about_put_row(2, "");
+      }
+    } else if (wifi_scan_count == 0u) {
+      sb1_about_put_row(2, "NO HOTSPOTS");
+    } else {
+      uint8_t pick = sel;
+      if (pick >= wifi_scan_count) {
+        pick = (uint8_t)(wifi_scan_count - 1u);
+      }
+      uint8_t first_visible = 0u;
+      if (pick > 1u) {
+        first_visible = (uint8_t)(pick - 1u);
+      }
+      if ((uint8_t)(first_visible + 3u) > wifi_scan_count) {
+        first_visible = (uint8_t)(wifi_scan_count - 3u);
+      }
+      sb1_fmt_sel_line(ln, sizeof ln, pick == first_visible, wifi_ssids[first_visible]);
+      sb1_about_put_row(1, ln);
+      if ((uint8_t)(first_visible + 1u) < wifi_scan_count) {
+        sb1_fmt_sel_line(ln, sizeof ln, pick == (uint8_t)(first_visible + 1u), wifi_ssids[first_visible + 1u]);
+        sb1_about_put_row(2, ln);
+      }
+      if ((uint8_t)(first_visible + 2u) < wifi_scan_count) {
+        sb1_fmt_sel_line(ln, sizeof ln, pick == (uint8_t)(first_visible + 2u), wifi_ssids[first_visible + 2u]);
+        sb1_about_put_row(3, ln);
+      }
+      if (wifi_scan_count >= 3u) {
+        sb1_verticalmenu_draw(pick, wifi_scan_count, 1u, 3u);
+      }
+    }
+    if (wifi_status && wifi_status[0] != '\0') {
+      sb1_about_put_row(4, wifi_status);
+    }
+    sb1_about_put_row(5, "LONG=BACK");
   }
 
-  sb1_meter_link_runes_if(bt_ok, wf_ok);
+  if (screen != SB1_CONN_SCREEN_BT && screen != SB1_CONN_SCREEN_BT_DEV) {
+    sb1_meter_link_runes_if(bt_ok, wf_ok);
+  }
   pcd8544_display();
 }
 
@@ -510,8 +671,9 @@ static void sb1_draw_qr_screen(const char *payload, bool links_up, bool bt_conne
   if (!s_qr_session_open || strcmp(s_qr_last_payload, pl) != 0) {
     strncpy(s_qr_last_payload, pl, sizeof s_qr_last_payload - 1);
     s_qr_last_payload[sizeof s_qr_last_payload - 1] = '\0';
-    s_qr_ready = qrcodegen_encodeText(s_qr_last_payload, s_qr_temp, s_qr_data, qrcodegen_Ecc_LOW, 1, 10,
-                                      qrcodegen_Mask_AUTO, true);
+    /* Keep QR versions small so the rendered code stays physically large on 84x48 LCD. */
+    s_qr_ready = qrcodegen_encodeText(s_qr_last_payload, s_qr_temp, s_qr_data, qrcodegen_Ecc_LOW, 1, 4,
+                                      qrcodegen_Mask_AUTO, false);
     s_qr_modules = s_qr_ready ? qrcodegen_getSize(s_qr_data) : 0;
     s_qr_session_open = true;
   }
@@ -527,41 +689,40 @@ static void sb1_draw_qr_screen(const char *payload, bool links_up, bool bt_conne
     return;
   }
 
-  int size = s_qr_modules;
-  int scale = 3;
-  while (scale > 1 && (size * scale > PCD8544_WIDTH || size * scale > PCD8544_HEIGHT)) {
-    scale--;
-  }
-  if (scale < 1) {
-    scale = 1;
-  }
-  int px = size * scale;
-  int ox = ((int)PCD8544_WIDTH - px) / 2;
+  const int modules = s_qr_modules;
+  const int edge = (int)SB1_QR_EDGE_PX;
+  int ox = ((int)PCD8544_WIDTH - edge) / 2;
   if (ox < 0) {
     ox = 0;
   }
-  int oy = ((int)PCD8544_HEIGHT - px) / 2;
+  int oy = ((int)PCD8544_HEIGHT - edge) / 2;
   if (oy < 0) {
     oy = 0;
   }
 
-  for (int y = 0; y < size; y++) {
-    for (int x = 0; x < size; x++) {
-      if (!qrcodegen_getModule(s_qr_data, x, y)) {
+  for (int py = 0; py < edge; py++) {
+    for (int px = 0; px < edge; px++) {
+      int mx = (px * modules) / edge;
+      int my = (py * modules) / edge;
+      if (mx >= modules) {
+        mx = modules - 1;
+      }
+      if (my >= modules) {
+        my = modules - 1;
+      }
+      if (!qrcodegen_getModule(s_qr_data, mx, my)) {
         continue;
       }
-      for (int dy = 0; dy < scale; dy++) {
-        for (int dx = 0; dx < scale; dx++) {
-          int pxv = ox + x * scale + dx;
-          int pyv = oy + y * scale + dy;
-          if (pxv >= 0 && pxv < (int)PCD8544_WIDTH && pyv >= 0 && pyv < (int)PCD8544_HEIGHT) {
-            pcd8544_set_pixel((uint8_t)pxv, (uint8_t)pyv, true);
-          }
-        }
+      int pxv = ox + px;
+      int pyv = oy + py;
+      if (pxv >= 0 && pxv < (int)PCD8544_WIDTH && pyv >= 0 && pyv < (int)PCD8544_HEIGHT) {
+        pcd8544_set_pixel((uint8_t)pxv, (uint8_t)pyv, true);
       }
     }
   }
-  sb1_meter_link_runes_if(bt_connected, wifi_connected);
+  /* Keep QR area visually clean; extra glyphs can make the code look non-square. */
+  (void)bt_connected;
+  (void)wifi_connected;
   pcd8544_display();
 }
 
@@ -594,6 +755,7 @@ static void display_task_fn(void *pvParameters) {
   static bool s_fw_last_bt = false;
   static bool s_fw_last_wf = false;
   static uint8_t s_fw_last_flash = 0xFFu;
+  static uint8_t s_msc_mount_flash = 0xFFu;
   static unsigned s_last_ota_fill = 0xFFFFu;
   static uint8_t s_last_fw_yes_sel = 0xFFu;
   static uint8_t s_last_sure_yes_sel = 0xFFu;
@@ -601,6 +763,7 @@ static void display_task_fn(void *pvParameters) {
   static uint16_t s_last_tap_bpm = 0xFFFFu;
   /* Meter bars visibility tracks BT or Wi‑Fi up; repaint when it changes without other dirty flags. */
   static bool s_last_links_up = false;
+  static uint8_t s_last_bt_toast_kind = 0xFFu;
 
   memset(last_menu, 0, sizeof(last_menu));
   s_last_bt_peer_name[0] = '\0';
@@ -634,18 +797,36 @@ static void display_task_fn(void *pvParameters) {
     bool conn_qr_wifi = false;
     bool conn_cbt = false;
     bool conn_cwf = false;
+    bool conn_wscan = false;
+    uint8_t conn_wscan_count = 0u;
     bool bt_dirty = false;
     bool bt_peer_connected = false;
     bool wifi_sta_connected = false;
+    bool ble_adv_active = false;
+    uint8_t ble_state = SB1_BLE_STATE_BOOTING;
+    int ble_last_err = 0;
+    int ble_last_disc_reason = 0;
+    uint32_t ble_recovery_count = 0u;
+    uint8_t ble_proto_version = 0u;
+    uint32_t bt_toast_until_ms = 0u;
+    uint8_t bt_toast_kind = 0u;
     bool live_mode_active = false;
     bool usb_mounted = false;
+    bool usb_msc_mounting = false;
+    bool usb_msc_medium_ready = false;
     int bl_button = 1;
     uint16_t tap_bpm = 120u;
     char bt_peer_name[BT_PEER_NAME_MAX];
+    char ble_rx_summary[LINE_LEN];
     bt_peer_name[0] = '\0';
+    ble_rx_summary[0] = '\0';
+    uint32_t ble_rx_last_ms = 0u;
     uint8_t about_line_sel_copy = 0;
+    char conn_wifi_ssids[SB1_WIFI_SCAN_MAX_RESULTS][SB1_WIFI_SSID_MAX + 1u];
+    char conn_wifi_status[LINE_LEN];
     char about_detail_copy[SB1_ABOUT_DETAIL_BUF];
     about_detail_copy[0] = '\0';
+    uint32_t msc_attached_until_ms = 0u;
     if (sh && sh->mutex) {
       if (xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(50)) == pdTRUE) {
         midi_btn = sh->midi_btn_live;
@@ -671,21 +852,70 @@ static void display_task_fn(void *pvParameters) {
         conn_qr_wifi = sh->connectivity_qr_wifi;
         conn_cbt = sh->connectivity_connecting_bt;
         conn_cwf = sh->connectivity_connecting_wifi;
+        conn_wscan = sh->connectivity_wifi_scanning;
+        conn_wscan_count = sh->connectivity_wifi_scan_count;
+        memcpy(conn_wifi_ssids, sh->connectivity_wifi_ssids, sizeof(conn_wifi_ssids));
+        memcpy(conn_wifi_status, sh->connectivity_wifi_status, sizeof(conn_wifi_status));
         bt_dirty = sh->bt_pairing_dirty;
         bt_peer_connected = sh->bt_peer_connected;
         wifi_sta_connected = sh->wifi_sta_connected;
+        ble_adv_active = sh->ble_adv_active;
+        ble_state = sh->ble_state;
+        ble_last_err = sh->ble_last_err;
+        ble_last_disc_reason = sh->ble_last_disc_reason;
+        ble_recovery_count = sh->ble_recovery_count;
+        ble_proto_version = sh->ble_proto_version;
+        bt_toast_until_ms = sh->bt_toast_until_ms;
+        bt_toast_kind = sh->bt_toast_kind;
         strncpy(bt_peer_name, sh->bt_peer_name, BT_PEER_NAME_MAX - 1);
         bt_peer_name[BT_PEER_NAME_MAX - 1] = '\0';
+        strncpy(ble_rx_summary, sh->ble_rx_last_summary, LINE_LEN - 1);
+        ble_rx_summary[LINE_LEN - 1] = '\0';
+        ble_rx_last_ms = sh->ble_rx_last_ms;
         live_mode_active = sh->live_mode_active;
         usb_mounted = sh->usb_mounted;
+        usb_msc_mounting = sh->usb_msc_mounting;
+        usb_msc_medium_ready = sh->usb_msc_medium_ready;
         tap_bpm = sh->tap_bpm;
         about_line_sel_copy = sh->about_line_sel;
         memcpy(about_detail_copy, sh->about_detail_text, sizeof about_detail_copy);
+        msc_attached_until_ms = sh->usb_msc_attached_until_ms;
         xSemaphoreGive(sh->mutex);
       }
     }
 
+    {
+      uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+      if (msc_attached_until_ms != 0u && now_ms < msc_attached_until_ms) {
+        pcd8544_clear();
+        const char *ln1 = "SB1STORAGE";
+        const char *ln2 = "ATTACHED";
+        uint16_t w1 = pcd8544_text_width(ln1);
+        uint16_t w2 = pcd8544_text_width(ln2);
+        uint8_t x1 = (w1 < PCD8544_WIDTH) ? (uint8_t)((PCD8544_WIDTH - w1) / 2u) : 0u;
+        uint8_t x2 = (w2 < PCD8544_WIDTH) ? (uint8_t)((PCD8544_WIDTH - w2) / 2u) : 0u;
+        pcd8544_set_cursor(x1, 2u);
+        pcd8544_print(ln1);
+        pcd8544_set_cursor(x2, 3u);
+        pcd8544_print(ln2);
+        pcd8544_display();
+        vTaskDelay(pdMS_TO_TICKS(DISPLAY_POLL_MS));
+        continue;
+      }
+    }
+
     bool links_up = bt_peer_connected || wifi_sta_connected;
+    uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+
+    if (bt_toast_until_ms != 0u && now_ms < bt_toast_until_ms && !menu_active && !bt_pairing) {
+      if (bt_toast_kind != s_last_bt_toast_kind) {
+        sb1_draw_bt_toast(bt_toast_kind, bt_peer_name);
+        s_last_bt_toast_kind = bt_toast_kind;
+      }
+      vTaskDelay(pdMS_TO_TICKS(DISPLAY_POLL_MS));
+      continue;
+    }
+    s_last_bt_toast_kind = 0xFFu;
 
     if (bt_pairing) {
       bool peer_changed = (bt_peer_connected != s_last_bt_peer_conn) ||
@@ -694,12 +924,14 @@ static void display_task_fn(void *pvParameters) {
           ((to_ms_since_boot(get_absolute_time()) / (uint32_t)SB1_CONN_CONNECTING_FLASH_MS) & 1u) != 0;
       bool connecting_any =
           (conn_cbt && !bt_peer_connected) || (conn_cwf && !wifi_sta_connected);
+      /* Same 400 ms blink as "ADVERTISING..." / "CONNECTING...": includes Wi‑Fi scan spinner. */
+      bool flash_animation = connecting_any || conn_wscan;
       uint8_t flash_byte = flash_phase ? 1u : 0u;
       bool need = bt_dirty || !s_disp_bt_last || conn_screen != s_disp_c_screen ||
                   conn_sel != s_disp_c_sel || conn_qr != s_disp_c_qr ||
                   conn_qr_wifi != s_disp_c_qr_wifi || conn_cbt != s_disp_c_con_bt ||
                   conn_cwf != s_disp_c_con_wf || peer_changed || (links_up != s_last_links_up);
-      if (connecting_any && flash_byte != s_disp_c_flash) {
+      if (flash_animation && flash_byte != s_disp_c_flash) {
         need = true;
       }
       if (need) {
@@ -707,8 +939,11 @@ static void display_task_fn(void *pvParameters) {
           const char *qp = conn_qr_wifi ? SB1_WIFI_QR_PAYLOAD : SB1_BT_QR_PAYLOAD;
           sb1_draw_qr_screen(qp, links_up, bt_peer_connected, wifi_sta_connected);
         } else {
-          sb1_draw_connectivity_screen(conn_screen, conn_sel, conn_cbt, conn_cwf, bt_peer_connected,
-                                      wifi_sta_connected, flash_phase, bt_peer_name);
+          sb1_draw_connectivity_screen(conn_screen, conn_sel, conn_cbt, conn_cwf, conn_wscan, conn_wscan_count,
+                                      conn_wifi_ssids, conn_wifi_status, bt_peer_connected,
+                                      wifi_sta_connected, flash_phase, bt_peer_name, ble_adv_active, ble_state,
+                                      ble_last_err, ble_last_disc_reason,
+                                      ble_recovery_count, ble_proto_version);
         }
         s_disp_bt_last = true;
         s_disp_c_screen = conn_screen;
@@ -972,6 +1207,21 @@ static void display_task_fn(void *pvParameters) {
 
       char paint_menu[MENU_ROWS][LINE_LEN];
       memcpy(paint_menu, menu_copy, sizeof(paint_menu));
+      bool mount_flash_phase = false;
+      if (strcmp(paint_menu[0], "MIDI FILES") == 0) {
+        bool mount_selected = (paint_menu[1][0] == '>');
+        if (usb_msc_mounting && !usb_msc_medium_ready) {
+          mount_flash_phase = ((to_ms_since_boot(get_absolute_time()) / 250u) & 1u) != 0u;
+          snprintf(paint_menu[1], LINE_LEN, "%s%-*.*s", mount_selected ? ">" : " ",
+                   DISPLAY_COLS - 1, DISPLAY_COLS - 1, mount_flash_phase ? "MOUNTING" : "");
+        } else if (usb_msc_medium_ready) {
+          snprintf(paint_menu[1], LINE_LEN, "%s%-*.*s", mount_selected ? ">" : " ",
+                   DISPLAY_COLS - 1, DISPLAY_COLS - 1, "MOUNTED");
+        } else {
+          snprintf(paint_menu[1], LINE_LEN, "%s%-*.*s", mount_selected ? ">" : " ",
+                   DISPLAY_COLS - 1, DISPLAY_COLS - 1, "MOUNT");
+        }
+      }
 
       /* If ui_task hasn't rendered yet, menu lines can still be empty while menu_dirty is false;
        * never skip a paint when we have nothing cached (fixes one-frame race / permanent blank). */
@@ -985,6 +1235,14 @@ static void display_task_fn(void *pvParameters) {
       bool need = menu_dirty || (menu_has_content && last_menu[0][0] == '\0') ||
                   (bt_peer_connected != s_last_bt_icon_state) || (links_up != s_last_links_up);
       if (!need) {
+        if (usb_msc_mounting && !usb_msc_medium_ready) {
+          uint8_t flash_byte = mount_flash_phase ? 1u : 0u;
+          if (flash_byte != s_msc_mount_flash) {
+            need = true;
+          }
+        } else if (s_msc_mount_flash != 0xFFu) {
+          need = true;
+        }
         if (menu_invert_row != last_menu_invert) {
           need = true;
         }
@@ -1020,6 +1278,11 @@ static void display_task_fn(void *pvParameters) {
         last_pot_cc = pot_cc;
         s_last_bt_icon_state = bt_peer_connected;
         s_last_links_up = links_up;
+        if (usb_msc_mounting && !usb_msc_medium_ready) {
+          s_msc_mount_flash = mount_flash_phase ? 1u : 0u;
+        } else {
+          s_msc_mount_flash = 0xFFu;
+        }
       }
       was_menu_active = true;
     } else {
@@ -1031,12 +1294,24 @@ static void display_task_fn(void *pvParameters) {
 
       if (live_mode_active) {
         bool bl_pressed = (bl_button == 0);
+        static uint32_t s_live_ble_rx_snap = 0xFFFFFFFFu;
+        static uint32_t s_live_ble_qtick = 0;
+        uint32_t ble_q = now_ms / 400u;
         bool need_live = was_menu_active || (usb_mounted != s_live_usb) || (midi_btn != s_live_midi) ||
                          (links_up != s_live_links) || (bt_peer_connected != s_last_bt_icon_state) ||
                          (bl_button != s_live_bl) || (pot_cc != s_live_pot_cc);
+        if (ble_rx_last_ms != s_live_ble_rx_snap) {
+          need_live = true;
+        }
+        if (ble_rx_last_ms != 0u && ble_q != s_live_ble_qtick) {
+          s_live_ble_qtick = ble_q;
+          need_live = true;
+        }
         if (need_live) {
-          sb1_draw_live_mode_screen(usb_mounted, midi_btn, bl_pressed, pot_cc);
+          sb1_draw_live_mode_screen(usb_mounted, midi_btn, bl_pressed, pot_cc, ble_rx_summary, ble_rx_last_ms,
+                                    now_ms);
           pcd8544_display();
+          s_live_ble_rx_snap = ble_rx_last_ms;
           s_live_usb = usb_mounted;
           s_live_midi = midi_btn;
           s_live_links = links_up;
@@ -1054,13 +1329,20 @@ static void display_task_fn(void *pvParameters) {
       s_live_bl = 1;
       s_live_pot_cc = 0xFFu;
 
-      bool need = strcmp(line4, last_line4) != 0 || strcmp(line5, last_line5) != 0 || pot != last_pot ||
+      const char *activity_line = line5;
+      if (ble_rx_last_ms != 0u && now_ms >= ble_rx_last_ms &&
+          (now_ms - ble_rx_last_ms) <= (uint32_t)SB1_BLE_RX_ACTIVITY_MS && ble_rx_summary[0] != '\0') {
+        activity_line = ble_rx_summary;
+      } else if (ble_rx_last_ms != 0u) {
+        activity_line = "RX IDLE";
+      }
+      bool need = strcmp(line4, last_line4) != 0 || strcmp(activity_line, last_line5) != 0 || pot != last_pot ||
                   pot_cc != last_pot_cc || was_menu_active || midi_btn != last_midi_btn ||
                   (bt_peer_connected != s_last_bt_icon_state) || (links_up != s_last_links_up);
       if (need) {
         strncpy(last_line4, line4, LINE_LEN - 1);
         last_line4[LINE_LEN - 1] = '\0';
-        strncpy(last_line5, line5, LINE_LEN - 1);
+        strncpy(last_line5, activity_line, LINE_LEN - 1);
         last_line5[LINE_LEN - 1] = '\0';
         last_pot = pot;
         last_pot_cc = pot_cc;
@@ -1072,7 +1354,7 @@ static void display_task_fn(void *pvParameters) {
         pcd8544_set_cursor(0, 1);
         pcd8544_print(btnline);
         sb1_draw_wrapped_one_line(2, line4);
-        sb1_draw_wrapped_one_line(3, line5);
+        sb1_draw_wrapped_one_line(3, activity_line);
         sb1_meter_link_runes_if(bt_peer_connected, wifi_sta_connected);
         pcd8544_display();
         s_last_bt_icon_state = bt_peer_connected;

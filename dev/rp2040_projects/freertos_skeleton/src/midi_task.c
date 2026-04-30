@@ -4,9 +4,10 @@
 #include "config.h"
 #include "gpio_led.h"
 #include "midi_task.h"
-#include "sb1_uart_midi.h"
+#include "sb1_midi_router.h"
 #include "hardware/gpio.h"
 #include "pico/bootrom.h"
+#include "pico/time.h"
 #include "tusb.h"
 #include "FreeRTOS.h"
 #include "task.h"
@@ -26,6 +27,12 @@ static void midi_task_fn(void *pvParameters) {
   static TickType_t s_tr_boot_t0;
   /* Arm UF2 hold only after seeing TR released at least once (prevents boot loops if pin reads low at startup). */
   static bool s_tr_boot_armed;
+  /* TL (MIDI B): deferred note + long-hold MSC (TL_USB_MSC_HOLD_MS). */
+  static TickType_t s_tl_down_tick;
+  static bool s_tl_note_pending;
+  static bool s_tl_msc_gesture_fired;
+  /* Prevent TL LED from latching ON from a false low at boot. */
+  static bool s_tl_led_armed;
   const uint8_t notes[3] = {BTN_MIDI_NOTE_A, BTN_MIDI_NOTE_B, BTN_MIDI_NOTE_C};
   const uint pins[3] = {BTN_MIDI_A_GPIO, BTN_MIDI_B_GPIO, BTN_MIDI_C_GPIO};
   const uint led_pins[3] = {LED_BLUE_MIDI_A_GPIO, LED_BLUE_MIDI_B_GPIO, LED_BLUE_MIDI_C_GPIO};
@@ -53,15 +60,17 @@ static void midi_task_fn(void *pvParameters) {
       if (tud_mounted()) {
         tud_midi_stream_write(0, msg, 2);
       }
-      sb1_uart_mirror_midi(msg, 2, sh);
+      sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, msg, 2);
     }
 #endif
 
     bool menu_active = false;
     bool bt_pairing = false;
+    bool live_mode = false;
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
       menu_active = sh->menu_active;
       bt_pairing = sh->bt_pairing_active;
+      live_mode = sh->live_mode_active;
       xSemaphoreGive(sh->mutex);
     }
 
@@ -78,8 +87,17 @@ static void midi_task_fn(void *pvParameters) {
       if (pressed) {
         live_bits |= (uint8_t)(1u << i);
       }
+      if (i == 1u && !pressed) {
+        s_tl_led_armed = true;
+      }
+    }
+    for (unsigned i = 0; i < 3u; i++) {
+      bool debounced_pressed = (s_stable[i] == 0);
+      if (i == 1u && !s_tl_led_armed) {
+        debounced_pressed = false;
+      }
       if (!ui_owns_corners) {
-        gpio_led_set(led_pins[i], pressed);
+        gpio_led_set(led_pins[i], debounced_pressed);
       }
     }
     if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(5)) == pdTRUE) {
@@ -100,13 +118,43 @@ static void midi_task_fn(void *pvParameters) {
           int was = s_stable[i];
           s_stable[i] = r;
           s_ctr[i] = 0;
-          if (!menu_active && !bt_pairing) {
+          if (i == 1u) {
+            /* TL: defer note until release (short tap) or fire MSC long-hold (no note). */
+            if (!menu_active && !bt_pairing && !live_mode) {
+              if (was == 1 && r == 0) {
+                s_tl_down_tick = xTaskGetTickCount();
+                s_tl_note_pending = true;
+                s_tl_msc_gesture_fired = false;
+              } else if (was == 0 && r == 1) {
+                if (s_tl_note_pending && !s_tl_msc_gesture_fired) {
+                  uint8_t note_on[3] = {(uint8_t)(0x90u | (uint8_t)(MIDI_CH - 1u)), notes[1], MIDI_VEL};
+                  uint8_t note_off[3] = {(uint8_t)(0x80u | (uint8_t)(MIDI_CH - 1u)), notes[1], 0};
+                  if (mounted) {
+                    (void)tud_midi_stream_write(0, note_on, 3);
+                    (void)tud_midi_stream_write(0, note_off, 3);
+                  }
+                  sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, note_on, 3);
+                  sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, note_off, 3);
+                  if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+                    snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE ON %u", (unsigned)notes[1]);
+                    if (!sh->live_mode_active) {
+                      snprintf(sh->line4, LINE_LEN, "MIDI READY");
+                      snprintf(sh->line5, LINE_LEN, "NOTE TL %u", (unsigned)notes[1]);
+                    }
+                    xSemaphoreGive(sh->mutex);
+                  }
+                }
+                s_tl_note_pending = false;
+                s_tl_msc_gesture_fired = false;
+              }
+            }
+          } else if (!menu_active && !bt_pairing) {
             if (was == 1 && r == 0) {
               uint8_t note_on[3] = {(uint8_t)(0x90u | (uint8_t)(MIDI_CH - 1u)), notes[i], MIDI_VEL};
               if (mounted) {
                 tud_midi_stream_write(0, note_on, 3);
               }
-              sb1_uart_mirror_midi(note_on, 3, sh);
+              sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, note_on, 3);
               if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
                 snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE ON %u", (unsigned)notes[i]);
                 if (!sh->live_mode_active) {
@@ -120,7 +168,7 @@ static void midi_task_fn(void *pvParameters) {
               if (mounted) {
                 tud_midi_stream_write(0, note_off, 3);
               }
-              sb1_uart_mirror_midi(note_off, 3, sh);
+              sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, note_off, 3);
               if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
                 snprintf(sh->last_event, LAST_EVENT_LEN, "NOTE OFF %u", (unsigned)notes[i]);
                 if (!sh->live_mode_active) {
@@ -131,6 +179,17 @@ static void midi_task_fn(void *pvParameters) {
               }
             }
           }
+        }
+      }
+    }
+
+    if (!menu_active && !bt_pairing && !live_mode && s_tl_note_pending && s_stable[1] == 0 && !s_tl_msc_gesture_fired) {
+      if ((xTaskGetTickCount() - s_tl_down_tick) >= pdMS_TO_TICKS(TL_USB_MSC_HOLD_MS)) {
+        s_tl_msc_gesture_fired = true;
+        s_tl_note_pending = false;
+        if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+          sh->usb_msc_tl_request = 1u;
+          xSemaphoreGive(sh->mutex);
         }
       }
     }
@@ -147,7 +206,7 @@ static void midi_task_fn(void *pvParameters) {
           if (tud_mounted()) {
             tud_midi_stream_write(0, note_off, 3);
           }
-          sb1_uart_mirror_midi(note_off, 3, sh);
+          sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, note_off, 3);
           /* Re-arm only after release after we return from ROM boot in next run. */
           s_tr_boot_armed = false;
           reset_usb_boot(0, 0);
@@ -190,29 +249,5 @@ TaskHandle_t midi_task_create(shared_state_t *shared) {
 }
 
 void sb1_ble_midi_in(shared_state_t *sh, const uint8_t *data, size_t len) {
-  if (!sh || !data || len == 0) {
-    return;
-  }
-#if CFG_TUD_MIDI
-  uint8_t mode = SB1_BLE_MIDI_SINK_MERGE;
-  if (sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(5)) == pdTRUE) {
-    mode = sh->ble_midi_sink;
-    if (mode > SB1_BLE_MIDI_SINK_DEVICE) {
-      mode = SB1_BLE_MIDI_SINK_MERGE;
-    }
-    xSemaphoreGive(sh->mutex);
-  }
-
-  if (mode == SB1_BLE_MIDI_SINK_DEVICE) {
-    return;
-  }
-  /* USB and MERGE: echo to host when enumerated (MERGE also keeps local TX in midi_task). */
-  if (!tud_mounted()) {
-    return;
-  }
-  (void)tud_midi_stream_write(0, data, len);
-#else
-  (void)data;
-  (void)len;
-#endif
+  sb1_midi_router_ble_ingress(sh, data, len);
 }

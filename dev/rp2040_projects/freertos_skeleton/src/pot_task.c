@@ -4,7 +4,7 @@
  */
 #include "config.h"
 #include "pot_task.h"
-#include "sb1_uart_midi.h"
+#include "sb1_midi_router.h"
 #include "hardware/adc.h"
 #include "tusb.h"
 #include "FreeRTOS.h"
@@ -116,10 +116,8 @@ static void pot_task_fn(void *pvParameters) {
           (uint8_t)POT_MIDI_CC,
           cc_quant,
       };
-      if (tud_midi_stream_write(0, msg, 3) > 0) {
-        sb1_uart_mirror_midi(msg, 3, sh);
-        s_last_cc_sent = cc_quant;
-      }
+      sb1_midi_router_route(sh, SB1_MIDI_SRC_LOCAL, msg, 3);
+      s_last_cc_sent = cc_quant;
     }
 #endif
 

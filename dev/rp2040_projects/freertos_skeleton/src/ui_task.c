@@ -11,6 +11,7 @@
 #include "task.h"
 #include "gpio_led.h"
 #include "hardware/gpio.h"
+#include "hardware/uart.h"
 #include "pico/stdlib.h"
 #include "pico/time.h"
 #include <stdio.h>
@@ -24,6 +25,24 @@ typedef enum {
   /* In connectivity UI: short tap = confirm; hold = exit gesture (same threshold as menu long). */
   PAIR_UI_CONN_PRESS,
 } pair_ui_t;
+
+static void sb1_send_ble_cmd(const char *cmd) {
+  if (!cmd || !sb1_is_stdio_ready()) {
+    return;
+  }
+  uart_puts(uart0, "SB1CMD,BLE,");
+  uart_puts(uart0, cmd);
+  uart_puts(uart0, "\n");
+}
+
+static void sb1_send_wifi_cmd(const char *cmd) {
+  if (!cmd || !sb1_is_stdio_ready()) {
+    return;
+  }
+  uart_puts(uart0, "SB1CMD,WF,");
+  uart_puts(uart0, cmd);
+  uart_puts(uart0, "\n");
+}
 
 static void pair_ui_apply_entry_leds(uint32_t elapsed_ms) {
   if (elapsed_ms < PAIR_LED_FIRST_MS) {
@@ -114,6 +133,10 @@ static void pair_ui_complete_entry(shared_state_t *sh) {
     sh->connectivity_qr_wifi = false;
     sh->connectivity_connecting_bt = false;
     sh->connectivity_connecting_wifi = false;
+    sh->connectivity_wifi_scanning = false;
+    sh->connectivity_wifi_scan_count = 0u;
+    sh->connectivity_wifi_scan_sel = 0u;
+    sh->connectivity_wifi_status[0] = '\0';
     sh->bt_pairing_dirty = true;
     xSemaphoreGive(sh->mutex);
   }
@@ -128,6 +151,10 @@ static void pair_ui_complete_exit(shared_state_t *sh) {
     sh->connectivity_qr_wifi = false;
     sh->connectivity_connecting_bt = false;
     sh->connectivity_connecting_wifi = false;
+    sh->connectivity_wifi_scanning = false;
+    sh->connectivity_wifi_scan_count = 0u;
+    sh->connectivity_wifi_scan_sel = 0u;
+    sh->connectivity_wifi_status[0] = '\0';
     sh->bt_pairing_dirty = true;
     menu_init(sh);
     menu_render(sh);
@@ -166,10 +193,27 @@ static void connectivity_ui_process_event(shared_state_t *sh, const ui_event_t *
     if (s < 0) {
       s = 0;
     }
-    if (s > 1) {
-      s = 1;
+    int max_sel = 1;
+    if (sh->connectivity_screen == SB1_CONN_SCREEN_BT) {
+      if (sh->connectivity_connecting_bt && !sh->bt_peer_connected) {
+        max_sel = 1; /* 0=READVERTISING line, 1=TURNOFF */
+      } else {
+        max_sel = 4;
+      }
+    } else if (sh->connectivity_screen == SB1_CONN_SCREEN_BT_DEV) {
+      max_sel = 0;
+    } else if (sh->connectivity_screen == SB1_CONN_SCREEN_WIFI) {
+      max_sel = 1;
+    } else if (sh->connectivity_screen == SB1_CONN_SCREEN_WIFI_SCAN) {
+      max_sel = (sh->connectivity_wifi_scan_count > 0u) ? (int)(sh->connectivity_wifi_scan_count - 1u) : 0;
+    }
+    if (s > max_sel) {
+      s = max_sel;
     }
     sh->connectivity_sel = (uint8_t)s;
+    if (sh->connectivity_screen == SB1_CONN_SCREEN_WIFI_SCAN) {
+      sh->connectivity_wifi_scan_sel = sh->connectivity_sel;
+    }
     sh->bt_pairing_dirty = true;
     return;
   }
@@ -188,24 +232,74 @@ static void connectivity_ui_process_event(shared_state_t *sh, const ui_event_t *
       sh->bt_pairing_dirty = true;
       return;
     case SB1_CONN_SCREEN_BT:
-      if (sh->connectivity_sel == 0) {
-        if (!sh->bt_peer_connected) {
-          sh->connectivity_connecting_bt = true;
+      if (sh->connectivity_connecting_bt && !sh->bt_peer_connected) {
+        if (sh->connectivity_sel == 1u) {
+          sh->connectivity_connecting_bt = false;
+          sb1_send_ble_cmd("STOPADV");
+          sb1_send_ble_cmd("DISCONNECT");
         }
-      } else {
+        sh->bt_pairing_dirty = true;
+        return;
+      }
+      if (sh->connectivity_sel == 0) {
+        sh->connectivity_connecting_bt = !sh->bt_peer_connected;
+        sb1_send_ble_cmd("READV");
+        if (sh->connectivity_connecting_bt) {
+          sh->connectivity_sel = 0u;
+        }
+      } else if (sh->connectivity_sel == 1) {
         sh->connectivity_qr_visible = true;
         sh->connectivity_qr_wifi = false;
+      } else if (sh->connectivity_sel == 2) {
+        sh->connectivity_screen = SB1_CONN_SCREEN_BT_DEV;
+        sh->connectivity_sel = 0;
+      } else if (sh->connectivity_sel == 3) {
+        sh->connectivity_connecting_bt = false;
+        sb1_send_ble_cmd("DISCONNECT");
+      } else {
+        bool bt_power_on = sh->bt_peer_connected || sh->connectivity_connecting_bt || sh->ble_adv_active;
+        if (bt_power_on) {
+          sh->connectivity_connecting_bt = false;
+          sb1_send_ble_cmd("DISCONNECT");
+          sb1_send_ble_cmd("STOPADV");
+        } else {
+          sh->connectivity_connecting_bt = true;
+          sb1_send_ble_cmd("READV");
+        }
       }
+      sh->bt_pairing_dirty = true;
+      return;
+    case SB1_CONN_SCREEN_BT_DEV:
       sh->bt_pairing_dirty = true;
       return;
     case SB1_CONN_SCREEN_WIFI:
       if (sh->connectivity_sel == 0) {
-        if (!sh->wifi_sta_connected) {
-          sh->connectivity_connecting_wifi = true;
-        }
+        sh->connectivity_wifi_scanning = true;
+        sh->connectivity_connecting_wifi = false;
+        sh->connectivity_wifi_scan_count = 0u;
+        sh->connectivity_wifi_scan_sel = 0u;
+        sh->connectivity_wifi_status[0] = '\0';
+        sh->connectivity_screen = SB1_CONN_SCREEN_WIFI_SCAN;
+        sh->connectivity_sel = 0u;
+        sb1_send_wifi_cmd("SCAN");
       } else {
         sh->connectivity_qr_visible = true;
         sh->connectivity_qr_wifi = true;
+      }
+      sh->bt_pairing_dirty = true;
+      return;
+    case SB1_CONN_SCREEN_WIFI_SCAN:
+      if (sh->connectivity_wifi_scan_count == 0u) {
+        sh->bt_pairing_dirty = true;
+        return;
+      }
+      {
+        char cmd[64];
+        snprintf(cmd, sizeof cmd, "CONNECT,%s", sh->connectivity_wifi_ssids[sh->connectivity_sel]);
+        sh->connectivity_connecting_wifi = true;
+        sh->connectivity_wifi_scanning = false;
+        sh->connectivity_wifi_status[0] = '\0';
+        sb1_send_wifi_cmd(cmd);
       }
       sh->bt_pairing_dirty = true;
       return;
@@ -227,6 +321,9 @@ static void ui_task_fn(void *pvParameters) {
   TickType_t telemetry_tick = xTaskGetTickCount();
   TickType_t events_window_tick = telemetry_tick;
   uint16_t events_window = 0;
+  uint32_t startup_ble_retry_deadline_ms = 0;
+  uint32_t startup_ble_next_retry_ms = 0;
+  uint8_t startup_ble_retry_count = 0;
 
   pair_ui_t pair_ui = PAIR_UI_NONE;
   bool s_suppress_next_release = false;
@@ -238,12 +335,34 @@ static void ui_task_fn(void *pvParameters) {
   menu_init(sh);
   if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
     sh->ui_setup_hold_active = false;
+    if (sh->ble_startup_readv_sent) {
+      uint32_t now_ms = to_ms_since_boot(get_absolute_time());
+      startup_ble_retry_deadline_ms = now_ms + 20000u; /* bounded startup recovery window */
+      startup_ble_next_retry_ms = now_ms + 1200u;
+    }
     menu_render(sh);
     xSemaphoreGive(sh->mutex);
   }
 
   for (;;) {
     uint32_t now = to_ms_since_boot(get_absolute_time());
+    if (startup_ble_retry_deadline_ms != 0u && now >= startup_ble_next_retry_ms &&
+        now <= startup_ble_retry_deadline_ms) {
+      bool should_retry = false;
+      if (sh && sh->mutex && xSemaphoreTake(sh->mutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+        should_retry = sb1_is_stdio_ready() && sh->ble_startup_readv_sent && !sh->ble_adv_active &&
+                       !sh->bt_peer_connected && startup_ble_retry_count < 10u;
+        xSemaphoreGive(sh->mutex);
+      }
+      if (should_retry) {
+        sb1_send_ble_cmd("READV");
+        startup_ble_retry_count++;
+        startup_ble_next_retry_ms = now + 1500u;
+      } else {
+        startup_ble_retry_deadline_ms = 0u;
+      }
+    }
+
     bool bt_pairing = false;
     /* CONNECTIONS root: hold >= MENU_LONG_PRESS_MS starts LED exit. Submenus / QR: same threshold on
      * release -> EV_BUTTON_LONG (back), same idea as main menu LONG=BACK. */

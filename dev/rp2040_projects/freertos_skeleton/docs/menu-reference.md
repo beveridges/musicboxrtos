@@ -15,7 +15,7 @@
 - **HUB → MIDI (BLE MIDI IN)**  
   Routes inbound BLE MIDI from the ESP32 link into one of:
   - **USB**: forward toward USB host MIDI.
-  - **MRG** (merge): combine with local/USB as implemented in link/MIDI tasks.
+  - **MRG** (merge): combine with local/USB in the RP2040 MIDI router.
   - **DEV**: on-device only (no USB echo path), per `ble_midi_sink` in [`src/config.h`](../src/config.h).
 
   Requires the ESP32 UART/binary link to be up for BLE-derived traffic.
